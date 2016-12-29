@@ -31,7 +31,7 @@
 	\end{block}
 	\begin{block}{Linux}
 		For example, on Ubuntu (or Debian), Enter the command\\
-		sudo apt-get install texlive-full
+		{\color{red}sudo apt-get install texlive-full}
 	\end{block}
 	\begin{block}{MacOS}
 		Download MacTeX on the following website\\
@@ -70,6 +70,21 @@
 	Actually some parameters can be added, such as\\
 	{\color{red}\textbackslash documentclass[11pt,twoside,a4paper]\{article\}}\\
 	It means that the font-size is 11pt and the document is two-sided on an A4 paper. More features can be found in the \LaTeX\ Document on your own.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Documentation on your computer}
+	If you've installed a full version of TeXLive (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you.\\
+	\ \\
+	Open the command line and input the command\\
+	{\color{red}texdoc [docname]}
+	\begin{example}
+		{\color{red}texdoc tex} - A documentation about {\color{blue}TeX}\\
+		{\color{red}texdoc article} - A documentation about documentclass {\color{blue}article}\\
+		{\color{red}texdoc beamer} - A documentation about documentclass {\color{blue}beamer}\\
+		{\color{red}texdoc pgf} - A documentation about {\color{blue}TikZ} and {\color{blue}PGF} (used to draw graphs)\\
+	\end{example}
+	Just try to {\color{red}texdoc} about all new things then you will be an expert in \LaTeX.
 \end{frame}
 
 \begin{frame}
