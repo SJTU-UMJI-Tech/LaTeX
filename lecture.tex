@@ -1,0 +1,235 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+
+\usepackage{geometry}
+\usepackage{listings} 
+\usepackage{enumerate}
+
+\title{Introduction to \LaTeX}
+\author{Liu Yihao}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage	
+\end{frame}
+
+\begin{frame}
+	\frametitle{What is \LaTeX}
+	\begin{block}{From Wikipedia, the free encyclopedia}
+		LaTeX (lah-tekh, lah-tek or lay-tek, a shortening of Lamport TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italic), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as \LaTeX.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Installation of \LaTeX}
+	\begin{block}{Windows}
+		Download TeXLive on the follwing website\\
+		\href{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}{\color{blue}http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}
+	\end{block}
+	\begin{block}{Linux}
+		For example, on Ubuntu (or Debian), Enter the command\\
+		sudo apt-get install texlive-full
+	\end{block}
+	\begin{block}{MacOS}
+		Download MacTeX on the following website\\
+		\href{http://tug.org/mactex/mactex-download.html}
+		{\color{blue}http://tug.org/mactex/mactex-download.html}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Selection of IDEs}
+	There are various IDEs recommended that support \LaTeX , for example\\
+	\begin{block}{Texmaker}
+		\href{http://www.xm1math.net/texmaker/}{\color{blue}http://www.xm1math.net/texmaker/}
+	\end{block}
+	\begin{block}{Sublime Text}
+		\href{http://www.sublimetext.com/}{\color{blue}http://www.sublimetext.com/}
+	\end{block}
+	\begin{block}{Tex Studio}
+		\href{http://www.texstudio.org/}{\color{blue}http://www.texstudio.org/}
+	\end{block}
+	They all have cross-platform support for Windows, Linux and MacOS.
+\end{frame}
+
+\begin{frame}
+	\frametitle{All begins with documentclass}
+	\begin{definition}
+		In a \LaTeX\ file, the {\color{blue}first} line must be \\
+		{\color{red}\textbackslash documentclass[...]\{...\}}	
+	\end{definition}
+	For example, you can use the following:\\
+	\begin{enumerate}
+		\item {\color{red}\textbackslash documentclass\{ariticle\}} - Write a report or an science article
+		\item {\color{red}\textbackslash documentclass\{book\}} - Write a book
+		\item {\color{red}\textbackslash documentclass\{beamer\}} - Produce a lecture silde like this!
+	\end{enumerate}
+	Actually some parameters can be added, such as\\
+	{\color{red}\textbackslash documentclass[11pt,twoside,a4paper]\{article\}}\\
+	It means that the font-size is 11pt and the document is two-sided on an A4 paper. More features can be found in the \LaTeX\ Document on your own.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Magic of packages}
+	\begin{definition}
+		After the {\color{blue}documentclass}, packages can be included\\
+		{\color{red}\textbackslash usepackage[...]\{...\}}	
+	\end{definition}
+	There are some very useful packages that you can {\color{blue}ALWAYS} include:
+	\begin{enumerate}
+		\item {\color{red}\textbackslash usepackage\{amsmath\}} - Define various maths environments
+		\item {\color{red}\textbackslash usepackage\{amssymb\}} - Define various maths symbols
+		\item {\color{red}\textbackslash usepackage\{geometry\}} - Adjust the margin, paper size, and etc.
+		\item {\color{red}\textbackslash usepackage\{enumerate\}} - Generate a list like this!
+		\item {\color{red}\textbackslash usepackage\{graphicx\}} - Insert image of all types
+	\end{enumerate}
+	The usages of these and more packages will be introduced further.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Environments in enviornments}
+	\begin{definition}
+		In \LaTeX\ , most of the environments are in the following format
+		{\color{red}\textbackslash begin\{environmentName\}}\\
+		\quad ...\\
+		{\color{red}\textbackslash end\{environmentName\}}\\
+	\end{definition}
+	Of course, the environments can be nested.\\
+	\begin{example}
+		{\color{red}\textbackslash begin\{environmentName\}}\\
+			\quad ...\\
+			\quad{\color{red}\textbackslash begin\{anotherEnvironmentName\}}\\
+				\quad\quad ...\\
+			\quad{\color{red}\textbackslash end\{anotherEnvironmentName\}}\\
+			\quad ...\\
+		{\color{red}\textbackslash end\{environmentName\}}\\
+	\end{example}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The document environment}
+	\begin{definition}
+		An document starts with the {\color{blue}document} environment, after including the packages and making some settings with commands\\
+		{\color{red}\textbackslash documentclass[...]\{...\}}\\
+		\ \\
+		{\color{red}\textbackslash usepackage[...]\{...\}}\\		
+		{\color{red}\textbackslash usepackage[...]\{...\}}\\		
+		{\color{red}\textbackslash somecommand\{...\}}\\
+		\ \\
+		{\color{red}\textbackslash begin\{document\}}\\
+		\quad ...\\
+		{\color{red}\textbackslash end\{document\}}\\
+	\end{definition}
+	All of your contents should be in the document environment. The document environment {\color{blue}MUST} be {\color{blue}unique} in the whole file.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Dividing into sections}
+	\begin{definition}
+	A \LaTeX\ file can be divided into sections\\
+	{\color{red}\textbackslash section(*)\{...\}}\\
+	{\color{red}\textbackslash subsection(*)\{...\}}\\
+	{\color{red}\textbackslash subsubsection(*)\{...\}}\\
+	\end{definition}
+	The default style of sections is like\\
+	{\color{blue}1 Example Section Name}\\
+	{\color{blue}1.2 Example Subsection Name}\\
+	{\color{blue}1.2.3 Example Subsubsection Name}\\
+	\ \\
+	If a star({\color{blue}*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
+	{\color{blue}Notice:} Sections can be sorted into commands, not enviornments, so it doesn't have {\color{blue}begin} and {\color{blue}end} clauses.
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{The equation environment}
+	\begin{definition}
+		An {\color{blue}equation} enviornment contains a set of maths equations
+		{\color{red}\textbackslash begin\{euqation(*)\}}\\
+		\quad ...\\
+		{\color{red}\textbackslash end\{euqation(*)\}}\\
+	\end{definition}
+	\begin{example}
+		\begin{equation}
+		curl\ F=\left(\frac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}\right)\hat{n_x}+\left(\frac{\partial F_x}{\partial z}-\frac{\partial F_z}{\partial x}\right)\hat{n_y}+\left(\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}\right)\hat{n_z}
+		\end{equation}
+	\end{example}
+	If a star({\color{blue}*}) is added, the sequence number of the equation won't be displayed.
+\end{frame}
+
+
+
+\begin{frame}
+	The \LaTeX\ script of the equation above is quite long, but not so difficult as you think so, while how I display the script to you is far more confusing, and you may check it in the tex file of the lecture sildes
+	\begin{align*}
+	\color{blue} curl\backslash\ F
+	\text{=}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_z\}\{\backslash partial\ y\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ z\}\backslash right)\backslash hat\{n\_x\}\\
+	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ z\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_z\}\{\backslash partial\ x\}\backslash right)\backslash hat\{n\_y\}\\
+	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ x\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ y\}\backslash right)\backslash hat\{n\_z\}
+	\end{align*}
+	In the script, only a space after {\color{blue}\textbackslash} will be printed as a space, {\color{blue}\textbackslash partial} prints the symbol {\color{blue}$\partial$}, {\color{blue}\textbackslash frac\{...\}\{...\}} makes a {\color{blue}fraction}, {\color{blue}\textbackslash left(} and {\color{blue}\textbackslash right)} makes {\color{blue}brackets} (of course they can be nested and must be in couple, but you can use two kinds of brackets on the both side, i.e., {\color{blue}\textbackslash left[} and {\color{blue}\textbackslash right\textbackslash rbrace}, in which you must use {\color{blue}\textbackslash rbrace} or {\color{blue}\textbackslash \}} to print a right brace {\color{blue}$\rbrace$} \\
+\end{frame}
+
+\begin{frame}
+	How about equations with multiple lines?\\
+	The {\color{blue}aligned} enviornment can be used.
+	\begin{example}
+		\begin{equation}
+		\left\lbrace\begin{aligned}
+			x+y&=1\\x-y&=1
+		\end{aligned}\right.\Longrightarrow
+		\left\lbrace\begin{aligned}
+			x&=1\\y&=0
+		\end{aligned}\right.
+		\end{equation}
+	\end{example}
+	\begin{align*}
+		&\color{blue} \backslash left \backslash lbrace \backslash begin\{aligned\}\\
+		&\color{blue} \quad\quad\text{x+y\&=1} \backslash \backslash \text{x-y\&=1}\\
+		&\color{blue} \backslash end\{aligned\}\backslash right.\backslash Longrightarrow\\
+		&\color{blue} \backslash left \backslash lbrace \backslash begin\{aligned\}\\
+		&\color{blue} \quad\quad\text{x\&=1} \backslash \backslash \text{y\&=0}\\
+		&\color{blue} \backslash end\{aligned\}\backslash right.
+	\end{align*}
+	We can use a dot({\color{blue}.}) when we want to insert nothing in one of the brackets.
+\end{frame}
+
+\begin{frame}
+	\frametitle{The align/aligned enviornment}
+	\begin{definition}
+		An {\color{blue}align} enviornment is used outside a maths enviornment like {\color{blue}equation}
+		{\color{red}\textbackslash begin\{align(*)\}}\\
+		\quad ...\\
+		{\color{red}\textbackslash end\{align(*)\}}\\
+	\end{definition}
+	\begin{definition}
+		An {\color{blue}aligned} enviornment is used inside a maths enviornment like {\color{blue}equation}
+		{\color{red}\textbackslash begin\{euqation(*)\}}\\
+			\quad{\color{red}\textbackslash begin\{aligned\}}\\
+				\quad\quad ...\\
+			\quad{\color{red}\textbackslash end\{aligned\}}\\
+		{\color{red}\textbackslash end\{euqation(*)\}}\\
+	\end{definition}
+	Other properties of them are very similar.
+\end{frame}
+
+\begin{frame}
+	\frametitle{}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{}
+\end{frame}
+
+\end{document}
+
