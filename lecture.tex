@@ -238,7 +238,20 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{}
+	The {\color{blue}align/aligned} enviornment is an basic align and multiline enviornment.\\
+	\begin{example}
+		\begin{flalign}
+			a+b&\Leftrightarrow b+a\\
+			(a+b)+c&\Leftrightarrow a+(b+c)
+		\end{flalign}
+	\end{example}
+	\begin{align*}
+		&\color{blue} \backslash begin\{align\}\\
+		&\color{blue} \quad\quad a\text{+}b\ \&\ \backslash Leftrightarrow\ b\text{+}a\ \backslash\backslash \\
+		&\color{blue} \quad\quad (a\text{+}b)\text{+}c\ \&\ \backslash Leftrightarrow\ a\text{+}(b\text{+}c)\\
+		&\color{blue} \backslash end\{align\}
+	\end{align*}
+	In order to make a new line, you can easily use {\color{blue}\textbackslash\textbackslash} where you'd like (but not in certain maths enviornments such as {\color{blue}equation}). {\color{blue}\&} is used to align the equations, you can use multiple {\color{blue}\&}s and the {\color{blue}\&}s on every line will be aligned respectively.
 \end{frame}
 
 
