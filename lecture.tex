@@ -88,10 +88,44 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{The document environment}
+	\begin{definition}
+		An document starts with the {\color{blue}document} environment. A typical example is presented below.
+	\end{definition}
+	\begin{example}
+		{\color{red}\textbackslash documentclass[a4paper]\{article\}}\\
+		{\color{red}\textbackslash begin\{document\}}\\
+		\qquad...\\
+		\qquad Hello World!\\
+		\qquad...\\
+	{\color{red}\textbackslash end\{document\}}\\
+	\end{example}
+
+	All of your contents should be in the document environment. The document environment {\color{blue}MUST} be {\color{blue}unique} in the whole file.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Environments in enviornments}
+	\begin{definition}
+		Environment can be used to show some special layouts in the document. Most environments in \LaTeX\  are in the following format
+		{\color{red}\textbackslash begin\{environmentName\}}\\
+		\quad ...\\
+		{\color{red}\textbackslash end\{environmentName\}}\\
+	\end{definition}
+	Of course, the environments can be nested.\\
+	\begin{example}
+		{\color{red}\textbackslash begin\{environmentName\}}\\
+		\quad{\color{red}\textbackslash begin\{anotherEnvironmentName\}}\\
+		\quad\quad ...\\
+		\quad{\color{red}\textbackslash end\{anotherEnvironmentName\}}\\
+		{\color{red}\textbackslash end\{environmentName\}}\\
+	\end{example}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Magic of packages}
 	\begin{definition}
-		After the {\color{blue}documentclass}, packages can be included\\
-		{\color{red}\textbackslash usepackage[...]\{...\}}	
+		Some environments or commands cannot be used directly. In this case,  {\color{blue}packages} should be included between {\color{blue}documentclass} and {\color{blue}document environment}.
 	\end{definition}
 	There are some very useful packages that you can {\color{blue}ALWAYS} include:
 	\begin{enumerate}
@@ -105,49 +139,12 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Environments in enviornments}
-	\begin{definition}
-		In \LaTeX\ , most of the environments are in the following format
-		{\color{red}\textbackslash begin\{environmentName\}}\\
-		\quad ...\\
-		{\color{red}\textbackslash end\{environmentName\}}\\
-	\end{definition}
-	Of course, the environments can be nested.\\
-	\begin{example}
-		{\color{red}\textbackslash begin\{environmentName\}}\\
-			\quad ...\\
-			\quad{\color{red}\textbackslash begin\{anotherEnvironmentName\}}\\
-				\quad\quad ...\\
-			\quad{\color{red}\textbackslash end\{anotherEnvironmentName\}}\\
-			\quad ...\\
-		{\color{red}\textbackslash end\{environmentName\}}\\
-	\end{example}
-\end{frame}
-
-\begin{frame}
-	\frametitle{The document environment}
-	\begin{definition}
-		An document starts with the {\color{blue}document} environment, after including the packages and making some settings with commands\\
-		{\color{red}\textbackslash documentclass[...]\{...\}}\\
-		\ \\
-		{\color{red}\textbackslash usepackage[...]\{...\}}\\		
-		{\color{red}\textbackslash usepackage[...]\{...\}}\\		
-		{\color{red}\textbackslash somecommand\{...\}}\\
-		\ \\
-		{\color{red}\textbackslash begin\{document\}}\\
-		\quad ...\\
-		{\color{red}\textbackslash end\{document\}}\\
-	\end{definition}
-	All of your contents should be in the document environment. The document environment {\color{blue}MUST} be {\color{blue}unique} in the whole file.
-\end{frame}
-
-\begin{frame}
 	\frametitle{Dividing into sections}
 	\begin{definition}
-	A \LaTeX\ file can be divided into sections\\
-	{\color{red}\textbackslash section(*)\{...\}}\\
-	{\color{red}\textbackslash subsection(*)\{...\}}\\
-	{\color{red}\textbackslash subsubsection(*)\{...\}}\\
+		A \LaTeX\ file can be divided into sections\\
+		{\color{red}\textbackslash section(*)\{...\}}\\
+		{\color{red}\textbackslash subsection(*)\{...\}}\\
+		{\color{red}\textbackslash subsubsection(*)\{...\}}\\
 	\end{definition}
 	The default style of sections is like\\
 	{\color{blue}1 Example Section Name}\\
@@ -157,6 +154,9 @@
 	If a star({\color{blue}*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
 	{\color{blue}Notice:} Sections can be sorted into commands, not enviornments, so it doesn't have {\color{blue}begin} and {\color{blue}end} clauses.
 \end{frame}
+
+
+
 
 \begin{frame}
 
