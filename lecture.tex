@@ -20,6 +20,13 @@
 	\titlepage	
 \end{frame}
 
+\section{Introduction}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{What is \LaTeX}
+
 \begin{frame}
 	\frametitle{What is \LaTeX}
 	\begin{block}{From Wikipedia, the free encyclopedia}
@@ -27,6 +34,12 @@
 	\end{block}
 \end{frame}
 
+\section{Getting Started}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Installation of \LaTeX}
 \begin{frame}
 	\frametitle{Installation of \LaTeX}
 	\begin{block}{Windows}
@@ -44,6 +57,8 @@
 	\end{block}
 \end{frame}
 
+\subsection{Selection of IDEs}
+
 \begin{frame}
 	\frametitle{Selection of IDEs}
 	There are various IDEs recommended that support \LaTeX , for example\\
@@ -59,22 +74,7 @@
 	They all have cross-platform support for Windows, Linux and MacOS.
 \end{frame}
 
-\begin{frame}
-	\frametitle{All begins with documentclass}
-	\begin{definition}
-		In a \LaTeX\ file, the {\color{blue}first} line must be \\
-		{\color{red}\textbackslash documentclass[...]\{...\}}	
-	\end{definition}
-	For example, you can use the following:\\
-	\begin{enumerate}
-		\item {\color{red}\textbackslash documentclass\{ariticle\}} - Write a report or an science article
-		\item {\color{red}\textbackslash documentclass\{book\}} - Write a book
-		\item {\color{red}\textbackslash documentclass\{beamer\}} - Produce a lecture silde like this!
-	\end{enumerate}
-	Actually some parameters can be added, such as\\
-	{\color{red}\textbackslash documentclass[11pt,twoside,a4paper]\{article\}}\\
-	It means that the font-size is 11pt and the document is two-sided on an A4 paper. More features can be found in the \LaTeX\ Document on your own.
-\end{frame}
+\subsection{Documentation on your computer}
 
 \begin{frame}
 	\frametitle{Documentation on your computer}
@@ -90,6 +90,63 @@
 	\end{example}
 	Just try to {\color{red}texdoc} about all new things then you will be an expert in \LaTeX.
 \end{frame}
+
+\section{The Basic Usages}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Common syntax}
+
+\begin{frame}
+	\frametitle{The common syntax of \LaTeX\ commands}
+	\begin{definition}
+		\structure{Command} is a word which can be identified by Latex and represents a certian function in output file, or in relation with some specific character or format
+	\end{definition}
+	All \LaTeX\ commands have the following syntax\\
+	\alert{\textbackslash command\_name}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\{\structure{required\_args}\}
+	\begin{description}
+		\item[special\_args]	Seldom used in basic usage, for certain special usages in some packages
+		\item[optional\_args]	Used to define mode of the command, if not specified, \LaTeX\ will use the default mode
+		\item[required\_args]	Must be filled
+	\end{description}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The common syntax of \LaTeX\ environments}
+	\begin{definition}
+		\structure{Environment} is an encapsulated part which has a certain format so that it will not be influenced by outer context
+	\end{definition}
+	All \LaTeX\ environments have the following syntax\\
+	\structure{\textbackslash begin}\alert{\{environment\_name\}}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\\
+	\qquad...\\
+	\structure{\textbackslash end}\alert{\{environment\_name\}}\\
+	\begin{description}
+		\item[special\_args]	Similar to commands
+		\item[optional\_args]	Similar to commands
+	\end{description}
+\end{frame}
+
+\subsection{Documentclass}
+
+\begin{frame}
+	\frametitle{All begins with documentclass}
+	\begin{definition}
+		In a \LaTeX\ file, the {\color{blue}first} line must be \\
+		\alert{\textbackslash documentclass}[\structure{options}]\{\structure{class}\}
+	\end{definition}
+	For example, you can use the following types for the \structure{class}\\
+	\begin{description}
+		\item[ariticle]	Write a report or an science article
+		\item[book] 	Write a book
+		\item[beamer]	Produce a lecture silde like this!
+	\end{description}
+	Actually some options can be added, such as\\
+	\alert{\textbackslash documentclass}[11pt,twoside,a4paper]\{article\}\\
+	It means that the font-size is 11pt and the document is two-sided on an A4 paper. More features can be found in the \LaTeX\ Document on your own.
+\end{frame}
+
+\subsection{Document environment}
 
 \begin{frame}
 	\frametitle{The document environment}
@@ -381,4 +438,13 @@ But if we add
 	\frametitle{Insert a graph}
     
 \end{frame}
+
+\begin{frame}
+	\frametitle{Contributors}
+	Liu Yihao (https://github.com/tc-imba)\\
+	Zhou Yanjun (https://github.com/AuroraZK)\\
+	Zhang Yifei (https://github.com/zhangyifei-chelsea)\\
+\end{frame}
+
+
 \end{document}
