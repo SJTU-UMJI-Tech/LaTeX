@@ -5,6 +5,10 @@
 \usepackage{geometry}
 \usepackage{listings} 
 \usepackage{enumerate}
+\usepackage{tabu} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{ tipa }
 
 \title{Introduction to \LaTeX}
 \author{Liu Yihao}
@@ -154,10 +158,11 @@
 	If a star({\color{blue}*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
 	{\color{blue}Notice:} Sections can be sorted into commands, not enviornments, so it doesn't have {\color{blue}begin} and {\color{blue}end} clauses.
 \end{frame}
+\begin{frame}
+	\frametitle{Enumerate and Item}
 
 
-
-
+\end{frame}
 \begin{frame}
 
 \end{frame}
@@ -256,8 +261,95 @@
 
 
 \begin{frame}
-	\frametitle{}
+	\frametitle{Something more about equation environment}
+    What if the space between equation and the main body paragraph is considered larger than expectation? Is there any way to modify the line spaceing?
+\\In default style of equation is like
+    \begin{example}
+    your body paragraph is supposed to be typed here
+        \begin{equation}
+         a \times b =c
+        \end{equation}
+    your body paragraph is supposed to be typed here
+	\end{example}
 \end{frame}
-
+\begin{frame}
+But if we add 
+{\color{red} $\backslash$setlength$\backslash$abovedisplayskip or belowdisplayskip( pt)} before the equation environment, we have
+    \begin{example}
+    your body paragraph is supposed to be typed here
+		{\setlength\abovedisplayskip{0pt}
+        \setlength\belowdisplayskip{0pt}
+        \begin{equation}
+         a \times b =c
+        \end{equation}}
+    your body paragraph is supposed to be typed here
+	\end{example}
+    {\color{blue}\{$\backslash$setlength$\backslash$abovedisplayskip\{0pt\}
+        \\$\backslash$setlength$\backslash$belowdisplayskip\{0pt\}
+       \\ $\backslash$begin\{equation\}
+         \\a $\backslash$times b =c
+        \\$\backslash$end\{equation\}\}}
+    \\The margin between the body paragraphs and the equation will be lessened 
+    as is in the example.
+\end{frame}
+\begin{frame}
+	\frametitle{Typing subscript or superscript out side an equation environment}
+    Sometimes you may encounter such circumstance as typing subscript or superscript in your paragraph without entering an equation environment.
+    \begin{example}
+       The concentration of [H$_3$O$^+$]
+    \end{example}
+    [H$_3$O$^+$] is typed in the following way,
+    \\{\color{blue} [H\textdollar \textunderscore\{3\} \textdollar O \textdollar \textasciicircum \{+\} \textdollar] }
+    \\ in which we type every subscript with 
+    \\{\color{red} \textdollar \textunderscore\{anyting you wanna enter as subscript\}\textdollar}
+    \\every subscript with 
+    \\{\color{red} \textdollar \textasciicircum\{anyting you wanna enter as subscript\}\textdollar}
+    \\ if we only want to type one character as the subscript or superscript \{\} can be omiited.
+\end{frame}
+\begin{frame}
+	\frametitle{Draw a table}
+    \begin{example}
+        \begin{tabular}{|l|c|r|}
+        \hline
+        Title 1 & Title 2 & Title 3 \\
+        \hline
+        1 & 2 &3 \\
+        \hline
+        \end{tabular}
+    \end{example}
+    The example above goes like this:\\
+        $\backslash$begin\{tabular\}\{\textvertline l\textvertline c\textvertline r\textvertline \} \%l represents aligning left; 
+        \\ \qquad \qquad \qquad \qquad \qquad \quad c represents centering; 
+        \\ \qquad \qquad \qquad \qquad \qquad \quad r represents aligning right
+        \\ \qquad \qquad \qquad \qquad \qquad \quad \textvertline \, means the vertical frame of a column\\
+        $\backslash$hline \quad \% hline means to draw a horizontal line for all columns\\
+        Title 1\&Title 2\&Title 3  \%\& is used to divide contents of different columns\\
+        $\backslash$hline\\
+        1 \& 2 \&3 \\
+        $\backslash$hline\\
+        $\backslash$end\{tabular\}
+\end{frame}
+\begin{frame}
+   \frametitle{Something more about tabular}
+   $\backslash$multirow \\
+   $\backslash$multicolumn \\
+   $\backslash$cline{} \\
+\end{frame}
+\begin{frame}
+	\frametitle{Table environment}
+    \begin{definition}
+    A {\color{blue}table} enviornment is used to arrange the place of a tabular
+		{\color{red}\textbackslash begin\{table(*)\}[htbp]}\\
+		\quad ...\\
+		{\color{red}\textbackslash end\{table(*)\}}\\
+	\end{definition}
+    \text{[h]} means inserting the tabular to the current place.
+    \\\text{[t]} means inserting the tabular to the top of the page.
+    \\\text{[b]} means inserting the tabular to the bottom of the page.
+    \\\text{[p]} means inserting the tabular to another new page, which is common in dealing with big table.
+\end{frame}
+\begin{frame}
+	\frametitle{Insert a graph}
+    
+\end{frame}
 \end{document}
-
