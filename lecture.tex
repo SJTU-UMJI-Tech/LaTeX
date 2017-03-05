@@ -10,6 +10,8 @@
 \usepackage{multicol}
 \usepackage{ tipa }
 
+\newenvironment{command}{\begin{block}{Command}}{\end{block}}
+
 \title{Introduction to \LaTeX}
 \author{Liu Yihao}
 \date{\today}
@@ -44,16 +46,16 @@
 	\frametitle{Installation of \LaTeX}
 	\begin{block}{Windows}
 		Download TeXLive on the follwing website\\
-		\href{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}{\color{blue}http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}
+		\href{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}{\color{blue}\underline{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}}
 	\end{block}
 	\begin{block}{Linux}
 		For example, on Ubuntu (or Debian), Enter the command\\
-		{\color{red}sudo apt-get install texlive-full}
+		\alert{sudo apt-get install texlive-full}
 	\end{block}
 	\begin{block}{MacOS}
 		Download MacTeX on the following website\\
 		\href{http://tug.org/mactex/mactex-download.html}
-		{\color{blue}http://tug.org/mactex/mactex-download.html}
+		{\color{blue}\underline{http://tug.org/mactex/mactex-download.html}}
 	\end{block}
 \end{frame}
 
@@ -63,32 +65,33 @@
 	\frametitle{Selection of IDEs}
 	There are various IDEs recommended that support \LaTeX , for example\\
 	\begin{block}{Texmaker}
-		\href{http://www.xm1math.net/texmaker/}{\color{blue}http://www.xm1math.net/texmaker/}
+		\href{http://www.xm1math.net/texmaker/}{\color{blue}\underline{http://www.xm1math.net/texmaker/}}
 	\end{block}
 	\begin{block}{Sublime Text}
-		\href{http://www.sublimetext.com/}{\color{blue}http://www.sublimetext.com/}
+		\href{http://www.sublimetext.com/}{\color{blue}\underline{http://www.sublimetext.com/}}
 	\end{block}
 	\begin{block}{Tex Studio}
-		\href{http://www.texstudio.org/}{\color{blue}http://www.texstudio.org/}
+		\href{http://www.texstudio.org/}{\color{blue}\underline{http://www.texstudio.org/}}
 	\end{block}
 	They all have cross-platform support for Windows, Linux and MacOS.
 \end{frame}
 
-\subsection{Documentation on your computer}
+\subsection{Documentation}
 
 \begin{frame}
 	\frametitle{Documentation on your computer}
 	If you've installed a full version of TeXLive (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you.\\
 	\ \\
 	Open the command line and input the command\\
-	{\color{red}texdoc [docname]}
-	\begin{example}
-		{\color{red}texdoc tex} - A documentation about {\color{blue}TeX}\\
-		{\color{red}texdoc article} - A documentation about documentclass {\color{blue}article}\\
-		{\color{red}texdoc beamer} - A documentation about documentclass {\color{blue}beamer}\\
-		{\color{red}texdoc pgf} - A documentation about {\color{blue}TikZ} and {\color{blue}PGF} (used to draw graphs)\\
-	\end{example}
-	Just try to {\color{red}texdoc} about all new things then you will be an expert in \LaTeX.
+	\alert{texdoc} \structure{docname}\\
+	For example, you can use the following types for the \structure{docname}\\
+	\begin{description}
+		\item[tex] 		A documentation about \structure{TeX}\\
+		\item[article] 	A documentation about documentclass \structure{article}\\
+		\item[beamer] 	A documentation about documentclass \structure{beamer}\\
+		\item[pgf]		A documentation about \structure{TikZ} and \structure{PGF} (used to draw graphs)\\
+	\end{description}
+	Just try to \alert{texdoc} about all new things then you will be an expert in \LaTeX.
 \end{frame}
 
 \section{The Basic Usages}
@@ -110,6 +113,7 @@
 		\item[optional\_args]	Used to define mode of the command, if not specified, \LaTeX\ will use the default mode
 		\item[required\_args]	Must be filled
 	\end{description}
+	If you want to connect a letter after a command, a space must be appended after the command or \LaTeX\ won't be able to compile it correctly. But two commands can be directly connected since there is a \structure{\textbackslash} before each command.
 \end{frame}
 
 \begin{frame}
@@ -118,14 +122,30 @@
 		\structure{Environment} is an encapsulated part which has a certain format so that it will not be influenced by outer context
 	\end{definition}
 	All \LaTeX\ environments have the following syntax\\
-	\structure{\textbackslash begin}\alert{\{environment\_name\}}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\\
+	\structure{\textbackslash begin}\{\alert{environment\_name}\}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\\
 	\qquad...\\
-	\structure{\textbackslash end}\alert{\{environment\_name\}}\\
+	\structure{\textbackslash end}\{\alert{environment\_name}\}\\
 	\begin{description}
 		\item[special\_args]	Similar to commands
 		\item[optional\_args]	Similar to commands
 	\end{description}
+	It is recommended to have a tab indent in each environment or your tex codes will be difficult to read by others or even \alert{yourself}.
 \end{frame}
+
+\begin{frame}
+	\frametitle{Environment in enviornment}
+	Of course, the environments can be nested.\\
+	\begin{example}
+		\structure{\textbackslash begin}\{\alert{environment\_name}\}\\
+		\qquad ...\\
+		\qquad\structure{\textbackslash begin}\{\alert{environment\_name\_2}\}\\
+		\qquad\qquad ...\\
+		\qquad\structure{\textbackslash end}\{\alert{environment\_name\_2}\}\\
+		\qquad ...\\
+		\structure{\textbackslash end}\{\alert{environment\_name}\}\\
+	\end{example}
+\end{frame}
+
 
 \subsection{Documentclass}
 
@@ -141,117 +161,177 @@
 		\item[book] 	Write a book
 		\item[beamer]	Produce a lecture silde like this!
 	\end{description}
-	Actually some options can be added, such as\\
-	\alert{\textbackslash documentclass}[11pt,twoside,a4paper]\{article\}\\
-	It means that the font-size is 11pt and the document is two-sided on an A4 paper. More features can be found in the \LaTeX\ Document on your own.
+	Actually some options can be added, such as\\[0.5em]
+	\alert{\textbackslash documentclass}[11pt,twoside,a4paper]\{article\}\\[0.5em]
+	Some details about the \structure{article} class are on the next page. More features about other classes and options can be found in the \LaTeX\ Document on your own.
 \end{frame}
+
+\begin{frame}
+	\frametitle{The article class}
+	The \structure{article} class the most basic class in \LaTeX, it provides you with some normalized structure and format for report writing. So usually you will use the following command as the first line of your tex document\\[0.5em]
+	\alert{\textbackslash documentclass}[\structure{options}]\{article\}\\[0.5em]
+	Some of the options values are listed below (the default values are \alert{alerted})
+	\begin{itemize}
+		\item \alert{10pt}, \structure{11pt}, \structure{12pt} - the font size of the document
+		\item \structure{a4paper}, \structure{a5paper}, \alert{letterpaper} - the size of paper
+		\item \structure{fleqn} - make the math equations left aligned (default middle aligned)
+		\item \structure{leqno} - display the serial numbers of math equations on the left (default on the right)
+		\item \structure{titlepage}, \alert{notitlepage} - whether to make the title an entire page
+		\item \alert{onecolumn}, \structure{twocolumn} - the number of columns of the document
+		\item \structure{twoside}, \alert{oneside} - influence the position of something on the page
+	\end{itemize}
+\end{frame}
+
 
 \subsection{Document environment}
 
 \begin{frame}
 	\frametitle{The document environment}
 	\begin{definition}
-		An document starts with the {\color{blue}document} environment. A typical example is presented below.
+		An document starts with the \structure{document} environment. A typical  (simplest) example is presented below.
 	\end{definition}
 	\begin{example}
-		{\color{red}\textbackslash documentclass[a4paper]\{article\}}\\
-		{\color{red}\textbackslash begin\{document\}}\\
+		\alert{\textbackslash documentclass}[a4paper]\{article\}\\
+		\structure{\textbackslash begin}\{document\}\\
 		\qquad...\\
 		\qquad Hello World!\\
 		\qquad...\\
-	{\color{red}\textbackslash end\{document\}}\\
+		\structure{\textbackslash end}\{document\}\\
 	\end{example}
 
-	All of your contents should be in the document environment. The document environment {\color{blue}MUST} be {\color{blue}unique} in the whole file.
+	All of your contents should be in the document environment. The document environment \alert{MUST} be \alert{unique} in the whole file.
 \end{frame}
 
-\begin{frame}
-	\frametitle{Basic commands}
-   $\backslash \backslash$
-   \\\%
-   \\$\backslash$newpage
-   \\$\backslash$underline\{text\}
-   \\$\backslash$textbf\{text\} \qquad \textbf{text}
-   \\$\backslash$textit\{text\} \qquad \textit{text}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Trivial things about size}
-    $\backslash$tiny \qquad {\tiny tiny}
-    \\$\backslash$scriptsize \qquad {\scriptsize scriptsize}
-    \\$\backslash$footnotesize \qquad {\footnotesize footnotesize}
-    \\$\backslash$small \qquad {\small small}
-    \vspace{3pt}
-    \\$\backslash$normalsize  \qquad {\normalsize normalsize}
-    \vspace{3pt}
-    \\$\backslash$large \qquad {\large large}
-    \vspace{3pt}
-    \\$\backslash$Large \qquad {\Large Large}
-    \vspace{3pt}
-    \\$\backslash$LARGE \qquad {\LARGE LARGE}
-    \vspace{3pt}
-    \\$\backslash$huge \qquad {\huge huge}
-    \vspace{3pt}
-    \\$\backslash$Huge \qquad {\Huge Huge}
-\end{frame}
-\begin{frame}
-	\frametitle{Environments in enviornments}
-	\begin{definition}
-		Environment can be used to show some special layouts in the document. Most environments in \LaTeX\  are in the following format
-		{\color{red}\textbackslash begin\{environmentName\}}\\
-		\quad ...\\
-		{\color{red}\textbackslash end\{environmentName\}}\\
-	\end{definition}
-	Of course, the environments can be nested.\\
-	\begin{example}
-		{\color{red}\textbackslash begin\{environmentName\}}\\
-		\quad{\color{red}\textbackslash begin\{anotherEnvironmentName\}}\\
-		\quad\quad ...\\
-		\quad{\color{red}\textbackslash end\{anotherEnvironmentName\}}\\
-		{\color{red}\textbackslash end\{environmentName\}}\\
-	\end{example}
-\end{frame}
+\subsection{Packages}
 
 \begin{frame}
 	\frametitle{Magic of packages}
 	\begin{definition}
-		Some environments or commands cannot be used directly. In this case,  {\color{blue}packages} should be included between {\color{blue}documentclass} and {\color{blue}document environment}.
+		Some environments or commands cannot be used directly. In this case,  \structure{packages} should be included between \structure{documentclass} and \structure{document environment}.
 	\end{definition}
-	There are some very useful packages that you can {\color{blue}ALWAYS} include:
-	\begin{enumerate}
-		\item {\color{red}\textbackslash usepackage\{amsmath\}} - Define various maths environments
-		\item {\color{red}\textbackslash usepackage\{amssymb\}} - Define various maths symbols
-		\item {\color{red}\textbackslash usepackage\{geometry\}} - Adjust the margin, paper size, and etc.
-		\item {\color{red}\textbackslash usepackage\{enumerate\}} - Generate a list like this!
-		\item {\color{red}\textbackslash usepackage\{graphicx\}} - Insert image of all types
-	\end{enumerate}
+	\begin{command}
+		\alert{\textbackslash usepackage}[\structure{optional\_args}]\{\structure{name}\}
+	\end{command}
+	There are some very useful packages that you can \alert{ALWAYS} include:
+	\begin{description}
+		\item[amsmath] Define various maths environments
+		\item[amssymb] Define various maths symbols
+		\item[geometry] Adjust the margin, paper size, and etc.
+		\item[enumerate] Generate a list like this!
+		\item[graphicx] Insert image of all types
+	\end{description}
 	The usages of these and more packages will be introduced further.
 \end{frame}
 
+\subsection{Title, Author and Date}
+
+\begin{frame}
+	\frametitle{Title, Author and Date}
+	It's very useful to generate a title on the first page of a document, then these commands can be added between \structure{documentclass} and \structure{document environment}.
+	\begin{command}
+		\alert{\textbackslash title}\{\structure{the title}\}\\
+		\alert{\textbackslash author}\{\structure{the author}\}\\
+		\alert{\textbackslash date}\{\structure{the date}\}\\
+	\end{command}
+	You can simply use \alert{\textbackslash date}\{\alert{\textbackslash today}\} to display today's date.\\[0.5em]
+	Then in the \structure{document environment}, use the command \alert{\textbackslash maketitle} to generate a title.
+\end{frame}
+
+\subsection{Sections}
+
 \begin{frame}
 	\frametitle{Dividing into sections}
-	\begin{definition}
-		A \LaTeX\ file can be divided into sections\\
-		{\color{red}\textbackslash section(*)\{...\}}\\
-		{\color{red}\textbackslash subsection(*)\{...\}}\\
-		{\color{red}\textbackslash subsubsection(*)\{...\}}\\
-	\end{definition}
+	\begin{command}
+		\alert{\textbackslash section(*)}\{\structure{name}\}\\
+		\alert{\textbackslash subsection(*)}\{\structure{name}\}\\
+		\alert{\textbackslash subsubsection(*)}\{\structure{name}\}\\
+	\end{command}
 	The default style of sections is like\\
-	{\color{blue}1 Example Section Name}\\
-	{\color{blue}1.2 Example Subsection Name}\\
-	{\color{blue}1.2.3 Example Subsubsection Name}\\
-	\ \\
-	If a star({\color{blue}*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
-	{\color{blue}Notice:} Sections can be sorted into commands, not enviornments, so it doesn't have {\color{blue}begin} and {\color{blue}end} clauses.
+	\structure{1 Example Section Name}\\
+	\structure{1.2 Example Subsection Name}\\
+	\structure{1.2.3 Example Subsubsection Name}\\[0.5em]
+	If a star(\alert{*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
+	\alert{Notice:} Sections can be sorted into commands, not environments, so it doesn't have \structure{begin} and \structure{end} clauses. However, the whole contents between two sections is belonged to one section
 \end{frame}
+
+\subsection{Basic commands}
+
 \begin{frame}
-	\frametitle{Enumerate and Item}
-
-
+	\frametitle{Basic commands about lines and pages}
+	Here are some basic commands about lines and pages in \LaTeX, you will use them everywhere.
+	\begin{itemize}
+		\item \alert{\textbackslash newline} - begin a new line
+		\item \alert{\textbackslash\textbackslash} - begin a new line
+		\item \alert{\textbackslash\textbackslash[offset]} - begin a new line with an offset
+		\item \alert{\textbackslash linebreak} - begin a new line with the words discrete
+		\item \alert{\textbackslash newpage} - begin a new page
+		\item \alert{\%} - begin a line comment
+	\end{itemize}
 \end{frame}
+
 \begin{frame}
-
+	\frametitle{Basic commands about fonts}
+	First, lets start with some commands that transform font types
+	\begin{itemize}
+		\item \alert{\textbackslash bf} - {\bf Sample Text}
+		\item \alert{\textbackslash it} - {\it Sample Text}
+		\item \alert{\textbackslash rm} - {\rm Sample Text}
+		\item \alert{\textbackslash sc} - {\sc Sample Text}
+		\item \alert{\textbackslash sf} - {\sf Sample Text}
+		\item \alert{\textbackslash sl} - {\sl Sample Text}
+		\item \alert{\textbackslash tt} - {\tt Sample Text}
+	\end{itemize}
+	Note that the commands that transform font types influence the text in the whole scope (\structure{\{...\}}) until another font type is specified. For example, how to use the first command \alert{\textbackslash bf} is shown below\\[0.5em]
+	\{\alert{\textbackslash bf} Sample Text\}
 \end{frame}
+
+\begin{frame}
+	Sometimes we don't want to transform the font types, instead, we can only change the font type of some specified text, then the following commands are used (you can similarly use all font types on the previous page)
+	\begin{itemize}
+		\item \alert{\textbackslash textbf} - \textbf{Sample Text}
+		\item \alert{\textbackslash textit} - \textit{Sample Text}
+		\item \alert{\textbackslash textsc} - \textsc{Sample Text}
+	\end{itemize}
+	However, in a math environment (will be introduced later), some other commands should be used
+	\begin{itemize}
+		\item \alert{\textbackslash mathbf} - $\mathbf{Sample\ Text}$
+		\item \alert{\textbackslash mathit} - $\mathit{Sample\ Text}$
+		\item \alert{\textbackslash mathsf} - $\mathsf{Sample\ Text}$
+	\end{itemize}
+	Note that the math environment doesn't include all of the font types on the previous page. More information about font types can be found \href{http://www.cnblogs.com/make217/p/6123532.html}{\color{blue}\underline{here}}.
+\end{frame}
+
+\begin{frame}
+	Font size can also be easily modified
+	\begin{itemize}
+		\item \alert{\textbackslash tiny} - \tiny{Sample Text}
+		\item \alert{\textbackslash scriptsize} - \scriptsize{Sample Text}
+		\item \alert{\textbackslash footnotesize} - \footnotesize{Sample Text}
+		\item \alert{\textbackslash small} - \small{Sample Text}
+		\item \alert{\textbackslash normalsize} - \normalsize{Sample Text}
+		\item \alert{\textbackslash large} - \large{Sample Text}
+		\item \alert{\textbackslash Large} - \Large{Sample Text}
+		\item \alert{\textbackslash LARGE} - \LARGE{Sample Text}
+		\item \alert{\textbackslash huge} - \huge{Sample Text}
+		\item \alert{\textbackslash Huge} - \Huge{Sample Text}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	Changing the color is similar to changing font types.\\[0.5em]
+	If you want to transform to a color (like \alert{\textbackslash bf}), you can use \alert{\textbackslash color}\{\structure{name}\}\\
+	Similarly, you can use \alert{\textbackslash textcolor}\{\structure{name}\} like \alert{\textbackslash textbf}\\
+	The background color of the whole page can be set using \alert{\textbackslash pagecolor}\{\structure{name}\}\\[0.5em]
+	There are some defined color \structure{name} in the \structure{xcolor} package, such as black, pink, blue, red, green, brown, yellow, white and etc. You can find more information in the documentation of \structure{xcolor} (\alert{texdoc} \structure{xcolor})
+\end{frame}
+
+
+\section{Use Maths in \LaTeX}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Basic equations}
 
 \begin{frame}
 	\frametitle{The equation environment}
@@ -268,8 +348,6 @@
 	\end{example}
 	If a star({\color{blue}*}) is added, the sequence number of the equation won't be displayed.
 \end{frame}
-
-
 
 \begin{frame}
 	The \LaTeX\ script of the equation above is quite long, but not so difficult as you think so, while how I display the script to you is far more confusing, and you may check it in the tex file of the lecture sildes
@@ -308,6 +386,8 @@
 	\end{align*}
 	We can use a dot({\color{blue}.}) when we want to insert nothing in one of the brackets.
 \end{frame}
+
+\subsection{Aligns}
 
 \begin{frame}
 	\frametitle{The align/aligned enviornment}
@@ -437,6 +517,16 @@ But if we add
 \begin{frame}
 	\frametitle{Insert a graph}
     
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Enumerate and Item}
+
+
+\end{frame}
+\begin{frame}
+
 \end{frame}
 
 \begin{frame}
