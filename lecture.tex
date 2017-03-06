@@ -2,15 +2,19 @@
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 
+\usepackage[greek,english]{babel}
+\usepackage[OT2,OT1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{geometry}
 \usepackage{listings} 
 \usepackage{enumerate}
 \usepackage{tabu} 
 \usepackage{multirow}
 \usepackage{multicol}
-\usepackage{ tipa }
+\usepackage{tipa}
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
+\newcommand{\samplecolorbox}[1]{\fcolorbox{black}{#1}{\color{#1}{\tiny{\phantom{0000}}}} \small{#1}}
 
 \title{Introduction to \LaTeX}
 \author{Liu Yihao}
@@ -254,6 +258,42 @@
 	\alert{Notice:} Sections can be sorted into commands, not environments, so it doesn't have \structure{begin} and \structure{end} clauses. However, the whole contents between two sections is belonged to one section
 \end{frame}
 
+\section{Use Text in \LaTeX}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{UTF-8}
+
+\begin{frame}
+	\frametitle{Use UTF-8 encoding in \LaTeX}
+	UTF-8 encoding is widely used in modern computer applications, so it's useful to include the \structure{inputenc} package and use UTF-8 encoding.
+	\begin{command}
+		\alert{\textbackslash usepackage}[utf-8]\{inputenc\}
+	\end{command}
+	\begin{example}
+		café
+	\end{example}
+	However, different operating systems and compiling engine have different support on UTF-8 encoding, some UTF-8 codes that work on your computer may not work on others, so it is recommended to use commands (will be introduced later) instead of directly copy and paste the UTF-8 codes from the Internet.
+\end{frame}
+
+\begin{frame}
+	(This part is not important)\\
+	If you want to use a language other than English, another package \structure{babel} in needed.
+	\begin{command}
+		\alert{\textbackslash usepackage}[\structure{languages}]\{babel\}
+		\begin{itemize}
+			\item \structure{languages} - a list of languages, the last one to be the default language
+		\end{itemize}
+	\end{command}
+	\begin{example}
+		\alert{\textbackslash usepackage}[greek,english]\{babel\}\\
+		\alert{\textbackslash textgreek}\{abcdefgABCDEFG\}\\
+	\end{example}
+	Then \LaTeX\ will print \textgreek{abcdefgABCDEFG}\\
+	Of course, you can use some commands these greek letters, such as \alert{\textbackslash alpha}, \alert{\textbackslash beta} and etc, which is more convenient when you only need to print few of them, and it doesn't need any package listed above.
+\end{frame}
+
 \subsection{Basic commands}
 
 \begin{frame}
@@ -322,7 +362,15 @@
 	If you want to transform to a color (like \alert{\textbackslash bf}), you can use \alert{\textbackslash color}\{\structure{name}\}\\
 	Similarly, you can use \alert{\textbackslash textcolor}\{\structure{name}\} like \alert{\textbackslash textbf}\\
 	The background color of the whole page can be set using \alert{\textbackslash pagecolor}\{\structure{name}\}\\[0.5em]
-	There are some defined color \structure{name} in the \structure{xcolor} package, such as black, pink, blue, red, green, brown, yellow, white and etc. You can find more information in the documentation of \structure{xcolor} (\alert{texdoc} \structure{xcolor})
+	There are some defined color \structure{name} in the \structure{xcolor} package.\\[0.5em]
+	\begin{tabular}{lllll}
+	\samplecolorbox{black}&\samplecolorbox{gray}&\samplecolorbox{olive}&\samplecolorbox{teal}&\samplecolorbox{blue}\\
+	\samplecolorbox{green}&\samplecolorbox{orange}&\samplecolorbox{violet}&\samplecolorbox{brown}&\samplecolorbox{lightgray}\\
+	\samplecolorbox{pink}&\samplecolorbox{white}&\samplecolorbox{cyan}&\samplecolorbox{lime}&\samplecolorbox{purple}\\
+	\samplecolorbox{yellow}&\samplecolorbox{darkgray}&\samplecolorbox{magenta}&\samplecolorbox{red}\\
+	\end{tabular}		
+	\\[0.5em]
+	You can find more information in the documentation of \structure{xcolor} (\alert{texdoc} \structure{xcolor})
 \end{frame}
 
 
