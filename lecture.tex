@@ -104,7 +104,7 @@
 \begin{frame}
 	\frametitle{The common syntax of \LaTeX\ commands}
 	\begin{definition}
-		\structure{Command} is a word which can be identified by Latex and represents a certian function in output file, or in relation with some specific character or format
+		\structure{Command} is something that can be identified by Latex and represents a certian function in output file, or in relation with some specific character or format
 	\end{definition}
 	All \LaTeX\ commands have the following syntax\\
 	\alert{\textbackslash command\_name}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\{\structure{required\_args}\}
@@ -470,10 +470,17 @@ But if we add
     \\{\color{red} \textdollar \textunderscore\{anyting you wanna enter as subscript\}\textdollar}
     \\every subscript with 
     \\{\color{red} \textdollar \textasciicircum\{anyting you wanna enter as subscript\}\textdollar}
-    \\ if we only want to type one character as the subscript or superscript \{\} can be omiited.
+    \\ if we only want to type one character as the subscript or superscript \{\} can be omitted.
 \end{frame}
+
+\section{Use Tables and Graphics in \LaTeX}
 \begin{frame}
-	\frametitle{Draw a table}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Draw a simple tabular}
+\begin{frame}
+	\frametitle{Draw a simple tabular}
     \begin{example}
         \begin{tabular}{|l|c|r|}
         \hline
@@ -495,24 +502,57 @@ But if we add
         $\backslash$hline\\
         $\backslash$end\{tabular\}
 \end{frame}
+
+\subsection{Draw tabular of various structure}
+
 \begin{frame}
-   \frametitle{Something more about tabular}
-   $\backslash$multirow \\
-   $\backslash$multicolumn \\
-   $\backslash$cline{} \\
+   \frametitle{Draw tabular of various structure}
+   \begin{example}
+   \begin{tabular}{|c|c|c|}
+   \hline
+   \multicolumn{2}{|c|}{multicolumn} & *\\
+   \hline 
+   \multirow{2}{1.5cm}{row} & * & *\\
+   \cline{2-3}
+   \multirow{2}{1.5cm}{} & * & *\\
+   \hline
+   \end{tabular}
+   \end{example}
+   
+   {\color{red} $\backslash$begin\{tabular\}\{\textvertline c\textvertline c\textvertline c\textvertline \}\\
+   $\backslash$hline\\
+   $\backslash$multicolumn\{2\}\{\textvertline c\textvertline\}\{multicolumn\} \& * $\backslash\backslash$\\
+   $\backslash$hline \\
+   $\backslash$multirow\{2\}\{1.5cm\}\{row\} \& * \& *$\backslash\backslash$\\
+   $\backslash$cline\{2$-$3\}\\
+   $\backslash$multirow\{2\}\{1.5cm\}\{\} \& * \& *$\backslash\backslash$\\
+   $\backslash$hline\\
+   $\backslash$end\{tabular\}\\}
 \end{frame}
+
+\begin{frame}
+   $\backslash$multirow\{the number of boxes this multicloumn will occupy\}\{the width of the box(..cm)\}\{contents\} \\
+   $\backslash$multicolumn\{the number of boxes this multicloumn will occupy\}\{\textvertline l/c/r\textvertline \}\{contents\} \\
+   $\backslash$cline\{the column number of the beginning of the line $-$ the column number of the end of the line\} \\
+\end{frame}
+
+\subsection{Table environment}
+
 \begin{frame}
 	\frametitle{Table environment}
     \begin{definition}
     A {\color{blue}table} enviornment is used to arrange the place of a tabular
 		{\color{red}\textbackslash begin\{table(*)\}[htbp]}\\
+       {\color{red} \qquad \textbackslash begin\{tabular(*)\}}\\ 
 		\quad ...\\
+       {\color{red} \qquad \textbackslash end\{tabular(*)\}}\\
 		{\color{red}\textbackslash end\{table(*)\}}\\
 	\end{definition}
     \text{[h]} means inserting the tabular to the current place.
     \\\text{[t]} means inserting the tabular to the top of the page.
     \\\text{[b]} means inserting the tabular to the bottom of the page.
-    \\\text{[p]} means inserting the tabular to another new page, which is common in dealing with big table.
+    \\\text{[p]} means inserting the tabular to another new page.
+    \\Besides, we can also insert command between {\color{red}\textbackslash begin\{table(*)\}[htbp]} and {\color{red} \qquad \textbackslash begin\{tabular(*)\}}, such as {\color{red} \textbackslash centering}, {\color{red} \textbackslash small} and etc, to arrange some special format of the tabular.
 \end{frame}
 \begin{frame}
 	\frametitle{Insert a graph}
@@ -527,11 +567,6 @@ But if we add
 \end{frame}
 \begin{frame}
 
-\end{frame}
-
-\section{Use Graphics in \LaTeX}
-\begin{frame}
-	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
 \subsection{Include graphs}
