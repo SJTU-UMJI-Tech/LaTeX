@@ -2,6 +2,7 @@
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 
+\usepackage{CJKutf8}
 \usepackage[greek,english]{babel}
 \usepackage[OT2,OT1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -12,6 +13,7 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{tipa}
+\usepackage{ulem}
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
 \newcommand{\samplecolorbox}[1]{\fcolorbox{black}{#1}{\color{#1}{\tiny{\phantom{0000}}}} \small{#1}}
@@ -29,7 +31,7 @@
 	\titlepage	
 \end{frame}
 
-\section{Introduction}
+\section{Getting Started}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
@@ -41,11 +43,6 @@
 	\begin{block}{From Wikipedia, the free encyclopedia}
 		LaTeX (lah-tekh, lah-tek or lay-tek, a shortening of Lamport TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italic), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as \LaTeX.
 	\end{block}
-\end{frame}
-
-\section{Getting Started}
-\begin{frame}
-	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
 \subsection{Installation of \LaTeX}
@@ -443,6 +440,27 @@
 	\end{command}
 \end{frame}
 
+\subsection{Lines on text}
+
+\begin{frame}
+	\frametitle{Ulem package}
+	If you want to add some lines on the text, use the \structure{ulem} package.
+	\begin{command}
+		\alert{\textbackslash usepackage}\{ulem\}\\
+		\alert{\textbackslash uline}\{Sample Text\}
+	\end{command}
+	There are different kinds of lines supported:
+	\begin{itemize}
+		\item \sampletext{uline}{\uline}
+		\item \sampletext{uuline}{\uuline}
+		\item \sampletext{uwave}{\uwave}
+		\item \sampletext{sout}{\sout}
+		\item \sampletext{xout}{\xout}
+		\item \sampletext{dashuline}{\dashuline}
+		\item \sampletext{dotuline}{\dotuline}
+	\end{itemize}
+\end{frame}
+
 \section{Use Maths in \LaTeX}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
@@ -688,6 +706,16 @@ But if we add
 \end{frame}
 
 \subsection{Contributors}
+
+\begin{frame}
+	\frametitle{Reference resources}
+	\begin{CJK*}{UTF8}{gbsn}
+	\begin{itemize}
+		\item \LaTeX\ 入门, Haiyang Liu, Publishing House of Electronics Industry, 2013.6, ISBN 978-7-121-20208-7
+		\item Introduction to \LaTeX, David Reid, \href{https://wenku.baidu.com/view/f08fbdf24693daef5ef73d23.html}{\color{blue}\uline{https://wenku.baidu.com/view/f08fbdf24693daef5ef73d23.html}}
+	\end{itemize}
+	\end{CJK*}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Contributors}
