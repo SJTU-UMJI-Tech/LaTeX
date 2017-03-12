@@ -1,0 +1,21 @@
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+\geometry{left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}
+\usepackage{pdfpages}
+\usepackage{listings}
+\lstset{
+	numbers=left, breaklines=true, tabsize=4,
+	framexleftmargin=1.5mm, frame=shadowbox,
+	backgroundcolor=\color[RGB]{245,245,244},
+	keywordstyle=\color{blue}\bfseries,
+	identifierstyle=\bf,
+	numberstyle=\color[RGB]{20,20,20},
+}
+
+\begin{document}
+
+\lstset{language=[LaTeX]TeX}
+\lstinputlisting{wallpaper.tex}
+
+\end{document}
+
