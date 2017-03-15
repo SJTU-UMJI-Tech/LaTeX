@@ -210,9 +210,7 @@
 
 \begin{frame}
 	\frametitle{Magic of packages}
-	\begin{definition}
-		Some environments or commands cannot be used directly. In this case,  \structure{packages} should be included between \structure{documentclass} and \structure{document environment}.
-	\end{definition}
+	Some environments or commands cannot be used directly. In this case,  \structure{packages} should be included between \structure{documentclass} and \structure{document environment}.
 	\begin{command}
 		\alert{\textbackslash usepackage}[\structure{optional\_args}]\{\structure{name}\}
 	\end{command}
@@ -436,8 +434,32 @@
 	\frametitle{Enumerate and Item}
 	When you need to enumerate some items as a list, you may use the \structure{enumerate} package.
 	\begin{command}
-		\alert{\textbackslash usepackage}\{enumerate\}
+		\alert{\textbackslash usepackage}\{enumerate\}\\
+		\structure{\textbackslash begin}\{enumerate\}[\structure{style}]\\
+		\qquad\alert{\textbackslash item} ...\\
+		\qquad\alert{\textbackslash item} ...\\
+		\qquad\alert{\textbackslash item} ...\\
+		\structure{\textbackslash end}\{enumerate\}
 	\end{command}
+	This will generate a normal list with the serial numbers in the specified \structure{style}, which could be the following (as example)
+	\begin{itemize}
+		\item \alert{1} - 1, 2, 3, 4, ...
+		\item \alert{(i)} - (i), (ii), (iii), (iv), ...
+		\item \alert{[1.]} - [1.], [2.], [3.], [4.], ...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	If you want to generate an unordered list, use \structure{itemize} instead of \structure{enumerate}.
+	\begin{command}
+		\alert{\textbackslash usepackage}\{enumerate\}\\
+		\structure{\textbackslash begin}\{itemize\}\\
+		\qquad\alert{\textbackslash item}[\structure{style}] ...\\
+		\qquad\alert{\textbackslash item}[\structure{style}] ...\\
+		\qquad\alert{\textbackslash item}[\structure{style}] ...\\
+		\structure{\textbackslash end}\{itemize\}
+	\end{command}
+	In this case, the position of \structure{style} is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
 \end{frame}
 
 \subsection{Lines on text}
@@ -470,18 +492,18 @@
 
 \begin{frame}
 	\frametitle{The equation environment}
-	\begin{definition}
-		An {\color{blue}equation} enviornment contains a set of maths equations
-		{\color{red}\textbackslash begin\{euqation(*)\}}\\
-		\quad ...\\
-		{\color{red}\textbackslash end\{euqation(*)\}}\\
-	\end{definition}
+	An \structure{equation} enviornment contains a set of maths equations
+	\begin{command}
+		\alert{\textbackslash begin}\{euqation(\structure{*})\}\\
+		\qquad ...\\
+		\alert{\textbackslash end}\{euqation(\structure{*})\}\\
+	\end{command}
 	\begin{example}
 		\begin{equation}
 		curl\ F=\left(\frac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}\right)\hat{n_x}+\left(\frac{\partial F_x}{\partial z}-\frac{\partial F_z}{\partial x}\right)\hat{n_y}+\left(\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}\right)\hat{n_z}
 		\end{equation}
 	\end{example}
-	If a star({\color{blue}*}) is added, the sequence number of the equation won't be displayed.
+	If a star(\structure{*}) is added, the sequence number of the equation won't be displayed. Note that the environment name in the \alert{\textbackslash begin} and \alert{\textbackslash end} statements must be the same(both or neither have a \structure{*} here).
 \end{frame}
 
 \begin{frame}
@@ -495,12 +517,12 @@
 	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ x\}\\
 	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ y\}\backslash right)\backslash hat\{n\_z\}
 	\end{align*}
-	In the script, only a space after {\color{blue}\textbackslash} will be printed as a space, {\color{blue}\textbackslash partial} prints the symbol {\color{blue}$\partial$}, {\color{blue}\textbackslash frac\{...\}\{...\}} makes a {\color{blue}fraction}, {\color{blue}\textbackslash left(} and {\color{blue}\textbackslash right)} makes {\color{blue}brackets} (of course they can be nested and must be in couple, but you can use two kinds of brackets on the both side, i.e., {\color{blue}\textbackslash left[} and {\color{blue}\textbackslash right\textbackslash rbrace}, in which you must use {\color{blue}\textbackslash rbrace} or {\color{blue}\textbackslash \}} to print a right brace {\color{blue}$\rbrace$} \\
+	In the script, only a space after \structure{\textbackslash} will be printed as a space, \structure{\textbackslash partial} prints the symbol \structure{$\partial$}, \structure{\textbackslash frac\{...\}\{...\}} makes a \structure{fraction}, \structure{\textbackslash left(} and \structure{\textbackslash right)} makes \structure{brackets} (of course they can be nested and must be in couple, but you can use two kinds of brackets on the both side, i.e., \structure{\textbackslash left[} and \structure{\textbackslash right\textbackslash rbrace}, in which you must use \structure{\textbackslash rbrace} or \structure{\textbackslash \}} to print a right brace \structure{$\rbrace$} \\
 \end{frame}
 
 \begin{frame}
 	How about equations with multiple lines?\\
-	The {\color{blue}aligned} enviornment can be used.
+	The \structure{aligned} enviornment can be used.
 	\begin{example}
 		\begin{equation}
 		\left\lbrace\begin{aligned}
@@ -519,7 +541,7 @@
 		&\color{blue} \quad\quad\text{x\&=1} \backslash \backslash \text{y\&=0}\\
 		&\color{blue} \backslash end\{aligned\}\backslash right.
 	\end{align*}
-	We can use a dot({\color{blue}.}) when we want to insert nothing in one of the brackets.
+	We can use a dot(\structure{.}) when we want to insert nothing in one of the brackets.
 \end{frame}
 
 \subsection{Aligns}
@@ -527,13 +549,13 @@
 \begin{frame}
 	\frametitle{The align/aligned enviornment}
 	\begin{definition}
-		An {\color{blue}align} enviornment is used outside a maths enviornment like {\color{blue}equation}
+		An \structure{align} enviornment is used outside a maths enviornment like \structure{equation}
 		{\color{red}\textbackslash begin\{align(*)\}}\\
 		\quad ...\\
 		{\color{red}\textbackslash end\{align(*)\}}\\
 	\end{definition}
 	\begin{definition}
-		An {\color{blue}aligned} enviornment is used inside a maths enviornment like {\color{blue}equation}
+		An \structure{aligned} enviornment is used inside a maths enviornment like \structure{equation}
 		{\color{red}\textbackslash begin\{euqation(*)\}}\\
 			\quad{\color{red}\textbackslash begin\{aligned\}}\\
 				\quad\quad ...\\
@@ -544,7 +566,7 @@
 \end{frame}
 
 \begin{frame}
-	The {\color{blue}align/aligned} enviornment is an basic align and multiline enviornment.\\
+	The \structure{align/aligned} enviornment is an basic align and multiline enviornment.\\
 	\begin{example}
 		\begin{flalign}
 			a+b&\Leftrightarrow b+a\\
@@ -557,7 +579,7 @@
 		&\color{blue} \quad\quad (a\text{+}b)\text{+}c\ \&\ \backslash Leftrightarrow\ a\text{+}(b\text{+}c)\\
 		&\color{blue} \backslash end\{align\}
 	\end{align*}
-	In order to make a new line, you can easily use {\color{blue}\textbackslash\textbackslash} where you'd like (but not in certain maths enviornments such as {\color{blue}equation}). {\color{blue}\&} is used to align the equations, you can use multiple {\color{blue}\&}s and the {\color{blue}\&}s on every line will be aligned respectively.
+	In order to make a new line, you can easily use \structure{\textbackslash\textbackslash} where you'd like (but not in certain maths enviornments such as \structure{equation}). \structure{\&} is used to align the equations, you can use multiple \structure{\&}s and the \structure{\&}s on every line will be aligned respectively.
 \end{frame}
 
 
@@ -585,7 +607,7 @@ But if we add
         \end{equation}}
     your body paragraph is supposed to be typed here
 	\end{example}
-    {\color{blue}\{$\backslash$setlength$\backslash$abovedisplayskip\{0pt\}
+    \structure{\{$\backslash$setlength$\backslash$abovedisplayskip\{0pt\}
         \\$\backslash$setlength$\backslash$belowdisplayskip\{0pt\}
        \\ $\backslash$begin\{equation\}
          \\a $\backslash$times b =c
@@ -600,7 +622,7 @@ But if we add
        The concentration of [H$_3$O$^+$]
     \end{example}
     [H$_3$O$^+$] is typed in the following way,
-    \\{\color{blue} [H\textdollar \textunderscore\{3\} \textdollar O \textdollar \textasciicircum \{+\} \textdollar] }
+    \\\structure{ [H\textdollar \textunderscore\{3\} \textdollar O \textdollar \textasciicircum \{+\} \textdollar] }
     \\ in which we type every subscript with 
     \\{\color{red} \textdollar \textunderscore\{anyting you wanna enter as subscript\}\textdollar}
     \\every subscript with 
@@ -639,7 +661,7 @@ But if we add
 \begin{frame}
 	\frametitle{Table environment}
     \begin{definition}
-    A {\color{blue}table} enviornment is used to arrange the place of a tabular
+    A \structure{table} enviornment is used to arrange the place of a tabular
 		{\color{red}\textbackslash begin\{table(*)\}[htbp]}\\
 		\quad ...\\
 		{\color{red}\textbackslash end\{table(*)\}}\\
