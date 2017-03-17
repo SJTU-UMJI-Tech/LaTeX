@@ -743,6 +743,12 @@
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
+\subsection{Measuring units}
+
+\begin{frame}
+	\frametitle{Measuring units in \LaTeX}
+\end{frame}
+
 \subsection{Include graphs}
 
 \begin{frame}
@@ -773,33 +779,89 @@
 		\item \structure{scale} - scale the graph to this proportion
 		\item \structure{angle} - rotate the graph in anti-clockwise by this angle 
 	\end{itemize}
-	\begin{example}
-		\begin{minipage}{0.3\linewidth}
+	\begin{minipage}{0.45\linewidth}
+		\begin{example}
 			\begin{figure}[htbp]
 				\centering
-				\includegraphics[width=0.8\linewidth,angle=90]{lena.jpg}
-				\caption{Lena}
-				\label{fig-lena}		
-			\end{figure}			
-		\end{minipage}
-		\begin{minipage}{0.66\linewidth}
-			\samplebegin{figure}[htbp]\\
-			\phantom{\qquad}\samplecommand{centering}\\
-			\phantom{\qquad}\samplecommand{includegraphics}[width=0.8\samplecommand{linewidth},\\
-			angle=90]\{lena.jpg\}\\
-			\phantom{\qquad}\samplecommand{caption}\{Lena\}\\
-			\phantom{\qquad}\samplecommand{label}\{fig-lena\}\\
-			\sampleend{figure}
-		\end{minipage}
-	\end{example}
+				\includegraphics[width=0.8\linewidth,angle=180]{sample.jpg}
+				\caption{3 greatest people in JI}
+				\label{fig-sample}		
+			\end{figure}
+		\end{example}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\linewidth}
+		\samplecommand{usepackage}\{graphicx\}\\
+		\samplebegin{figure}[htbp]\\
+		\phantom{\qquad}\samplecommand{centering}\\
+		\phantom{\qquad}\samplecommand{includegraphics}[width=0.8\\
+		\samplecommand{linewidth},angle=180]\{lena.jpg\}\\
+		\phantom{\qquad}\samplecommand{caption}\{3 greatest people in JI\}\\
+		\phantom{\qquad}\samplecommand{label}\{fig-sample\}\\
+		\sampleend{figure}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Include multiple graphs}
-	Sometimes you need to include a series of graphs, then the \structure{subfigure} package 
+	Sometimes you need to include a series of graphs, then the \structure{subfigure} package can be used.\\
+	\begin{minipage}{0.4\linewidth}
+		\begin{example}
+			\begin{figure}[htbp]
+				\centering
+				\subfigure[God Gan]{
+					\includegraphics[width=0.4\linewidth]{sample-1.jpg}
+					\label{fig-sample-1}
+				}
+				\subfigure[Master Fu]{
+					\includegraphics[width=0.4\linewidth]{sample-2.jpg}
+					\label{fig-sample-2}
+				}
+				\subfigure[Professor]{
+					\includegraphics[width=0.4\linewidth]{sample-3.jpg}
+					\label{fig-sample-3}
+				}
+				\subfigure[God Hang]{
+					\includegraphics[width=0.4\linewidth]{sample-4.jpg}
+					\label{fig-sample-4}
+				}
+			\end{figure}
+		\end{example}
+	\end{minipage}
+	\hfill
+		\begin{minipage}{0.55\linewidth}
+			\samplecommand{usepackage}\{graphicx\}\\
+			\samplecommand{usepackage}\{subfigure\}\\
+			\samplebegin{figure}[htbp]\\
+			\phantom{\qquad}\samplecommand{centering}\\
+			\phantom{\qquad}\samplecommand{subfigure}[God Gan]\{\\
+			\phantom{\qquad\qquad}\samplecommand{includegraphics}[width=0.4\\
+			\samplecommand{linewidth}]\{sample-1.jpg\}\\
+			\phantom{\qquad\qquad}\samplecommand{label}\{fig-sample-1\}\\
+			\phantom{\qquad}\}\\
+			\phantom{\qquad}\dots(with Master Fu, Professor and God Hang)\\
+			\sampleend{figure}
+		\end{minipage}
 \end{frame}
 
 \subsection{Draw tables}
+
+\begin{frame}
+	\frametitle{Draw tables}
+	Table is another common element in \LaTeX, for example, there is a simple table like this:
+    \begin{example}
+        \begin{tabular}{|l|c|r|}
+        \hline
+        Title 1 & Title 2 & Title 3 \\
+        \hline
+        1 & 2 &3 \\
+        \hline
+        \end{tabular}
+    \end{example}	
+	\samplebegin{tabular}
+	
+	\sampleend{tabular}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Draw tables}
@@ -867,6 +929,8 @@
 \subsection{New and renew}
 
 \begin{frame}
+
+
 
 \end{frame}
 
