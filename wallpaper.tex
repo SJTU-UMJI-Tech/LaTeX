@@ -1,21 +1,59 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper, 20pt]{article}
 \usepackage{geometry}
 \geometry{left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}
 \usepackage{pdfpages}
+\usepackage{multicol}
+\usepackage{ctex}
 \usepackage{listings}
+\usepackage{color}  
+\setCJKfamilyfont{youyuan}{YouYuan}
+\newcommand{\youyuan}{\CJKfamily{youyuan}}
+\definecolor{myback}{RGB}{240,235,233} 
+\pagecolor{myback}
 \lstset{
 	numbers=left, breaklines=true, tabsize=4,
-	framexleftmargin=1.5mm, frame=shadowbox,
-	backgroundcolor=\color[RGB]{245,245,244},
+	basicstyle=\tiny,
+	framexleftmargin=1.5mm, frame=leftline,
+	backgroundcolor=\color[RGB]{240,235,233},
 	keywordstyle=\color{blue}\bfseries,
 	identifierstyle=\bf,
+	rulecolor=\color{brown}, 
 	numberstyle=\color[RGB]{20,20,20},
 }
 
 \begin{document}
+\pagestyle{empty}
+{\centering \textbf{\color[RGB]{0,0,64} \Huge{\LaTeX}}
+{\centering \textbf{\Huge{\kaishu 讲座}}
+\vspace{3cm}
 
-\lstset{language=[LaTeX]TeX}
-\lstinputlisting{wallpaper.tex}
+\begin{center}
+	\begin{minipage}{0.8\linewidth}
+	{\LARGE
+		你想学习如何迅速码出好看的实验报告么？\\[2em]
+		你想拿到化学alr或者是285作业的bonus么？\\[2em]
+		你想为夏季物理实验课提前做准备么？\\[2em]
+   		又或者是你想来挖掘\LaTeX 的正确使用方式 \textasciitilde
+	}		
+	\end{minipage}
+	\\[3em]
+	{\Huge
+		\textbf{\color[RGB]{120,20,20}{\youyuan  那就来参加\LaTeX 讲座吧！}} \\[1em]
+	}	 
+	\begin{minipage}{0.8\linewidth}
+	{\huge
+		\color[RGB]{120,20,20} \youyuan 时间: 3.29 下午 14：00 
+		\\[1em]
+      	\color[RGB]{120,20,20} \youyuan 地点：东中 3-102
+	}
+	\end{minipage}
+\end{center}
+
+
+\par
+
+	\lstset{language=[LaTeX]TeX}
+	\lstinputlisting[multicols=2]{wallpaper.tex}
 
 \end{document}
 
