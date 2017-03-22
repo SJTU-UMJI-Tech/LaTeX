@@ -1,6 +1,6 @@
 \documentclass[a4paper, 20pt]{article}
 \usepackage{geometry}
-\geometry{left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}
+\geometry{left=2.54cm,right=2.54cm,top=2cm,bottom=2cm}
 \usepackage{pdfpages}
 \usepackage{multicol}
 \usepackage{ctex}
@@ -11,21 +11,22 @@
 \definecolor{myback}{RGB}{240,235,233} 
 \pagecolor{myback}
 \lstset{
-	numbers=left, breaklines=true, tabsize=4,
-	basicstyle=\tiny,
+	language=[LaTeX]TeX, numbers=left, tabsize=4,
 	framexleftmargin=1.5mm, frame=leftline,
 	backgroundcolor=\color[RGB]{240,235,233},
 	keywordstyle=\color{blue}\bfseries,
-	identifierstyle=\bf,
-	rulecolor=\color{brown}, 
-	numberstyle=\color[RGB]{20,20,20},
+	identifierstyle=\bf, breaklines=true, 
+	basicstyle=\tiny,rulecolor=\color{brown}, 
+	numberstyle=\color[RGB]{20,20,20}
 }
 
 \begin{document}
 \pagestyle{empty}
-{\centering \textbf{\color[RGB]{0,0,64} \Huge{\LaTeX}}
-{\centering \textbf{\Huge{\kaishu 讲座}}
-\vspace{3cm}
+\centerline{\fontsize{50pt}{\baselineskip}{\selectfont}\bf
+	{\color[RGB]{0,0,64}\LaTeX}
+	{\kaishu 讲座}
+}
+\vspace{4em}
 
 \begin{center}
 	\begin{minipage}{0.8\linewidth}
@@ -36,24 +37,21 @@
    		又或者是你想来挖掘\LaTeX 的正确使用方式 \textasciitilde
 	}		
 	\end{minipage}
-	\\[3em]
-	{\Huge
-		\textbf{\color[RGB]{120,20,20}{\youyuan  那就来参加\LaTeX 讲座吧！}} \\[1em]
+	\\[4em]
+	{\fontsize{30pt}{\baselineskip}{\selectfont}
+		\textbf{\color[RGB]{120,20,20}{\youyuan  那就来参加\LaTeX 讲座吧！}} \\[3em]
 	}	 
-	\begin{minipage}{0.8\linewidth}
-	{\huge
+	\begin{minipage}{0.84\linewidth}
+	{\Huge
 		\color[RGB]{120,20,20} \youyuan 时间: 3.29 下午 14：00 
 		\\[1em]
       	\color[RGB]{120,20,20} \youyuan 地点：东中 3-102
 	}
 	\end{minipage}
 \end{center}
+\vspace{3em}
 
-
-\par
-
-	\lstset{language=[LaTeX]TeX}
-	\lstinputlisting[multicols=2]{wallpaper.tex}
+\lstinputlisting[multicols=2]{wallpaper.tex}
 
 \end{document}
 

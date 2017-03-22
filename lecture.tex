@@ -12,14 +12,21 @@
 \usepackage{tabu} 
 \usepackage{multirow}
 \usepackage{multicol}
-\usepackage{tipa}
 \usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{tipa}
+
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
+\newcommand{\samplebegin}[1]{\structure{\textbackslash begin}\{#1\}}
+\newcommand{\sampleend}[1]{\structure{\textbackslash end}\{#1\}}
+\newcommand{\samplecommand}[1]{\alert{\textbackslash #1}}
 \newcommand{\samplecolorbox}[1]{\fcolorbox{black}{#1}{\color{#1}{\tiny{\phantom{0000}}}} \small{#1}}
-\newcommand{\sampletext}[2]{\alert{\textbackslash #1} - {#2{Sample Text}}}
-\newcommand{\sampleaccent}[3]{\alert{\textbackslash #1}\{#3\}\quad #2{#3}}
-\newcommand{\samplesymbol}[2]{\alert{\textbackslash #1}\quad #2}
+\newcommand{\sampletext}[2]{\samplecommand{#1} - {#2{Sample Text}}}
+\newcommand{\sampleaccent}[3]{\samplecommand{#1}\{#3\}\quad #2{#3}}
+\newcommand{\samplesymbol}[2]{\samplecommand{#1}\quad #2}
+
 
 \title{Introduction to \LaTeX}
 \author{Liu Yihao}
@@ -111,7 +118,7 @@
 		\structure{Command} is a word which can be identified by Latex and represents a certian function in output file, or in relation with some specific character or format
 	\end{definition}
 	All \LaTeX\ commands have the following syntax\\
-	\alert{\textbackslash command\_name}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\{\structure{required\_args}\}
+	\samplecommand{command\_name}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\{\structure{required\_args}\}
 	\begin{description}
 		\item[special\_args]	Seldom used in basic usage, for certain special usages in some packages
 		\item[optional\_args]	Used to define mode of the command, if not specified, \LaTeX\ will use the default mode
@@ -126,9 +133,9 @@
 		\structure{Environment} is an encapsulated part which has a certain format so that it will not be influenced by outer context
 	\end{definition}
 	All \LaTeX\ environments have the following syntax\\
-	\structure{\textbackslash begin}\{\alert{environment\_name}\}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\\
+	\samplebegin{\alert{environment\_name}}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\\
 	\qquad...\\
-	\structure{\textbackslash end}\{\alert{environment\_name}\}\\
+	\sampleend{\alert{environment\_name}}\\
 	\begin{description}
 		\item[special\_args]	Similar to commands
 		\item[optional\_args]	Similar to commands
@@ -140,13 +147,13 @@
 	\frametitle{Environment in enviornment}
 	Of course, the environments can be nested.\\
 	\begin{example}
-		\structure{\textbackslash begin}\{\alert{environment\_name}\}\\
+		\samplebegin{\alert{environment\_name}}\\
 		\qquad ...\\
-		\qquad\structure{\textbackslash begin}\{\alert{environment\_name\_2}\}\\
+		\qquad\samplebegin{\alert{environment\_name\_2}}\\
 		\qquad\qquad ...\\
-		\qquad\structure{\textbackslash end}\{\alert{environment\_name\_2}\}\\
+		\qquad\sampleend{\alert{environment\_name\_2}}\\
 		\qquad ...\\
-		\structure{\textbackslash end}\{\alert{environment\_name}\}\\
+		\sampleend{\alert{environment\_name}}\\
 	\end{example}
 \end{frame}
 
@@ -157,7 +164,7 @@
 	\frametitle{All begins with documentclass}
 	\begin{definition}
 		In a \LaTeX\ file, the {\color{blue}first} line must be \\
-		\alert{\textbackslash documentclass}[\structure{options}]\{\structure{class}\}
+		\samplecommand{documentclass}[\structure{options}]\{\structure{class}\}
 	\end{definition}
 	For example, you can use the following types for the \structure{class}\\
 	\begin{description}
@@ -166,14 +173,14 @@
 		\item[beamer]	Produce a lecture silde like this!
 	\end{description}
 	Actually some options can be added, such as\\[0.5em]
-	\alert{\textbackslash documentclass}[11pt,twoside,a4paper]\{article\}\\[0.5em]
+	\samplecommand{documentclass}[11pt,twoside,a4paper]\{article\}\\[0.5em]
 	Some details about the \structure{article} class are on the next page. More features about other classes and options can be found in the \LaTeX\ Document on your own.
 \end{frame}
 
 \begin{frame}
 	\frametitle{The article class}
 	The \structure{article} class the most basic class in \LaTeX, it provides you with some normalized structure and format for report writing. So usually you will use the following command as the first line of your tex document\\[0.5em]
-	\alert{\textbackslash documentclass}[\structure{options}]\{article\}\\[0.5em]
+	\samplecommand{documentclass}[\structure{options}]\{article\}\\[0.5em]
 	Some of the options values are listed below (the default values are \alert{alerted})
 	\begin{itemize}
 		\item \alert{10pt}, \structure{11pt}, \structure{12pt} - the font size of the document
@@ -195,12 +202,12 @@
 		An document starts with the \structure{document} environment. A typical  (simplest) example is presented below.
 	\end{definition}
 	\begin{example}
-		\alert{\textbackslash documentclass}[a4paper]\{article\}\\
-		\structure{\textbackslash begin}\{document\}\\
+		\samplecommand{documentclass}[a4paper]\{article\}\\
+		\samplebegin{document}\\
 		\qquad...\\
 		\qquad Hello World!\\
 		\qquad...\\
-		\structure{\textbackslash end}\{document\}\\
+		\sampleend{document}\\
 	\end{example}
 
 	All of your contents should be in the document environment. The document environment \alert{MUST} be \alert{unique} in the whole file.
@@ -210,11 +217,9 @@
 
 \begin{frame}
 	\frametitle{Magic of packages}
-	\begin{definition}
-		Some environments or commands cannot be used directly. In this case,  \structure{packages} should be included between \structure{documentclass} and \structure{document environment}.
-	\end{definition}
+	Some environments or commands cannot be used directly. In this case,  \structure{packages} should be included between \structure{documentclass} and \structure{document environment}.
 	\begin{command}
-		\alert{\textbackslash usepackage}[\structure{optional\_args}]\{\structure{name}\}
+		\samplecommand{usepackage}[\structure{optional\_args}]\{\structure{name}\}
 	\end{command}
 	There are some very useful packages that you can \alert{ALWAYS} include:
 	\begin{description}
@@ -233,12 +238,12 @@
 	\frametitle{Title, Author and Date}
 	It's very useful to generate a title on the first page of a document, then these commands can be added between \structure{documentclass} and \structure{document environment}.
 	\begin{command}
-		\alert{\textbackslash title}\{\structure{the title}\}\\
-		\alert{\textbackslash author}\{\structure{the author}\}\\
-		\alert{\textbackslash date}\{\structure{the date}\}\\
+		\samplecommand{title}\{\structure{the title}\}\\
+		\samplecommand{author}\{\structure{the author}\}\\
+		\samplecommand{date}\{\structure{the date}\}\\
 	\end{command}
-	You can simply use \alert{\textbackslash date}\{\alert{\textbackslash today}\} to display today's date.\\[0.5em]
-	Then in the \structure{document environment}, use the command \alert{\textbackslash maketitle} to generate a title.
+	You can simply use \samplecommand{date}\{\samplecommand{today}\} to display today's date.\\[0.5em]
+	Then in the \structure{document environment}, use the command \samplecommand{maketitle} to generate a title.
 \end{frame}
 
 \subsection{Sections}
@@ -246,9 +251,9 @@
 \begin{frame}
 	\frametitle{Dividing into sections}
 	\begin{command}
-		\alert{\textbackslash section(*)}\{\structure{name}\}\\
-		\alert{\textbackslash subsection(*)}\{\structure{name}\}\\
-		\alert{\textbackslash subsubsection(*)}\{\structure{name}\}\\
+		\samplecommand{section(*)}\{\structure{name}\}\\
+		\samplecommand{subsection(*)}\{\structure{name}\}\\
+		\samplecommand{subsubsection(*)}\{\structure{name}\}\\
 	\end{command}
 	The default style of sections is like\\
 	\structure{1 Example Section Name}\\
@@ -269,7 +274,7 @@
 	\frametitle{Use UTF-8 encoding in \LaTeX}
 	UTF-8 encoding is widely used in modern computer applications, so it's useful to include the \structure{inputenc} package and use UTF-8 encoding.
 	\begin{command}
-		\alert{\textbackslash usepackage}[utf-8]\{inputenc\}
+		\samplecommand{usepackage}[utf-8]\{inputenc\}
 	\end{command}
 	\begin{example}
 		café
@@ -281,17 +286,17 @@
 	(This part is not important)\\
 	If you want to use a language other than English, another package \structure{babel} in needed.
 	\begin{command}
-		\alert{\textbackslash usepackage}[\structure{languages}]\{babel\}
+		\samplecommand{usepackage}[\structure{languages}]\{babel\}
 		\begin{itemize}
 			\item \structure{languages} - a list of languages, the last one to be the default language
 		\end{itemize}
 	\end{command}
 	\begin{example}
-		\alert{\textbackslash usepackage}[greek,english]\{babel\}\\
-		\alert{\textbackslash textgreek}\{abcdefgABCDEFG\}\\
+		\samplecommand{usepackage}[greek,english]\{babel\}\\
+		\samplecommand{textgreek}\{abcdefgABCDEFG\}\\
 	\end{example}
 	Then \LaTeX\ will print \textgreek{abcdefgABCDEFG}\\
-	Of course, you can use some commands these greek letters, such as \alert{\textbackslash alpha}, \alert{\textbackslash beta} and etc, which is more convenient when you only need to print few of them, and it doesn't need any package listed above.
+	Of course, you can use some commands these greek letters, such as \samplecommand{alpha}, \samplecommand{beta} and etc, which is more convenient when you only need to print few of them, and it doesn't need any package listed above.
 \end{frame}
 
 \subsection{Special symbols and accents}
@@ -312,7 +317,7 @@
 	one hyphen (-) print like - \\
 	two hyphens ({-}{-}) print like -- \\
 	three hyphens ({-}{-}{-}) print like ---\\
-	\alert{\textbackslash dots} prints the dots with a correct format (\dots) instead of directly use three dots (...)
+	\samplecommand{dots} prints the dots with a correct format (\dots) instead of directly use three dots (...)
 \end{frame}
 
 \begin{frame}
@@ -328,9 +333,9 @@
 	\begin{block}{Something interesting}
 		You may be curious about how to print words like \LaTeX, actually it's defined as a command.
 		\begin{itemize}
-			\item \alert{\textbackslash TeX} - \TeX
-			\item \alert{\textbackslash LaTeX} - \LaTeX
-			\item \alert{\textbackslash LaTeXe} - \LaTeXe
+			\item \samplecommand{TeX} - \TeX
+			\item \samplecommand{LaTeX} - \LaTeX
+			\item \samplecommand{LaTeXe} - \LaTeXe
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -343,11 +348,11 @@
 	\begin{itemize}
 		\item \colorbox{yellow}{\ } - the basic space in \LaTeX\ (printed in yellow since it's transparent). Note that any number of spaces or tabs is equal to one space, and the space after a command is ignored. If you want to add an extra space, use \alert{\textbackslash}\colorbox{yellow}{\ } which makes a 1/3\,em space (1 em is approximately the width of an \structure{M} in the current font)
 		\item \~{} - If two words can't be separated on two lines, you can tell \LaTeX\ about it using a tie (\~{}), such as Prof.\~{}Hamade (Prof.~Hamade).
-		\item  \alert{\textbackslash ,} - makes a 1/6\,em space, commonly used before units (notice the space before em on this page)
-		\item  \alert{\textbackslash ;} - makes a 2/7\,em space
-		\item  \alert{\textbackslash quad} - makes a 1\,em space
-		\item  \alert{\textbackslash qquad} - makes a 2\,em space
-		\item  \alert{\textbackslash phantom}\{\structure{text}\} - makes actually the space of \structure{text}, but \structure{text} will be invisible.
+		\item  \samplecommand{,} - makes a 1/6\,em space, commonly used before units (notice the space before em on this page)
+		\item  \samplecommand{;} - makes a 2/7\,em space
+		\item  \samplecommand{quad} - makes a 1\,em space
+		\item  \samplecommand{qquad} - makes a 2\,em space
+		\item  \samplecommand{phantom}\{\structure{text}\} - makes actually the space of \structure{text}, but \structure{text} will be invisible.
 	\end{itemize}
 \end{frame}
 
@@ -355,11 +360,11 @@
 	\frametitle{Separate contents into lines and pages}
 	Here are some basic commands about lines and pages in \LaTeX, you will use them everywhere.
 	\begin{itemize}
-		\item \alert{\textbackslash newline} - begin a new line
+		\item \samplecommand{newline} - begin a new line
 		\item \alert{\textbackslash\textbackslash} - begin a new line
 		\item \alert{\textbackslash\textbackslash[offset]} - begin a new line with an offset
-		\item \alert{\textbackslash linebreak} - begin a new line with the words discrete
-		\item \alert{\textbackslash newpage} - begin a new page
+		\item \samplecommand{linebreak} - begin a new line with the words discrete
+		\item \samplecommand{newpage} - begin a new page
 		\item \alert{\%} - begin a line comment
 	\end{itemize}
 \end{frame}
@@ -378,8 +383,8 @@
 		\item \sampletext{sl}{\sl}
 		\item \sampletext{tt}{\tt}
 	\end{itemize}
-	Note that the commands that transform font types influence the text in the whole scope (\structure{\{...\}}) until another font type is specified. For example, how to use the first command \alert{\textbackslash bf} is shown below\\[0.5em]
-	\{\alert{\textbackslash bf} Sample Text\}
+	Note that the commands that transform font types influence the text in the whole scope (\structure{\{...\}}) until another font type is specified. For example, how to use the first command \samplecommand{bf} is shown below\\[0.5em]
+	\{\samplecommand{bf} Sample Text\}
 \end{frame}
 
 \begin{frame}
@@ -391,9 +396,9 @@
 	\end{itemize}
 	However, in a math environment (will be introduced later), some other commands should be used
 	\begin{itemize}
-		\item \alert{\textbackslash mathbf} - $\mathbf{Sample\ Text}$
-		\item \alert{\textbackslash mathit} - $\mathit{Sample\ Text}$
-		\item \alert{\textbackslash mathsf} - $\mathsf{Sample\ Text}$
+		\item \samplecommand{mathbf} - $\mathbf{Sample\ Text}$
+		\item \samplecommand{mathit} - $\mathit{Sample\ Text}$
+		\item \samplecommand{mathsf} - $\mathsf{Sample\ Text}$
 	\end{itemize}
 	Note that the math environment doesn't include all of the font types on the previous page. More information about font types can be found \href{http://www.cnblogs.com/make217/p/6123532.html}{\color{blue}\underline{here}}.
 \end{frame}
@@ -417,9 +422,9 @@
 \begin{frame}
 	\frametitle{Build a colorful document}
 	Changing the color is similar to changing font types.\\[0.5em]
-	If you want to transform to a color (like \alert{\textbackslash bf}), you can use \alert{\textbackslash color}\{\structure{name}\}\\
-	Similarly, you can use \alert{\textbackslash textcolor}\{\structure{name}\} like \alert{\textbackslash textbf}\\
-	The background color of the whole page can be set using \alert{\textbackslash pagecolor}\{\structure{name}\}\\[0.5em]
+	If you want to transform to a color (like \samplecommand{bf}), you can use \samplecommand{color}\{\structure{name}\}\\
+	Similarly, you can use \samplecommand{textcolor}\{\structure{name}\} like \samplecommand{textbf}\\
+	The background color of the whole page can be set using \samplecommand{pagecolor}\{\structure{name}\}\\[0.5em]
 	There are some defined color \structure{name} in the \structure{xcolor} package.\\[0.5em]
 	\begin{tabular}{lllll}
 	\samplecolorbox{black}&\samplecolorbox{gray}&\samplecolorbox{olive}&\samplecolorbox{teal}&\samplecolorbox{blue}\\
@@ -436,8 +441,32 @@
 	\frametitle{Enumerate and Item}
 	When you need to enumerate some items as a list, you may use the \structure{enumerate} package.
 	\begin{command}
-		\alert{\textbackslash usepackage}\{enumerate\}
+		\samplecommand{usepackage}\{enumerate\}\\
+		\samplebegin{enumerate}[\structure{style}]\\
+		\qquad\samplecommand{item} ...\\
+		\qquad\samplecommand{item} ...\\
+		\qquad\samplecommand{item} ...\\
+		\sampleend{enumerate}
 	\end{command}
+	This will generate a normal list with the serial numbers in the specified \structure{style}, which could be the following (as example)
+	\begin{itemize}
+		\item \alert{1} - 1, 2, 3, 4, ...
+		\item \alert{(i)} - (i), (ii), (iii), (iv), ...
+		\item \alert{[1.]} - [1.], [2.], [3.], [4.], ...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	If you want to generate an unordered list, use \structure{itemize} instead of \structure{enumerate}.
+	\begin{command}
+		\samplecommand{usepackage}\{enumerate\}\\
+		\samplebegin{itemize}\\
+		\qquad\samplecommand{item}[\structure{style}] ...\\
+		\qquad\samplecommand{item}[\structure{style}] ...\\
+		\qquad\samplecommand{item}[\structure{style}] ...\\
+		\sampleend{itemize}
+	\end{command}
+	In this case, the position of \structure{style} is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
 \end{frame}
 
 \subsection{Lines on text}
@@ -446,8 +475,8 @@
 	\frametitle{Ulem package}
 	If you want to add some lines on the text, use the \structure{ulem} package.
 	\begin{command}
-		\alert{\textbackslash usepackage}\{ulem\}\\
-		\alert{\textbackslash uline}\{Sample Text\}
+		\samplecommand{usepackage}\{ulem\}\\
+		\samplecommand{uline}\{Sample Text\}
 	\end{command}
 	There are different kinds of lines supported:
 	\begin{itemize}
@@ -470,37 +499,37 @@
 
 \begin{frame}
 	\frametitle{The equation environment}
-	\begin{definition}
-		An {\color{blue}equation} enviornment contains a set of maths equations
-		{\color{red}\textbackslash begin\{euqation(*)\}}\\
-		\quad ...\\
-		{\color{red}\textbackslash end\{euqation(*)\}}\\
-	\end{definition}
+	An \structure{equation} environment contains a set of maths equations
+	\begin{command}
+		\samplecommand{begin}\{equation(\structure{*})\}\\
+		\qquad ...\\
+		\samplecommand{end}\{equation(\structure{*})\}\\
+	\end{command}
 	\begin{example}
 		\begin{equation}
 		curl\ F=\left(\frac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}\right)\hat{n_x}+\left(\frac{\partial F_x}{\partial z}-\frac{\partial F_z}{\partial x}\right)\hat{n_y}+\left(\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}\right)\hat{n_z}
 		\end{equation}
 	\end{example}
-	If a star({\color{blue}*}) is added, the sequence number of the equation won't be displayed.
+	If a star(\structure{*}) is added, the sequence number of the equation won't be displayed. Note that the environment name in the \samplecommand{begin} and \samplecommand{end} statements must be the same(both or neither have a \structure{*} here).
 \end{frame}
 
 \begin{frame}
 	The \LaTeX\ script of the equation above is quite long, but not so difficult as you think so, while how I display the script to you is far more confusing, and you may check it in the tex file of the lecture sildes
 	\begin{align*}
 	\color{blue} curl\backslash\ F
-	\text{=}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_z\}\{\backslash partial\ y\}\\
+	\text{=}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\uline{\ }z\}\{\backslash partial\ y\}\\
 	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ z\}\backslash right)\backslash hat\{n\_x\}\\
 	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ z\}\\
 	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_z\}\{\backslash partial\ x\}\backslash right)\backslash hat\{n\_y\}\\
 	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ x\}\\
 	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ y\}\backslash right)\backslash hat\{n\_z\}
 	\end{align*}
-	In the script, only a space after {\color{blue}\textbackslash} will be printed as a space, {\color{blue}\textbackslash partial} prints the symbol {\color{blue}$\partial$}, {\color{blue}\textbackslash frac\{...\}\{...\}} makes a {\color{blue}fraction}, {\color{blue}\textbackslash left(} and {\color{blue}\textbackslash right)} makes {\color{blue}brackets} (of course they can be nested and must be in couple, but you can use two kinds of brackets on the both side, i.e., {\color{blue}\textbackslash left[} and {\color{blue}\textbackslash right\textbackslash rbrace}, in which you must use {\color{blue}\textbackslash rbrace} or {\color{blue}\textbackslash \}} to print a right brace {\color{blue}$\rbrace$} \\
+	In the script, only a space after \structure{\textbackslash} will be printed as a space, \structure{\textbackslash partial} prints the symbol \structure{$\partial$}, \structure{\textbackslash frac\{...\}\{...\}} makes a \structure{fraction}, \structure{\textbackslash left(} and \structure{\textbackslash right)} makes \structure{brackets} (of course they can be nested and must be in couple, but you can use two kinds of brackets on the both side, i.e., \structure{\textbackslash left[} and \structure{\textbackslash right\textbackslash rbrace}, in which you must use \structure{\textbackslash rbrace} or \structure{\textbackslash \}} to print a right brace \structure{$\rbrace$} \\
 \end{frame}
 
 \begin{frame}
 	How about equations with multiple lines?\\
-	The {\color{blue}aligned} enviornment can be used.
+	The \structure{aligned} environment can be used.
 	\begin{example}
 		\begin{equation}
 		\left\lbrace\begin{aligned}
@@ -519,32 +548,67 @@
 		&\color{blue} \quad\quad\text{x\&=1} \backslash \backslash \text{y\&=0}\\
 		&\color{blue} \backslash end\{aligned\}\backslash right.
 	\end{align*}
-	We can use a dot({\color{blue}.}) when we want to insert nothing in one of the brackets.
+	We can use a dot(\structure{.}) when we want to insert nothing in one of the brackets.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Something more about equation environment}
+    What if the space between equation and the main body paragraph is considered larger than expectation? Is there any way to modify the line spacing?
+\\In default style of equation is like
+    \begin{example}
+    your body paragraph is supposed to be typed here
+        \begin{equation}
+         a \times b =c
+        \end{equation}
+    your body paragraph is supposed to be typed here
+	\end{example}
+\end{frame}
+
+\begin{frame}
+	But if we add \\
+	\samplecommand{setlength}\samplecommand{abovedisplayskip}\{\structure{pt}\} or\\
+	\samplecommand{setlength}\samplecommand{belowdisplayskip}\{\structure{pt}\}, we have
+    \begin{example}
+		\ your body paragraph is supposed to be typed here
+		{\setlength\abovedisplayskip{0pt}
+        \setlength\belowdisplayskip{0pt}
+        \begin{equation}
+         a \times b =c
+        \end{equation}}
+		your body paragraph is supposed to be typed here
+	\end{example}
+    {\color{blue}\{$\backslash$setlength$\backslash$abovedisplayskip\{0pt\}
+        \\$\backslash$setlength$\backslash$belowdisplayskip\{0pt\}
+       \\ $\backslash$begin\{equation\}
+         \\a $\backslash$times b =c
+        \\$\backslash$end\{equation\}\}}
+    \\[0.5em]The margin between the body paragraphs and the equation will be lessened 
+    as is in the example.
 \end{frame}
 
 \subsection{Aligns}
 
 \begin{frame}
-	\frametitle{The align/aligned enviornment}
-	\begin{definition}
-		An {\color{blue}align} enviornment is used outside a maths enviornment like {\color{blue}equation}
-		{\color{red}\textbackslash begin\{align(*)\}}\\
-		\quad ...\\
-		{\color{red}\textbackslash end\{align(*)\}}\\
-	\end{definition}
-	\begin{definition}
-		An {\color{blue}aligned} enviornment is used inside a maths enviornment like {\color{blue}equation}
-		{\color{red}\textbackslash begin\{euqation(*)\}}\\
-			\quad{\color{red}\textbackslash begin\{aligned\}}\\
-				\quad\quad ...\\
-			\quad{\color{red}\textbackslash end\{aligned\}}\\
-		{\color{red}\textbackslash end\{euqation(*)\}}\\
-	\end{definition}
+	\frametitle{The align/aligned environment}
+	An \structure{align} environment is used outside a maths environment like \structure{equation}
+	\begin{command}
+		\samplecommand{begin}\{align(\structure{*})\}\\
+		\qquad ...\\
+		\samplecommand{end}\{align(\structure{*})\}\\
+	\end{command}
+	An \structure{aligned} environment is used inside a maths environment like \structure{equation}, it is known as an \structure{inline} environment.
+	\begin{command}
+		\samplecommand{begin}\{equation(\structure{*})\}\\
+		\qquad\samplecommand{begin}\{aligned\}\\
+		\qquad\qquad ...\\
+		\qquad\samplecommand{end}\{aligned\}\\
+		\samplecommand{end}\{equation(\structure{*})\}\\
+	\end{command}
 	Other properties of them are very similar.
 \end{frame}
 
 \begin{frame}
-	The {\color{blue}align/aligned} enviornment is an basic align and multiline enviornment.\\
+	The \structure{align/aligned} environment is a basic align and multiline environment.\\
 	\begin{example}
 		\begin{flalign}
 			a+b&\Leftrightarrow b+a\\
@@ -557,58 +621,250 @@
 		&\color{blue} \quad\quad (a\text{+}b)\text{+}c\ \&\ \backslash Leftrightarrow\ a\text{+}(b\text{+}c)\\
 		&\color{blue} \backslash end\{align\}
 	\end{align*}
-	In order to make a new line, you can easily use {\color{blue}\textbackslash\textbackslash} where you'd like (but not in certain maths enviornments such as {\color{blue}equation}). {\color{blue}\&} is used to align the equations, you can use multiple {\color{blue}\&}s and the {\color{blue}\&}s on every line will be aligned respectively.
+	In order to make a new line, you can easily use \structure{\textbackslash\textbackslash} where you'd like (but not in certain maths environments such as \structure{equation}). \structure{\&} is used to align the equations, you can use multiple \structure{\&}s and the \structure{\&}s on every line will be aligned respectively.
 \end{frame}
 
+\subsection{Inline}
 
 \begin{frame}
-	\frametitle{Something more about equation environment}
-    What if the space between equation and the main body paragraph is considered larger than expectation? Is there any way to modify the line spaceing?
-\\In default style of equation is like
-    \begin{example}
-    your body paragraph is supposed to be typed here
-        \begin{equation}
-         a \times b =c
-        \end{equation}
-    your body paragraph is supposed to be typed here
+	\frametitle{A simple method of entering math environment}
+	Usually, we can use \alert{\$\$}\dots\alert{\$\$} to display a maths equation instead of \samplecommand{begin}\{equation*\}\dots\samplecommand{end}\{equation*\}, which almost have same effect.\\[0.5em]
+	However, there is another style of math environment, inline style, which will display the maths equation on the same line of the text before it. It is used like \alert{\$}\dots\alert{\$}
+	\begin{example}
+		This is a simple equation $$x^2+y^2=1$$
+		This is a simple inline equation $x^2+y^2=1$	 \\
+		The concentration of [H$_3$O$^+$]
 	\end{example}
+	{\color{blue}This is a simple equation \$\$x\^{}2+y\^{}2=1\$\$}\\
+	{\color{blue}This is a simple inline equation \$x\^{}2+y\^{}2=1\$\ \textbackslash\textbackslash}\\
+	{\color{blue}The concentration of [H\$\_3\$O\$\^{}+\$]}
 \end{frame}
+
 \begin{frame}
-But if we add 
-{\color{red} $\backslash$setlength$\backslash$abovedisplayskip or belowdisplayskip( pt)} before the equation environment, we have
-    \begin{example}
-    your body paragraph is supposed to be typed here
-		{\setlength\abovedisplayskip{0pt}
-        \setlength\belowdisplayskip{0pt}
-        \begin{equation}
-         a \times b =c
-        \end{equation}}
-    your body paragraph is supposed to be typed here
+	\frametitle{The difference between inline and normal}
+	Actually, the display style of inline and normal equations have some differences.
+	\begin{example}
+		\begin{minipage}{0.48\linewidth}
+			\centering Expression
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering inline
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering normal
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{left(}\samplecommand{frac}\{1\}\{\samplecommand{frac}\{1\}\{2\}\}\samplecommand{right)}\\
+			\^{}\{\samplecommand{frac}\{1\}\{2\}\}\}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\left(\frac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\left(\frac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{lim}\_\{n\samplecommand{to}\samplecommand{infty}\}a\_n=+\samplecommand{infty}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\lim_{n\to\infty}a_n=+\infty$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\lim_{n\to\infty}a_n=+\infty$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{sum}\_\{k=1\}\^{}\{10\}k=55
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\sum_{k=1}^{10}k=55$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\sum_{k=1}^{10}k=55$$
+		\end{minipage}
 	\end{example}
-    {\color{blue}\{$\backslash$setlength$\backslash$abovedisplayskip\{0pt\}
-        \\$\backslash$setlength$\backslash$belowdisplayskip\{0pt\}
-       \\ $\backslash$begin\{equation\}
-         \\a $\backslash$times b =c
-        \\$\backslash$end\{equation\}\}}
-    \\The margin between the body paragraphs and the equation will be lessened 
-    as is in the example.
-\end{frame}
+\end{frame} 
+
 \begin{frame}
-	\frametitle{Typing subscript or superscript out side an equation environment}
-    Sometimes you may encounter such circumstance as typing subscript or superscript in your paragraph without entering an equation environment.
+	However, most of the differences can be fixed by some other commands
+	\begin{example}
+		\begin{minipage}{0.48\linewidth}
+			\centering Expression
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering inline
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering normal
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{left(}\samplecommand{dfrac}\{1\}\{\samplecommand{frac}\{1\}\{2\}\}\samplecommand{right)}\\
+			\^{}\{\samplecommand{frac}\{1\}\{2\}\}\}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\left(\dfrac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\left(\dfrac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{lim}\samplecommand{limits}\_\{n\samplecommand{to}\samplecommand{infty}\}a\_n=+\samplecommand{infty}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\lim\limits_{n\to\infty}a_n=+\infty$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\lim\limits_{n\to\infty}a_n=+\infty$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{sum}\samplecommand{limits}\_\{k=1\}\^{}\{10\}k=55
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\sum\limits_{k=1}^{10}k=55$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\sum\limits_{k=1}^{10}k=55$$
+		\end{minipage}
+	\end{example}
+	Here the command \samplecommand{limits} can be used in much more situations to fix the position of the bounds. The command \samplecommand{dfrac} is used to print a fraction in normal size.
+\end{frame}
+
+\begin{frame}
+	
+\end{frame}
+
+\section{Use Graphics and Tables in \LaTeX}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Measuring units}
+
+\begin{frame}
+	\frametitle{Measuring units in \LaTeX}
+\end{frame}
+
+\subsection{Include graphs}
+
+\begin{frame}
+	\frametitle{Include graphs}
+	It's very useful to include graphs in \LaTeX, especially in report and paper writing. Here is a common template of including a single floating graph.
+	\begin{command}
+		\samplecommand{usepackage}\{graphicx\}\\
+		\samplebegin{figure}[\structure{position}]\\
+		\qquad\samplecommand{centering}\\
+		\qquad\samplecommand{includegraphics}[\structure{options}]\{\structure{file}\}\\
+		\qquad\samplecommand{caption}\{\structure{caption}\}\\
+		\qquad\samplecommand{label}\{\structure{label}\}\\
+		\sampleend{figure}
+		\begin{itemize}
+			\item \structure{position} - we usually use \structure{htbp} here
+			\item \structure{options} - the width, height and other options about the graph
+			\item \structure{caption} - the caption displayed above/under the graph
+			\item \structure{label} - used for references in a document (will be introduced later)
+		\end{itemize}
+	\end{command}
+\end{frame}
+
+\begin{frame}
+	Usually you need to optimize the size and some other properties of the graph, most of them can be set in \structure{options}. (Only some useful options are listed here)
+	\begin{itemize}
+		\item \structure{height} - use any \LaTeX\ measuring unit.
+		\item \structure{width} - use any \LaTeX\ measuring unit.
+		\item \structure{scale} - scale the graph to this proportion
+		\item \structure{angle} - rotate the graph in anti-clockwise by this angle 
+	\end{itemize}
+	\begin{minipage}{0.45\linewidth}
+		\begin{example}
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.8\linewidth,angle=180]{sample.jpg}
+				\caption{3 greatest people in JI}
+				\label{fig-sample}		
+			\end{figure}
+		\end{example}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\linewidth}
+		\samplecommand{usepackage}\{graphicx\}\\
+		\samplebegin{figure}[htbp]\\
+		\phantom{\qquad}\samplecommand{centering}\\
+		\phantom{\qquad}\samplecommand{includegraphics}[width=0.8\\
+		\samplecommand{linewidth},angle=180]\{lena.jpg\}\\
+		\phantom{\qquad}\samplecommand{caption}\{3 greatest people in JI\}\\
+		\phantom{\qquad}\samplecommand{label}\{fig-sample\}\\
+		\sampleend{figure}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Include multiple graphs}
+	Sometimes you need to include a series of graphs, then the \structure{subfigure} package can be used.\\
+	\begin{minipage}{0.4\linewidth}
+		\begin{example}
+			\begin{figure}[htbp]
+				\centering
+				\subfigure[God Gan]{
+					\includegraphics[width=0.4\linewidth]{sample-1.jpg}
+					\label{fig-sample-1}
+				}
+				\subfigure[Master Fu]{
+					\includegraphics[width=0.4\linewidth]{sample-2.jpg}
+					\label{fig-sample-2}
+				}
+				\subfigure[Professor]{
+					\includegraphics[width=0.4\linewidth]{sample-3.jpg}
+					\label{fig-sample-3}
+				}
+				\subfigure[God Hang]{
+					\includegraphics[width=0.4\linewidth]{sample-4.jpg}
+					\label{fig-sample-4}
+				}
+			\end{figure}
+		\end{example}
+	\end{minipage}
+	\hfill
+		\begin{minipage}{0.55\linewidth}
+			\samplecommand{usepackage}\{graphicx\}\\
+			\samplecommand{usepackage}\{subfigure\}\\
+			\samplebegin{figure}[htbp]\\
+			\phantom{\qquad}\samplecommand{centering}\\
+			\phantom{\qquad}\samplecommand{subfigure}[God Gan]\{\\
+			\phantom{\qquad\qquad}\samplecommand{includegraphics}[width=0.4\\
+			\samplecommand{linewidth}]\{sample-1.jpg\}\\
+			\phantom{\qquad\qquad}\samplecommand{label}\{fig-sample-1\}\\
+			\phantom{\qquad}\}\\
+			\phantom{\qquad}\dots(with Master Fu, Professor and God Hang)\\
+			\sampleend{figure}
+		\end{minipage}
+\end{frame}
+
+\subsection{Draw tables}
+
+\begin{frame}
+	\frametitle{Draw tables}
+	Table is another common element in \LaTeX, for example, there is a simple table like this:
     \begin{example}
-       The concentration of [H$_3$O$^+$]
-    \end{example}
-    [H$_3$O$^+$] is typed in the following way,
-    \\{\color{blue} [H\textdollar \textunderscore\{3\} \textdollar O \textdollar \textasciicircum \{+\} \textdollar] }
-    \\ in which we type every subscript with 
-    \\{\color{red} \textdollar \textunderscore\{anyting you wanna enter as subscript\}\textdollar}
-    \\every subscript with 
-    \\{\color{red} \textdollar \textasciicircum\{anyting you wanna enter as subscript\}\textdollar}
-    \\ if we only want to type one character as the subscript or superscript \{\} can be omiited.
+        \begin{tabular}{|l|c|r|}
+        \hline
+        Title 1 & Title 2 & Title 3 \\
+        \hline
+        1 & 2 &3 \\
+        \hline
+        \end{tabular}
+    \end{example}	
+	\samplebegin{tabular}
+	
+	\sampleend{tabular}
 \end{frame}
+
 \begin{frame}
-	\frametitle{Draw a table}
+	\frametitle{Draw tables}
     \begin{example}
         \begin{tabular}{|l|c|r|}
         \hline
@@ -630,16 +886,18 @@ But if we add
         $\backslash$hline\\
         $\backslash$end\{tabular\}
 \end{frame}
+
 \begin{frame}
    \frametitle{Something more about tabular}
    $\backslash$multirow \\
    $\backslash$multicolumn \\
    $\backslash$cline{} \\
 \end{frame}
+
 \begin{frame}
 	\frametitle{Table environment}
     \begin{definition}
-    A {\color{blue}table} enviornment is used to arrange the place of a tabular
+    A \structure{table} environment is used to arrange the place of a tabular
 		{\color{red}\textbackslash begin\{table(*)\}[htbp]}\\
 		\quad ...\\
 		{\color{red}\textbackslash end\{table(*)\}}\\
@@ -656,20 +914,6 @@ But if we add
 
 
 
-\begin{frame}
-
-\end{frame}
-
-\section{Use Graphics in \LaTeX}
-\begin{frame}
-	\tableofcontents[currentsection,hideothersubsections]
-\end{frame}
-
-\subsection{Include graphs}
-
-\begin{frame}
-
-\end{frame}
 
 \subsection{Draw graphs}
 
@@ -685,6 +929,8 @@ But if we add
 \subsection{New and renew}
 
 \begin{frame}
+
+
 
 \end{frame}
 
