@@ -10,4 +10,3 @@ QRCode.save(
         console.log('success');
     }
 );
-
