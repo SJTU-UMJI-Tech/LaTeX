@@ -2,7 +2,6 @@
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 
-\usepackage{CJKutf8}
 \usepackage[greek,english]{babel}
 \usepackage[OT2,OT1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -16,7 +15,9 @@
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{tipa}
-
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ctex}
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
 \newcommand{\samplebegin}[1]{\structure{\textbackslash begin}\{#1\}}
@@ -734,8 +735,32 @@
 	Here the command \samplecommand{limits} can be used in much more situations to fix the position of the bounds. The command \samplecommand{dfrac} is used to print a fraction in normal size.
 \end{frame}
 
+\subsection{Basic Maths Commands}
+
 \begin{frame}
-	
+	\frametitle{Basic Maths Commands}
+	Here some basic commands commonly used in \LaTeX\ are introduced. You may need \structure{amsmath} and \structure{amssymb}  packages.
+	\begin{itemize}
+		\item \structure{x\^{}abc}, \structure{x\_abc}, \structure{x\^{}abc\_abc} - $x^abc$, $x_abc$, $x^abc_abc$
+		\item \structure{x\^{}\{abc\}}, \structure{x\_\{abc\}}, \structure{x\^{}\{abc\}\_\{abc\}} - $x^{abc}$, $x_{abc}$, $x^{abc}_{abc}$
+		\item \samplecommand{sqrt}\structure{\{a\}}, \samplecommand{sqrt}\structure{[b]\{a\}} - $\sqrt{a}$, $\sqrt[b]{a}$
+		\item \samplecommand{overline}\structure{\{a+b\}}, \samplecommand{underline}\structure{\{a+b\}} - $\overline{a+b}$, $\underline{a+b}$
+		\item \samplecommand{overbrace}\structure{\{1+2+\samplecommand{cdots}+n\}\^{}n} - $\overbrace{1+2+\cdots+n}^n$
+		\item \samplecommand{underbrace}\structure{\{1+2+\samplecommand{cdots}+n\}\_n} - $\underbrace{1+2+\cdots+n}_n$
+		\item \samplecommand{overrightarrow}\structure{\{a+b\}}, \samplecommand{vec}\structure{\{a+b\}} - $\overrightarrow{a+b}$, $\vec{a+b}$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item \samplecommand{sum}\structure{\_\{k=1\}\^{}\{10\}a\_k} - $\sum\limits_{k=1}^{10}a_k$
+		\item \samplecommand{prod}\structure{\_\{k=1\}\^{}\{10\}a\_k} - $\prod\limits_{k=1}^{10}a_k$
+		\item \samplecommand{int}\structure{\_a\^{}bx\^{}2dx}, \samplecommand{oint} ,\samplecommand{iint}\samplecommand{limits}\structure{\_A\^{}\{\samplecommand{quad} B\}} - $$\int_a^bx^2dx\qquad\oint\qquad\iint\limits_A^{\quad B}$$
+		\item \samplecommand{lim}\structure{\_\{n\samplecommand{to}\samplecommand{infty}\}\samplecommand{sup} a\_n} - $\lim\limits_{n\to\infty}\sup a_n$
+		\item \samplecommand{cos}, \samplecommand{sin}, \samplecommand{tan}, \samplecommand{arccos}, \samplecommand{arcsin}, \samplecommand{arctan}, \samplecommand{log}, \samplecommand{ln} - $\cos$, $\sin$, $\tan$, $\arccos$, $\arcsin$, $\arctan$, $\log$, $\ln$
+		\item \samplecommand{rightarrow}, \samplecommand{leftarrow}, \samplecommand{leftrightarrow}, \samplecommand{Rightarrow}, \samplecommand{longleftarrow}, \samplecommand{Longleftrightarrow} - $\rightarrow$, $\leftarrow$, $\leftrightarrow$, $\Rightarrow$, $\longleftarrow$, $\Longleftrightarrow$
+	\end{itemize}
+
 \end{frame}
 
 \section{Use Graphics and Tables in \LaTeX}
@@ -934,6 +959,15 @@
 
 \end{frame}
 
+\subsection{Input Chinese}
+
+\begin{frame}
+	\songti
+	\frametitle{输入中文}
+	\qquad 虽然密院并不需要输入中文，但为了证明我会在\LaTeX 中输入中文，很有必要在最后一页介绍一下。\\
+	\qquad 这里我使用一种较为简便的方法：ctex+XeLaTeX，首先，使用 \structure{ctex} 宏包（\samplecommand{usepackage}\{ctex\}），然后切换到 \structure{XeLaTeX} 编译环境。在 \structure{ctex} 中，已经定义了几个常用的字体，如宋体（\samplecommand{songti}），仿宋（\samplecommand{fangsong}），楷书（\samplecommand{kaishu}）等
+\end{frame}
+
 \section{References}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
@@ -955,12 +989,11 @@
 
 \begin{frame}
 	\frametitle{Reference resources}
-	\begin{CJK*}{UTF8}{gbsn}
+	\songti
 	\begin{itemize}
 		\item \LaTeX\ 入门, Haiyang Liu, Publishing House of Electronics Industry, 2013.6, ISBN 978-7-121-20208-7
 		\item Introduction to \LaTeX, David Reid, \href{https://wenku.baidu.com/view/f08fbdf24693daef5ef73d23.html}{\color{blue}\uline{https://wenku.baidu.com/view/f08fbdf24693daef5ef73d23.html}}
 	\end{itemize}
-	\end{CJK*}
 \end{frame}
 
 \begin{frame}
