@@ -1,6 +1,6 @@
 # LaTeX Lecture
 
-<a href="https://github.com/SJTU-UMJI-Tech/LaTeX/raw/master/lecture.pdf" target="_blank">View it here!</a>
+[Download it here!](https://github.com/SJTU-UMJI-Tech/LaTeX/raw/master/lecture.pdf)
 
 This is a beamer slide for LaTeX lecture in JI
 
