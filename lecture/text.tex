@@ -1,0 +1,226 @@
+\section{Use Text in \LaTeX}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{UTF-8 encoding}
+
+\begin{frame}
+	\frametitle{Use UTF-8 encoding in \LaTeX}
+	UTF-8 encoding is widely used in modern computer applications, so it's useful to include the \structure{inputenc} package and use UTF-8 encoding.
+	\begin{command}
+		\samplecommand{usepackage}[utf-8]\{inputenc\}
+	\end{command}
+	\begin{example}
+		café
+	\end{example}
+	However, different operating systems and compiling engines have different support on UTF-8 encoding, some UTF-8 codes that work on your computer may not work on others, so it is recommended to use commands (will be introduced later) instead of directly copy and paste the UTF-8 codes from the Internet.
+\end{frame}
+
+\begin{frame}
+	(This part is not important)\\
+	If you want to use a language other than English, another package \structure{babel} in needed.
+	\begin{command}
+		\samplecommand{usepackage}[\structure{languages}]\{babel\}
+		\begin{itemize}
+			\item \structure{languages} - a list of languages, the last one to be the default language
+		\end{itemize}
+	\end{command}
+	\begin{example}
+		\samplecommand{usepackage}[greek,english]\{babel\}\\
+		\samplecommand{textgreek}\{abcdefgABCDEFG\}\\
+	\end{example}
+	Then \LaTeX\ will print \textgreek{abcdefgABCDEFG}\\
+	Of course, you can use some commands these greek letters, such as \samplecommand{alpha}, \samplecommand{beta} and etc, which is more convenient when you only need to print few of them, and it doesn't need any package listed above.
+\end{frame}
+
+\subsection{Special symbols and accents}
+
+\begin{frame}
+	\frametitle{Special symbols}
+	Some special symbols can't be directly used since they are reserved by \LaTeX
+	\begin{center}
+	\begin{tabular}{llllll}
+		\samplesymbol{\#}{\#} & \samplesymbol{\$}{\$} & \samplesymbol{\%}{\%} & \samplesymbol{\&}{\&} & \samplesymbol{\~{}}{\~{}} & \samplesymbol{\`{}}{\`{}} \\
+		\samplesymbol{\{}{\{} & \samplesymbol{\}}{\}} & \samplesymbol{\_}{\_} &
+		\multicolumn{2}{l}{\samplesymbol{textbackslash}{\textbackslash}}
+	\end{tabular}
+	\end{center}
+	Many \LaTeX\ starters are confused with how to correctly print quotes, hyphens and dots.\\
+	\`{} prints a left single quote, ' prints a right single quote.\\
+	\`{}\`{} prints a left double quote, '' prints a right double quote.\\
+	one hyphen (-) print like - \\
+	two hyphens ({-}{-}) print like -- \\
+	three hyphens ({-}{-}{-}) print like ---\\
+	\samplecommand{dots} prints the dots with a correct format (\dots) instead of directly use three dots (...)
+\end{frame}
+
+\begin{frame}
+	\frametitle{Accent on letters}
+	Sometimes you may need an accent form of a letter, here is an example of letter \structure{o}
+	\begin{center}
+	\begin{tabular}{lllll}
+		\sampleaccent{\`{}}{\`}{o} & \sampleaccent{'}{\'}{o} & \sampleaccent{\^{}}{\^}{o} & \sampleaccent{"}{\"}{o} & \sampleaccent{\~{}}{\~}{o} \\
+		\sampleaccent{=}{\=}{o} & \sampleaccent{.}{\.}{o} & \sampleaccent{u}{\u}{o} & \sampleaccent{v}{\v}{o} & \sampleaccent{H}{\H}{o}\\
+		\sampleaccent{t}{\t}{oo} & \sampleaccent{r}{\r}{o} & \sampleaccent{c}{\c}{o} & \sampleaccent{d}{\d}{o} & \sampleaccent{b}{\b}{o}
+	\end{tabular}
+	\end{center}
+	\begin{block}{Something interesting}
+		You may be curious about how to print words like \LaTeX, actually it's defined as a command.
+		\begin{itemize}
+			\item \samplecommand{TeX} - \TeX
+			\item \samplecommand{LaTeX} - \LaTeX
+			\item \samplecommand{LaTeXe} - \LaTeXe
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Spaces, lines and pages}
+
+\begin{frame}
+	\frametitle{Spaces may be confusing}
+	There are defined command of spaces in different width and usages.
+	\begin{itemize}
+		\item \colorbox{yellow}{\ } - the basic space in \LaTeX\ (printed in yellow since it's transparent). Note that any number of spaces or tabs is equal to one space, and the space after a command is ignored. If you want to add an extra space, use \alert{\textbackslash}\colorbox{yellow}{\ } which makes a 1/3\,em space (1 em is approximately the width of an \structure{M} in the current font)
+		\item \~{} - If two words can't be separated on two lines, you can tell \LaTeX\ about it using a tie (\~{}), such as Prof.\~{}Hamade (Prof.~Hamade).
+		\item  \samplecommand{,} - makes a 1/6\,em space, commonly used before units (notice the space before em on this page)
+		\item  \samplecommand{;} - makes a 2/7\,em space
+		\item  \samplecommand{quad} - makes a 1\,em space
+		\item  \samplecommand{qquad} - makes a 2\,em space
+		\item  \samplecommand{phantom}\{\structure{text}\} - makes actually the space of \structure{text}, but \structure{text} will be invisible.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Separate contents into lines and pages}
+	Here are some basic commands about lines and pages in \LaTeX, you will use them everywhere.
+	\begin{itemize}
+		\item \samplecommand{newline} - begin a new line
+		\item \alert{\textbackslash\textbackslash} - begin a new line
+		\item \alert{\textbackslash\textbackslash[offset]} - begin a new line with an offset
+		\item \samplecommand{linebreak} - begin a new line with the words discrete
+		\item \samplecommand{newpage} - begin a new page
+		\item \alert{\%} - begin a line comment
+	\end{itemize}
+\end{frame}
+
+\subsection{Fonts}
+
+\begin{frame}
+	\frametitle{Basic commands about fonts}
+	First, lets start with some commands that transform font types
+	\begin{itemize}
+		\item \sampletext{bf}{\bf}
+		\item \sampletext{it}{\it}
+		\item \sampletext{rm}{\rm}
+		\item \sampletext{sc}{\sc}
+		\item \sampletext{sf}{\sf}
+		\item \sampletext{sl}{\sl}
+		\item \sampletext{tt}{\tt}
+	\end{itemize}
+	Note that the commands that transform font types influence the text in the whole scope (\structure{\{...\}}) until another font type is specified. For example, how to use the first command \samplecommand{bf} is shown below\\[0.5em]
+	\{\samplecommand{bf} Sample Text\}
+\end{frame}
+
+\begin{frame}
+	Sometimes we don't want to transform the font types, instead, we can only change the font type of some specified text, then the following commands are used (you can similarly use all font types on the previous page)
+	\begin{itemize}
+		\item \sampletext{textbf}{\textbf}
+		\item \sampletext{textit}{\textit}
+		\item \sampletext{textsc}{\textsc}
+	\end{itemize}
+	However, in a math environment (will be introduced later), some other commands should be used
+	\begin{itemize}
+		\item \samplecommand{mathbf} - $\mathbf{Sample\ Text}$
+		\item \samplecommand{mathit} - $\mathit{Sample\ Text}$
+		\item \samplecommand{mathsf} - $\mathsf{Sample\ Text}$
+	\end{itemize}
+	Note that the math environment doesn't include all of the font types on the previous page. More information about font types can be found \href{http://www.cnblogs.com/make217/p/6123532.html}{\color{blue}\underline{here}}.
+\end{frame}
+
+\begin{frame}
+	Font size can also be easily modified
+	\begin{itemize}
+		\item \sampletext{tiny}{\tiny}
+		\item \sampletext{scriptsize}{\scriptsize}
+		\item \sampletext{footnotesize}{\footnotesize}
+		\item \sampletext{small}{\small}
+		\item \sampletext{normalsize}{\normalsize}
+		\item \sampletext{large}{\large}
+		\item \sampletext{Large}{\Large}
+		\item \sampletext{LARGE}{\LARGE}
+		\item \sampletext{huge}{\huge}
+		\item \sampletext{Huge}{\Huge}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Build a colorful document}
+	Changing the color is similar to changing font types.\\[0.5em]
+	If you want to transform to a color (like \samplecommand{bf}), you can use \samplecommand{color}\{\structure{name}\}\\
+	Similarly, you can use \samplecommand{textcolor}\{\structure{name}\} like \samplecommand{textbf}\\
+	The background color of the whole page can be set using \samplecommand{pagecolor}\{\structure{name}\}\\[0.5em]
+	There are some defined color \structure{name} in the \structure{xcolor} package.\\[0.5em]
+	\begin{tabular}{lllll}
+	\samplecolorbox{black}&\samplecolorbox{gray}&\samplecolorbox{olive}&\samplecolorbox{teal}&\samplecolorbox{blue}\\
+	\samplecolorbox{green}&\samplecolorbox{orange}&\samplecolorbox{violet}&\samplecolorbox{brown}&\samplecolorbox{lightgray}\\
+	\samplecolorbox{pink}&\samplecolorbox{white}&\samplecolorbox{cyan}&\samplecolorbox{lime}&\samplecolorbox{purple}\\
+	\samplecolorbox{yellow}&\samplecolorbox{darkgray}&\samplecolorbox{magenta}&\samplecolorbox{red}\\
+	\end{tabular}		
+	\\[0.5em]
+	You can find more information in the documentation of \structure{xcolor} (\alert{texdoc} \structure{xcolor})
+\end{frame}
+
+\subsection{Enumerate}
+\begin{frame}
+	\frametitle{Enumerate and Item}
+	When you need to enumerate some items as a list, you may use the \structure{enumerate} package.
+	\begin{command}
+		\samplecommand{usepackage}\{enumerate\}\\
+		\samplebegin{enumerate}[\structure{style}]\\
+		\qquad\samplecommand{item} ...\\
+		\qquad\samplecommand{item} ...\\
+		\qquad\samplecommand{item} ...\\
+		\sampleend{enumerate}
+	\end{command}
+	This will generate a normal list with the serial numbers in the specified \structure{style}, which could be the following (as example)
+	\begin{itemize}
+		\item \alert{1} - 1, 2, 3, 4, ...
+		\item \alert{(i)} - (i), (ii), (iii), (iv), ...
+		\item \alert{[1.]} - [1.], [2.], [3.], [4.], ...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	If you want to generate an unordered list, use \structure{itemize} instead of \structure{enumerate}.
+	\begin{command}
+		\samplecommand{usepackage}\{enumerate\}\\
+		\samplebegin{itemize}\\
+		\qquad\samplecommand{item}[\structure{style}] ...\\
+		\qquad\samplecommand{item}[\structure{style}] ...\\
+		\qquad\samplecommand{item}[\structure{style}] ...\\
+		\sampleend{itemize}
+	\end{command}
+	In this case, the position of \structure{style} is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
+\end{frame}
+
+\subsection{Lines on text}
+
+\begin{frame}
+	\frametitle{Ulem package}
+	If you want to add some lines on the text, use the \structure{ulem} package.
+	\begin{command}
+		\samplecommand{usepackage}\{ulem\}\\
+		\samplecommand{uline}\{Sample Text\}
+	\end{command}
+	There are different kinds of lines supported:
+	\begin{itemize}
+		\item \sampletext{uline}{\uline}
+		\item \sampletext{uuline}{\uuline}
+		\item \sampletext{uwave}{\uwave}
+		\item \sampletext{sout}{\sout}
+		\item \sampletext{xout}{\xout}
+		\item \sampletext{dashuline}{\dashuline}
+		\item \sampletext{dotuline}{\dotuline}
+	\end{itemize}
+\end{frame}

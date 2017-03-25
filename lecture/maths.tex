@@ -1,0 +1,271 @@
+\section{Use Maths in \LaTeX}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Basic equations}
+
+\begin{frame}
+	\frametitle{The equation environment}
+	An \structure{equation} environment contains a set of maths equations
+	\begin{command}
+		\samplecommand{begin}\{equation(\structure{*})\}\\
+		\qquad ...\\
+		\samplecommand{end}\{equation(\structure{*})\}\\
+	\end{command}
+	\begin{example}
+		\begin{equation}
+		curl\ F=\left(\frac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}\right)\hat{n_x}+\left(\frac{\partial F_x}{\partial z}-\frac{\partial F_z}{\partial x}\right)\hat{n_y}+\left(\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}\right)\hat{n_z}
+		\end{equation}
+	\end{example}
+	If a star(\structure{*}) is added, the sequence number of the equation won't be displayed. Note that the environment name in the \samplecommand{begin} and \samplecommand{end} statements must be the same(both or neither have a \structure{*} here).
+\end{frame}
+
+\begin{frame}
+	The \LaTeX\ script of the equation above is quite long, but not so difficult as you think so, while how I display the script to you is far more confusing, and you may check it in the tex file of the lecture sildes
+	\begin{align*}
+	\color{blue} curl\backslash\ F
+	\text{=}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\uline{\ }z\}\{\backslash partial\ y\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ z\}\backslash right)\backslash hat\{n\_x\}\\
+	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ z\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_z\}\{\backslash partial\ x\}\backslash right)\backslash hat\{n\_y\}\\
+	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ x\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ y\}\backslash right)\backslash hat\{n\_z\}
+	\end{align*}
+	In the script, only a space after \structure{\textbackslash} will be printed as a space, \structure{\textbackslash partial} prints the symbol \structure{$\partial$}, \structure{\textbackslash frac\{...\}\{...\}} makes a \structure{fraction}, \structure{\textbackslash left(} and \structure{\textbackslash right)} makes \structure{brackets} (of course they can be nested and must be in couple, but you can use two kinds of brackets on the both side, i.e., \structure{\textbackslash left[} and \structure{\textbackslash right\textbackslash rbrace}, in which you must use \structure{\textbackslash rbrace} or \structure{\textbackslash \}} to print a right brace \structure{$\rbrace$} \\
+\end{frame}
+
+\begin{frame}
+	How about equations with multiple lines?\\
+	The \structure{aligned} environment can be used.
+	\begin{example}
+		\begin{equation}
+		\left\lbrace\begin{aligned}
+			x+y&=1\\x-y&=1
+		\end{aligned}\right.\Longrightarrow
+		\left\lbrace\begin{aligned}
+			x&=1\\y&=0
+		\end{aligned}\right.
+		\end{equation}
+	\end{example}
+	\begin{align*}
+		&\color{blue} \backslash left \backslash lbrace \backslash begin\{aligned\}\\
+		&\color{blue} \quad\quad\text{x+y\&=1} \backslash \backslash \text{x-y\&=1}\\
+		&\color{blue} \backslash end\{aligned\}\backslash right.\backslash Longrightarrow\\
+		&\color{blue} \backslash left \backslash lbrace \backslash begin\{aligned\}\\
+		&\color{blue} \quad\quad\text{x\&=1} \backslash \backslash \text{y\&=0}\\
+		&\color{blue} \backslash end\{aligned\}\backslash right.
+	\end{align*}
+	We can use a dot(\structure{.}) when we want to insert nothing in one of the brackets.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Something more about equation environment}
+    What if the space between equation and the main body paragraph is considered larger than expectation? Is there any way to modify the line spacing?
+\\In default style of equation is like
+    \begin{example}
+    your body paragraph is supposed to be typed here
+        \begin{equation}
+         a \times b =c
+        \end{equation}
+    your body paragraph is supposed to be typed here
+	\end{example}
+\end{frame}
+
+\begin{frame}
+	But if we add \\
+	\samplecommand{setlength}\samplecommand{abovedisplayskip}\{\structure{pt}\} or\\
+	\samplecommand{setlength}\samplecommand{belowdisplayskip}\{\structure{pt}\}, we have
+    \begin{example}
+		\ your body paragraph is supposed to be typed here
+		{\setlength\abovedisplayskip{0pt}
+        \setlength\belowdisplayskip{0pt}
+        \begin{equation}
+         a \times b =c
+        \end{equation}}
+		your body paragraph is supposed to be typed here
+	\end{example}
+    {\color{blue}\{$\backslash$setlength$\backslash$abovedisplayskip\{0pt\}
+        \\$\backslash$setlength$\backslash$belowdisplayskip\{0pt\}
+       \\ $\backslash$begin\{equation\}
+         \\a $\backslash$times b =c
+        \\$\backslash$end\{equation\}\}}
+    \\[0.5em]The margin between the body paragraphs and the equation will be lessened 
+    as is in the example.
+\end{frame}
+
+\subsection{Aligns}
+
+\begin{frame}
+	\frametitle{The align/aligned environment}
+	An \structure{align} environment is used outside a maths environment like \structure{equation}
+	\begin{command}
+		\samplecommand{begin}\{align(\structure{*})\}\\
+		\qquad ...\\
+		\samplecommand{end}\{align(\structure{*})\}\\
+	\end{command}
+	An \structure{aligned} environment is used inside a maths environment like \structure{equation}, it is known as an \structure{inline} environment.
+	\begin{command}
+		\samplecommand{begin}\{equation(\structure{*})\}\\
+		\qquad\samplecommand{begin}\{aligned\}\\
+		\qquad\qquad ...\\
+		\qquad\samplecommand{end}\{aligned\}\\
+		\samplecommand{end}\{equation(\structure{*})\}\\
+	\end{command}
+	Other properties of them are very similar.
+\end{frame}
+
+\begin{frame}
+	The \structure{align/aligned} environment is a basic align and multiline environment.\\
+	\begin{example}
+		\begin{flalign}
+			a+b&\Leftrightarrow b+a\\
+			(a+b)+c&\Leftrightarrow a+(b+c)
+		\end{flalign}
+	\end{example}
+	\begin{align*}
+		&\color{blue} \backslash begin\{align\}\\
+		&\color{blue} \quad\quad a\text{+}b\ \&\ \backslash Leftrightarrow\ b\text{+}a\ \backslash\backslash \\
+		&\color{blue} \quad\quad (a\text{+}b)\text{+}c\ \&\ \backslash Leftrightarrow\ a\text{+}(b\text{+}c)\\
+		&\color{blue} \backslash end\{align\}
+	\end{align*}
+	In order to make a new line, you can easily use \structure{\textbackslash\textbackslash} where you'd like (but not in certain maths environments such as \structure{equation}). \structure{\&} is used to align the equations, you can use multiple \structure{\&}s and the \structure{\&}s on every line will be aligned respectively.
+\end{frame}
+
+\subsection{Inline}
+
+\begin{frame}
+	\frametitle{A simple method of entering math environment}
+	Usually, we can use \alert{\$\$}\dots\alert{\$\$} to display a maths equation instead of \samplecommand{begin}\{equation*\}\dots\samplecommand{end}\{equation*\}, which almost have same effect.\\[0.5em]
+	However, there is another style of math environment, inline style, which will display the maths equation on the same line of the text before it. It is used like \alert{\$}\dots\alert{\$}
+	\begin{example}
+		This is a simple equation $$x^2+y^2=1$$
+		This is a simple inline equation $x^2+y^2=1$	 \\
+		The concentration of [H$_3$O$^+$]
+	\end{example}
+	{\color{blue}This is a simple equation \$\$x\^{}2+y\^{}2=1\$\$}\\
+	{\color{blue}This is a simple inline equation \$x\^{}2+y\^{}2=1\$\ \textbackslash\textbackslash}\\
+	{\color{blue}The concentration of [H\$\_3\$O\$\^{}+\$]}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The difference between inline and normal}
+	Actually, the display style of inline and normal equations have some differences.
+	\begin{example}
+		\begin{minipage}{0.48\linewidth}
+			\centering Expression
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering inline
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering normal
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{left(}\samplecommand{frac}\{1\}\{\samplecommand{frac}\{1\}\{2\}\}\samplecommand{right)}\\
+			\^{}\{\samplecommand{frac}\{1\}\{2\}\}\}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\left(\frac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\left(\frac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{lim}\_\{n\samplecommand{to}\samplecommand{infty}\}a\_n=+\samplecommand{infty}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\lim_{n\to\infty}a_n=+\infty$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\lim_{n\to\infty}a_n=+\infty$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{sum}\_\{k=1\}\^{}\{10\}k=55
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\sum_{k=1}^{10}k=55$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\sum_{k=1}^{10}k=55$$
+		\end{minipage}
+	\end{example}
+\end{frame} 
+
+\begin{frame}
+	However, most of the differences can be fixed by some other commands
+	\begin{example}
+		\begin{minipage}{0.48\linewidth}
+			\centering Expression
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering inline
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering normal
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{left(}\samplecommand{dfrac}\{1\}\{\samplecommand{frac}\{1\}\{2\}\}\samplecommand{right)}\\
+			\^{}\{\samplecommand{frac}\{1\}\{2\}\}\}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\left(\dfrac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\left(\dfrac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{lim}\samplecommand{limits}\_\{n\samplecommand{to}\samplecommand{infty}\}a\_n=+\samplecommand{infty}
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\lim\limits_{n\to\infty}a_n=+\infty$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\lim\limits_{n\to\infty}a_n=+\infty$$
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.48\linewidth}
+			\samplecommand{sum}\samplecommand{limits}\_\{k=1\}\^{}\{10\}k=55
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			\centering $\sum\limits_{k=1}^{10}k=55$
+		\end{minipage}
+		\begin{minipage}{0.24\linewidth}
+			$$\sum\limits_{k=1}^{10}k=55$$
+		\end{minipage}
+	\end{example}
+	Here the command \samplecommand{limits} can be used in much more situations to fix the position of the bounds. The command \samplecommand{dfrac} is used to print a fraction in normal size.
+\end{frame}
+
+\subsection{Basic Maths Commands}
+
+\begin{frame}
+	\frametitle{Basic Maths Commands}
+	Here some basic commands commonly used in \LaTeX\ are introduced. You may need \structure{amsmath} and \structure{amssymb}  packages.
+	\begin{itemize}
+		\item \structure{x\^{}abc}, \structure{x\_abc}, \structure{x\^{}abc\_abc} - $x^abc$, $x_abc$, $x^abc_abc$
+		\item \structure{x\^{}\{abc\}}, \structure{x\_\{abc\}}, \structure{x\^{}\{abc\}\_\{abc\}} - $x^{abc}$, $x_{abc}$, $x^{abc}_{abc}$
+		\item \samplecommand{sqrt}\structure{\{a\}}, \samplecommand{sqrt}\structure{[b]\{a\}} - $\sqrt{a}$, $\sqrt[b]{a}$
+		\item \samplecommand{overline}\structure{\{a+b\}}, \samplecommand{underline}\structure{\{a+b\}} - $\overline{a+b}$, $\underline{a+b}$
+		\item \samplecommand{overbrace}\structure{\{1+2+\samplecommand{cdots}+n\}\^{}n} - $\overbrace{1+2+\cdots+n}^n$
+		\item \samplecommand{underbrace}\structure{\{1+2+\samplecommand{cdots}+n\}\_n} - $\underbrace{1+2+\cdots+n}_n$
+		\item \samplecommand{overrightarrow}\structure{\{a+b\}}, \samplecommand{vec}\structure{\{a+b\}} - $\overrightarrow{a+b}$, $\vec{a+b}$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item \samplecommand{sum}\structure{\_\{k=1\}\^{}\{10\}a\_k} - $\sum\limits_{k=1}^{10}a_k$
+		\item \samplecommand{prod}\structure{\_\{k=1\}\^{}\{10\}a\_k} - $\prod\limits_{k=1}^{10}a_k$
+		\item \samplecommand{int}\structure{\_a\^{}bx\^{}2dx}, \samplecommand{oint} ,\samplecommand{iint}\samplecommand{limits}\structure{\_A\^{}\{\samplecommand{quad} B\}} - $$\int_a^bx^2dx\qquad\oint\qquad\iint\limits_A^{\quad B}$$
+		\item \samplecommand{lim}\structure{\_\{n\samplecommand{to}\samplecommand{infty}\}\samplecommand{sup} a\_n} - $\lim\limits_{n\to\infty}\sup a_n$
+		\item \samplecommand{cos}, \samplecommand{sin}, \samplecommand{tan}, \samplecommand{arccos}, \samplecommand{arcsin}, \samplecommand{arctan}, \samplecommand{log}, \samplecommand{ln} - $\cos$, $\sin$, $\tan$, $\arccos$, $\arcsin$, $\arctan$, $\log$, $\ln$
+		\item \samplecommand{rightarrow}, \samplecommand{leftarrow}, \samplecommand{leftrightarrow}, \samplecommand{Rightarrow}, \samplecommand{longleftarrow}, \samplecommand{Longleftrightarrow} - $\rightarrow$, $\leftarrow$, $\leftrightarrow$, $\Rightarrow$, $\longleftarrow$, $\Longleftrightarrow$
+	\end{itemize}
+
+\end{frame}

@@ -1,0 +1,25 @@
+\section{Some Advantage Usages}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{New and renew}
+
+\begin{frame}
+
+\end{frame}
+6
+\subsection{Input Chinese}
+
+\begin{frame}
+	\songti
+	\frametitle{输入中文}
+	\qquad 虽然密院并不需要输入中文，但为了证明我会在\LaTeX 中输入中文，很有必要在最后一页介绍一下。\\
+	\qquad 这里我使用一种较为简便的方法：ctex+XeLaTeX，首先，使用 \structure{ctex} 宏包（\samplecommand{usepackage}\{ctex\}），然后切换到 \structure{XeLaTeX} 编译环境。在 \structure{ctex} 中，已经定义了几个常用的字体，如宋体（\samplecommand{songti}），仿宋（\samplecommand{fangsong}），楷书（\samplecommand{kaishu}）等。
+	\begin{exampleblock}{例}
+		\samplecommand{usepackage}[scheme=plain]\{ctex\}\\
+		\samplecommand{songti}\\
+		这个功能你们应该是用不到的。
+	\end{exampleblock}
+	在选项中加入\structure{[scheme=plain]}后可以防止文档的标题，章节等英文字段被汉化。
+\end{frame}

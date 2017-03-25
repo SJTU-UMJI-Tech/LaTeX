@@ -1,0 +1,56 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+
+\usepackage[greek,english]{babel}
+\usepackage[OT2,OT1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{listings} 
+\usepackage{enumerate}
+\usepackage{tabu} 
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[scheme=plain]{ctex}
+
+\newenvironment{command}{\begin{block}{Command}}{\end{block}}
+\newcommand{\samplebegin}[1]{\structure{\textbackslash begin}\{#1\}}
+\newcommand{\sampleend}[1]{\structure{\textbackslash end}\{#1\}}
+\newcommand{\samplecommand}[1]{\alert{\textbackslash #1}}
+\newcommand{\samplecolorbox}[1]{\fcolorbox{black}{#1}{\color{#1}{\tiny{\phantom{0000}}}} \small{#1}}
+\newcommand{\sampletext}[2]{\samplecommand{#1} - {#2{Sample Text}}}
+\newcommand{\sampleaccent}[3]{\samplecommand{#1}\{#3\}\quad #2{#3}}
+\newcommand{\samplesymbol}[2]{\samplecommand{#1}\quad #2}
+
+\title{Introduction to \LaTeX}
+\author{Liu Yihao}
+\date{\today}
+
+%\includeonly{graphic_table}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage	
+\end{frame}
+
+\include{get_start}
+
+\include{basic_usage}
+
+\include{text}
+
+\include{maths}
+
+\include{graphic_table}
+
+\include{advantage_uasge}
+
+\include{reference}
+
+\end{document}
