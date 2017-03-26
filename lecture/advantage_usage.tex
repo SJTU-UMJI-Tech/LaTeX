@@ -6,9 +6,84 @@
 \subsection{New and renew}
 
 \begin{frame}
-
+	\frametitle{Newcommand}
+	Sometimes you are building a huge project (like this lecture), and you may use certain type of syntax for many many times. Now it's time to define your own command with \samplecommand{newcommand} in the beginning of the document (where the \samplecommand{usepackage} commands appear).
+	\begin{command}
+		\samplecommand{newcommand}\{\samplecommand{yourcommand}\}[\structure{arg\_num}]\{\structure{code}\}
+		\begin{itemize}
+			\item \structure{arg\_num} - number of arguments in your command
+			\item \structure{code} - the code of your command, use \structure{\#1}, \structure{\#2}, \dots, \structure{\#n} to represent the arguments
+		\end{itemize}
+	\end{command}
+	\begin{example}
+		\samplecommand{newcommand}\{\samplecommand{samplecommand}\}[1]\{\samplecommand{alert}\{\samplecommand{textbackslash} \#1\}\}
+	\end{example}
+	It is defined to simply display the commands in red in this lecture.
 \end{frame}
-6
+
+\begin{frame}
+	\frametitle{Renewcommand}
+	Another times you need to redefine the commands, then \samplecommand{renewcommand} can be used. It's very similar to \samplecommand{newcommand}, the only difference is that you must use \samplecommand{newcommand} when the command doesn't exists, while using \samplecommand{renewcommand} when the command has been defined (by you or \LaTeX\ packages) before.
+	\begin{command}
+		\samplecommand{renewcommand}\{\samplecommand{definedcommand}\}[\structure{arg\_num}]\{\structure{code}\}
+	\end{command}
+	\begin{example}
+		\samplecommand{renewcommand}\{\samplecommand{thesection}\}\{\samplecommand{Roman}\{section\}\}
+		\samplecommand{renewcommand}\{\samplecommand{thesubsection}\}\{\samplecommand{Alph}\{subsection\}\}
+	\end{example}
+	By default, the number before the section titles of \samplecommand{section} is 1, 2, 3, etc, this command will change them to a capital form of roman numbers, I, II, III, etc. And subsection numbers become A, B, C, etc.
+\end{frame}
+
+\begin{frame}
+	\frametitle{New/Renewenvironment}
+\end{frame}
+
+\subsection{Document elements}
+
+\begin{frame}
+	\frametitle{Include and Input}
+	When you are building a huge project, if you write all of the code in a single file, the compiling of the whole project will be very slow, and the length of the file will also confuse you. Then you can use \samplecommand{include} and \samplecommand{input} to avoid this.
+	\begin{command}
+		\samplecommand{include}\{\structure{file}\} - Include the file on a new page, the files are compiled separately.\\
+		\samplecommand{input}\{\structure{file}\} - Directly replace the command with the whole file, doesn't start a new page, but the compiling won't speed up.	
+	\end{command} 
+	If you are including a .tex file, then the extension name can be omitted. Another command \samplecommand{includeonly}\{\structure{list}\} can be added to the beginning of the document, so that only the include files in \structure{list} are compiled and others are ignored, this is very useful in debugging huge projects.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Reference}
+	You may remember the \samplecommand{label} command used in equations, graphs and tables, they are used for reference in other parts of the document.
+	\begin{command}
+		\samplecommand{ref}\{\structure{label}\}
+	\end{command}
+	\begin{example}
+		Figure \ref{fig-sample-1} - Figure \samplecommand{ref}\{fig-sample-1\}\\
+		Figure \ref{fig-sample} - Figure \samplecommand{ref}\{fig-sample\}
+	\end{example}
+	Once the position of these figures are changed, or some more figures are added between them, the number of them will change, but there label won't. So \LaTeX\ will automatically generate the correct number for them and you don't need to modify them again and again.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hyperlink}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Minipage}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Listings}
+	Sometimes you are asked to attach your code about your report or homework. Using \structure{listings} package will avoid dealing with various special symbols and rearranging all of your code. (\alert{texdoc} \structure{listings} for more information)
+	\begin{example}
+		\samplecommand{usepackage}\{listings\}\\
+		\samplecommand{lstset}\{language=[LaTeX]TeX, numbers=left, tabsize=4, keywordstyle=\samplecommand{color}\{blue\}\samplecommand{bfseries}, identifierstyle=\samplecommand{bf}, breaklines=true, basicstyle=\samplecommand{tiny},rulecolor=\samplecommand{color}\{brown\}, numberstyle=\samplecommand{color}[RGB]\{20,20,20\}\}\\
+		\samplecommand{lstinputlisting}\{tikz/binary\_tree.tex\} - Input a whole source code file
+		\samplebegin{lstlisting}\\
+		Put your code here.\\
+		\sampleend{lstlisting}
+	\end{example} 
+\end{frame}
+
 \subsection{Input Chinese}
 
 \begin{frame}
@@ -21,5 +96,5 @@
 		\samplecommand{songti}\\
 		这个功能你们应该是用不到的。
 	\end{exampleblock}
-	在选项中加入\structure{[scheme=plain]}后可以防止文档的标题，章节等英文字段被汉化。
+	\qquad 在选项中加入\structure{[scheme=plain]}后可以防止文档的标题，章节等英文字段被汉化。
 \end{frame}
