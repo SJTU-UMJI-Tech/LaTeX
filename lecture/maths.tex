@@ -254,6 +254,7 @@
 		\item \samplecommand{overbrace}\structure{\{1+2+\samplecommand{cdots}+n\}\^{}n} - $\overbrace{1+2+\cdots+n}^n$
 		\item \samplecommand{underbrace}\structure{\{1+2+\samplecommand{cdots}+n\}\_n} - $\underbrace{1+2+\cdots+n}_n$
 		\item \samplecommand{overrightarrow}\structure{\{a+b\}}, \samplecommand{vec}\structure{\{a+b\}} - $\overrightarrow{a+b}$, $\vec{a+b}$
+		\item \samplecommand{dots}, \samplecommand{cdot}, \samplecommand{cdots}, \samplecommand{vdots}, \samplecommand{ddots} - $\dots$, $\cdot$, $\cdots$, $\vdots$, $\ddots$
 	\end{itemize}
 \end{frame}
 
@@ -266,5 +267,56 @@
 		\item \samplecommand{cos}, \samplecommand{sin}, \samplecommand{tan}, \samplecommand{arccos}, \samplecommand{arcsin}, \samplecommand{arctan}, \samplecommand{log}, \samplecommand{ln} - $\cos$, $\sin$, $\tan$, $\arccos$, $\arcsin$, $\arctan$, $\log$, $\ln$
 		\item \samplecommand{rightarrow}, \samplecommand{leftarrow}, \samplecommand{leftrightarrow}, \samplecommand{Rightarrow}, \samplecommand{longleftarrow}, \samplecommand{Longleftrightarrow} - $\rightarrow$, $\leftarrow$, $\leftrightarrow$, $\Rightarrow$, $\longleftarrow$, $\Longleftrightarrow$
 	\end{itemize}
+\end{frame}
 
+\subsection{Matrix}
+
+\begin{frame}
+	\frametitle{Matrix environment}
+	Matrix is commonly used in Maths. There are various kinds of matrix environments defined in \structure{amsmath} package, they are \structure{matrix}, \structure{pmatrix}, \structure{bmatrix}, \structure{Bmatrix}, \structure{vmatrix}, \structure{Vmatrix}.
+	\begin{command}
+		\samplebegin{[p/b/B/v/V]matrix}\\
+		\qquad \begin{tabular}{cccccc}
+			$\cdots$ & \structure{\&} & $\cdots$ & \structure{\&} & $\cdots$ & \samplecommand{\textbackslash} \\
+			$\vdots$ & \structure{\&} & $\ddots$ & \structure{\&} & $\vdots$ & \samplecommand{\textbackslash} \\
+			$\cdots$ & \structure{\&} & $\cdots$ & \structure{\&} & $\cdots$ & \samplecommand{\textbackslash} \\
+		\end{tabular}\\
+		\sampleend{[p/b/B/v/V]matrix}\\
+	\end{command}	
+\end{frame}
+
+\begin{frame}
+	Here is some examples of the style of these matrix.
+	\begin{example}
+		\begin{minipage}{0.3\linewidth}
+			\centering \structure{matrix}
+			$$\begin{matrix}a&b\\c&d\\\end{matrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \structure{bmatrix}
+			$$\begin{bmatrix}a&b\\c&d\\\end{bmatrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \structure{vmatrix}
+			$$\begin{vmatrix}a&b\\c&d\\\end{vmatrix}$$
+		\end{minipage}
+		\vfill
+		\ \\[1em]
+		\begin{minipage}{0.3\linewidth}
+			\centering \structure{pmatrix}
+			$$\begin{pmatrix}a&b\\c&d\\\end{pmatrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \structure{Bmatrix}
+			$$\begin{Bmatrix}a&b\\c&d\\\end{Bmatrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \structure{Vmatrix}
+			$$\begin{Vmatrix}a&b\\c&d\\\end{Vmatrix}$$
+		\end{minipage}
+	\end{example}
 \end{frame}
