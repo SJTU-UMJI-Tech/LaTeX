@@ -35,7 +35,21 @@
 \end{frame}
 
 \begin{frame}
+	Environments can also be defined.
 	\frametitle{New/Renewenvironment}
+	\begin{command}
+		\samplecommand{newenvironment}\{\structure{name}\}[\structure{arg\_num}]\{\structure{begdef}\}\{\structure{enddef}\}
+		\samplecommand{renewenvironment}\{\structure{name}\}[\structure{arg\_num}]\{\structure{begdef}\}\{\structure{enddef}\}
+		\begin{itemize}
+			\item \structure{name} - the name of your environment
+			\item \structure{arg\_num} - number of arguments in your environment
+			\item \structure{begdef} - the code to substitute the begin clause of your environment
+			\item \structure{enddef} - the code to substitute the end clause of your environment
+		\end{itemize}
+	\end{command}
+	\begin{example}
+		\samplecommand{newenvironment}\{command\}\{\samplebegin{block}\{Command\}\}\{\sampleend{block}\}
+	\end{example}
 \end{frame}
 
 \subsection{Document elements}
@@ -65,7 +79,19 @@
 
 \begin{frame}
 	\frametitle{Hyperlink}
-	
+	Hyperlinks are supported in \LaTeX, use the \structure{hyperref} package.
+	\begin{command}
+		\samplecommand{usepackage}\{hyperref\}\\
+		\samplecommand{hypersetup}\{\structure{options}\}\\
+		\samplecommand{url}\{\structure{url}\}\\
+		\samplecommand{href}\{\structure{url}\}\{\structure{text}\}
+	\end{command}
+	Some common \structure{options} are listed below: 
+	\begin{itemize}
+		\item \structure{colorlinks} - boolean (default false)
+		\item \structure{urlcolor} - color for linked URLs (default magenta)
+		\item \structure{linkcolor} - color for normal internal links (default red)
+	\end{itemize}
 \end{frame}
 
 \begin{frame}

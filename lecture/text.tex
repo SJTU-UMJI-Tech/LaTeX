@@ -204,7 +204,7 @@
 	In this case, the position of \structure{style} is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
 \end{frame}
 
-\subsection{Lines on text}
+\subsection{Other useful things}
 
 \begin{frame}
 	\frametitle{Ulem package}
@@ -223,4 +223,20 @@
 		\item \sampletext{dashuline}{\dashuline}
 		\item \sampletext{dotuline}{\dotuline}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Text align}
+	If you want to align a paragraph of text, use these three environments for left/center/right align.
+	\begin{command}
+		\samplebegin{flushleft/center/flushright}\\
+		\qquad ...\\
+		\sampleend{flushleft/center/flushright}
+	\end{command}
+	However, if only a single line needs to be aligned, use these three commands.
+	\begin{command}
+		\samplecommand{leftline}\\
+		\samplecommand{centerline}\\
+		\samplecommand{rightline}
+	\end{command}
 \end{frame}
