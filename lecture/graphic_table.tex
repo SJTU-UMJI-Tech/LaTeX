@@ -7,7 +7,20 @@
 
 \begin{frame}
 	\frametitle{Measuring units in \LaTeX}
-	
+	\begin{itemize}
+		\item \structure{pt} - The smallest unit in \LaTeX, 1/72.27 inch
+		\item \structure{bp} - 1/72 inch
+		\item \structure{in} - inch
+		\item \structure{cm} - centimeter
+		\item \structure{mm} - millimeter
+		\item \structure{em} - the width of letter M of the current font (commonly used in width measuring)
+		\item \structure{ex} - the height of letter x of the current font (commonly used in height measuring)
+		\item \samplecommand{linewidth} - the width of current line in the container
+		\item \samplecommand{pagewidth} - the width of the page
+		\item \samplecommand{pageheight} - the height of the page
+		\item \samplecommand{textwidth} - the normal width of text on the page
+		\item \samplecommand{textheight} - the normal height of text on the page
+	\end{itemize}
 \end{frame}
 
 \subsection{Include graphs}
@@ -279,12 +292,24 @@
 	\LaTeX\ compiler will try these methods from left to right as you defined. Usually, we use htbp so that it will try to put the graph or table in the current place. If fails, then it will try the top, the bottom, and the next page until success.
 \end{frame}
 
+\begin{frame}
+	\frametitle{The array environment}
+	When you use \structure{tabular} in maths environment, the text format in the \structure{tabular} won't be italic. However, there is a replacement of \structure{tabular}, which is \structure{array} environment.
+	\begin{command}
+		\samplebegin{array}\{\structure{format}\}\\
+		\qquad ...\\
+		\sampleend{array}
+	\end{command}
+	The properties and usages of these two environment are exactly the same. \\[0.5em]
+	Note that there is also a package called \structure{array}, which is an enhancement of both \structure{tabular} and \structure{array}, you may use \alert{texdoc} \structure{array} to learn about it.
+	
+\end{frame}
+
 \subsection{Draw graphs}
 
 \begin{frame}
 	\frametitle{Draw graphs with TikZ and PGF}
-	In your VE203, if you write your homework in \LaTeX\ (with a 10\% bonus), you will need this package to draw graphs.\\
-	\samplecommand{usepackage}\{tikz\}\\
+	In your VE203, if you write your homework in \LaTeX\ (with a 10\% bonus), you will need this package to draw graphs. There is a document of more than one thousand pages about it (\alert{texdoc} \structure{tikz} or \alert{texdoc} \structure{pgf})\\
 	\begin{minipage}{0.45\linewidth}
 		\begin{example}
 			\centering
@@ -293,6 +318,7 @@
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.5\linewidth}
+		\samplecommand{usepackage}\{tikz\}\\
 		\lstinputlisting{tikz/relation.tex}
 	\end{minipage}
 \end{frame}

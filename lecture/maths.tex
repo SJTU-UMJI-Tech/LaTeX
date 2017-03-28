@@ -39,23 +39,23 @@
 	How about equations with multiple lines?\\
 	The \structure{aligned} environment can be used.
 	\begin{example}
-		\begin{equation}
-		\left\lbrace\begin{aligned}
-			x+y&=1\\x-y&=1
-		\end{aligned}\right.\Longrightarrow
-		\left\lbrace\begin{aligned}
-			x&=1\\y&=0
-		\end{aligned}\right.
-		\end{equation}
-	\end{example}
-	\begin{align*}
-		&\color{blue} \backslash left \backslash lbrace \backslash begin\{aligned\}\\
-		&\color{blue} \quad\quad\text{x+y\&=1} \backslash \backslash \text{x-y\&=1}\\
-		&\color{blue} \backslash end\{aligned\}\backslash right.\backslash Longrightarrow\\
-		&\color{blue} \backslash left \backslash lbrace \backslash begin\{aligned\}\\
-		&\color{blue} \quad\quad\text{x\&=1} \backslash \backslash \text{y\&=0}\\
-		&\color{blue} \backslash end\{aligned\}\backslash right.
-	\end{align*}
+		\samplebegin{equation}\\
+		\qquad \samplecommand{left}\samplecommand{lbrace}\samplebegin{aligned}\\
+		\qquad\qquad x+y\&=1\samplecommand{\textbackslash}x-y\&=1\\
+		\qquad \sampleend{aligned}\samplecommand{right.}\samplecommand{Longrightarrow}\\
+		\qquad \samplecommand{left}\samplecommand{lbrace}\samplebegin{aligned}\\
+		\qquad\qquad x\&=1\samplecommand{\textbackslash}y\&=0\\
+		\qquad \sampleend{aligned}\samplecommand{right.}\\
+		\sampleend{equation}
+	\end{example}	
+	\begin{equation}
+	\left\lbrace\begin{aligned}
+		x+y&=1\\x-y&=1
+	\end{aligned}\right.\Longrightarrow
+	\left\lbrace\begin{aligned}
+		x&=1\\y&=0
+	\end{aligned}\right.
+	\end{equation}	
 	We can use a dot(\structure{.}) when we want to insert nothing in one of the brackets.
 \end{frame}
 
@@ -64,34 +64,34 @@
     What if the space between equation and the main body paragraph is considered larger than expectation? Is there any way to modify the line spacing?
 \\In default style of equation is like
     \begin{example}
+		your body paragraph is supposed to be typed here\\
+		\samplebegin{equation}a \samplecommand{times} b = c \sampleend{equation}\\
+		your body paragraph is supposed to be typed here\\
+	\end{example}
     your body paragraph is supposed to be typed here
         \begin{equation}
          a \times b =c
         \end{equation}
     your body paragraph is supposed to be typed here
-	\end{example}
 \end{frame}
 
 \begin{frame}
 	But if we add \\
-	\samplecommand{setlength}\samplecommand{abovedisplayskip}\{\structure{pt}\} or\\
-	\samplecommand{setlength}\samplecommand{belowdisplayskip}\{\structure{pt}\}, we have
+	\samplecommand{setlength}\samplecommand{abovedisplayskip}\{\structure{length}\} or\\
+	\samplecommand{setlength}\samplecommand{belowdisplayskip}\{\structure{length}\}, we have
     \begin{example}
-		\ your body paragraph is supposed to be typed here
-		{\setlength\abovedisplayskip{0pt}
-        \setlength\belowdisplayskip{0pt}
-        \begin{equation}
-         a \times b =c
-        \end{equation}}
-		your body paragraph is supposed to be typed here
+		your body paragraph is supposed to be typed here\\
+		\{\samplecommand{setlength}\samplecommand{abovedisplayskip}\{0em\}\\
+		\samplecommand{setlength}\samplecommand{belowdisplayskip}\{0em\}\\
+		\samplebegin{equation}a \samplecommand{times} b = c \sampleend{equation}\}\\
+		your body paragraph is supposed to be typed here\\
 	\end{example}
-    {\color{blue}\{$\backslash$setlength$\backslash$abovedisplayskip\{0pt\}
-        \\$\backslash$setlength$\backslash$belowdisplayskip\{0pt\}
-       \\ $\backslash$begin\{equation\}
-         \\a $\backslash$times b =c
-        \\$\backslash$end\{equation\}\}}
-    \\[0.5em]The margin between the body paragraphs and the equation will be lessened 
-    as is in the example.
+	\ your body paragraph is supposed to be typed here
+	{\setlength\abovedisplayskip{0em}
+    \setlength\belowdisplayskip{0em}
+    \begin{equation}a \times b =c \end{equation}}
+    your body paragraph is supposed to be typed here\\[0.5em]
+    The margin between the body paragraphs and the equation will be lessened as is in the example.
 \end{frame}
 
 \subsection{Align}
@@ -117,17 +117,15 @@
 \begin{frame}
 	The \structure{align/aligned} environment is a basic align and multiline environment.\\
 	\begin{example}
-		\begin{flalign}
-			a+b&\Leftrightarrow b+a\\
-			(a+b)+c&\Leftrightarrow a+(b+c)
-		\end{flalign}
+		\samplebegin{align}\\
+		\qquad a+b \& \samplecommand{Leftrightarrow} b+a \samplecommand{\textbackslash}\\
+		\qquad (a+b)+c \samplecommand{Leftrightarrow} a+(b+c) \\
+		\sampleend{align}
 	\end{example}
-	\begin{align*}
-		&\color{blue} \backslash begin\{align\}\\
-		&\color{blue} \quad\quad a\text{+}b\ \&\ \backslash Leftrightarrow\ b\text{+}a\ \backslash\backslash \\
-		&\color{blue} \quad\quad (a\text{+}b)\text{+}c\ \&\ \backslash Leftrightarrow\ a\text{+}(b\text{+}c)\\
-		&\color{blue} \backslash end\{align\}
-	\end{align*}
+	\begin{align}
+		a+b&\Leftrightarrow b+a\\
+		(a+b)+c&\Leftrightarrow a+(b+c)
+	\end{align}
 	In order to make a new line, you can easily use \structure{\textbackslash\textbackslash} where you'd like (but not in certain maths environments such as \structure{equation}). \structure{\&} is used to align the equations, you can use multiple \structure{\&}s and the \structure{\&}s on every line will be aligned respectively.
 \end{frame}
 
@@ -269,7 +267,7 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Matrix}
+\subsection{Matrix and other multiline equations}
 
 \begin{frame}
 	\frametitle{Matrix environment}
@@ -319,4 +317,73 @@
 			$$\begin{Vmatrix}a&b\\c&d\\\end{Vmatrix}$$
 		\end{minipage}
 	\end{example}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The gather/gathered environment}
+	The \structure{gather/gathered} environment is used to print multiline equations, similar to the \structure{align/aligned} environment but all of the lines align in center. Each line of the equation will be ordered.
+	\begin{minipage}{0.48\linewidth}
+		\begin{command}
+			\samplecommand{begin}\{gather(\structure{*})\}\\
+			\qquad ...\\
+			\samplecommand{end}\{gather(\structure{*})\}\\
+			\samplecommand{begin}\{equation(\structure{*})\}\\
+			\qquad\samplecommand{begin}\{gathered\}\\
+			\qquad\qquad ...\\
+			\qquad\samplecommand{end}\{gathered\}\\
+			\samplecommand{end}\{equation(\structure{*})\}\\
+		\end{command}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.48\linewidth}
+		\ \\
+		\begin{example}
+			\samplebegin{gather}\\
+			\qquad a+b=1 \samplecommand{\textbackslash}\\
+			\qquad aaa+c=2222 \\
+			\sampleend{gather}
+		\end{example}
+		{\setlength\abovedisplayskip{0em}
+		\setlength\belowdisplayskip{0em}
+		\begin{gather}
+			a+b=1\\
+			aaa+c=2222
+		\end{gather}}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The flalign and multline environment}
+	There another two maths environment called \structure{flalign} and \structure{multline}, useful in some special situations.\\
+	\begin{minipage}{0.48\linewidth}
+		\begin{example}
+			\samplebegin{flalign}\\
+			\qquad a+b\&=1\&=b+a\samplecommand{\textbackslash}\\
+			\qquad b\&=2\&=c\\
+			\sampleend{flalign}
+		\end{example}
+		{\setlength\abovedisplayskip{-1em}
+		\setlength\belowdisplayskip{0em}
+		\begin{flalign}
+			a+b&=1=&b+a\\
+			b&=2=&c
+		\end{flalign}}
+		You may notice that the left column is aligned left and the right column is aligned right, different from the \structure{align} environment.
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.48\linewidth}
+		\begin{example}
+			\samplebegin{multline}\\
+			\qquad a+b+c=1\samplecommand{\textbackslash}b+c=2\samplecommand{\textbackslash}c=3\\
+			\sampleend{multline}
+		\end{example}
+		{\setlength\abovedisplayskip{-1.5em}
+		\setlength\belowdisplayskip{0em}
+		\begin{multline}
+			a+b+c=1\\
+			b+c=2\\
+			c=3
+		\end{multline}}
+		Here, the first column aligns left, the last aligns right and others align center. Note that it is only one equation in order.
+	\end{minipage}
 \end{frame}

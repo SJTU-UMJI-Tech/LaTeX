@@ -65,10 +65,51 @@
 
 \begin{frame}
 	\frametitle{Hyperlink}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Minipage}
+	\frametitle{Minipage and Multicol}
+	\structure{minipage} is a very useful environment for dividing pages into a grid.
+	\begin{example}
+		\begin{multicols}{2}
+			\samplebegin{minipage}\{0.32\samplecommand{linewdith}\}\\
+			\qquad ...\\
+			\sampleend{minipage}\\
+			\samplecommand{hfill} (Fill the space horizontally)\\
+			\samplebegin{minipage}\{0.32\samplecommand{linewdith}\}\\
+			\qquad ...\\
+			\sampleend{minipage}\\
+			\samplecommand{hfill}\\
+			\samplebegin{minipage}\{0.32\samplecommand{linewdith}\}\\
+			\qquad ...\\
+			\sampleend{minipage}\\
+			\samplecommand{vfill} (Fill the space vertically)\\
+			\samplebegin{minipage}\{0.32\samplecommand{linewdith}\}\\
+			\qquad ...\\
+			\sampleend{minipage}\\
+			\samplecommand{hfill}\\
+			\samplebegin{minipage}\{0.32\samplecommand{linewdith}\}\\
+			\qquad ...\\
+			\sampleend{minipage}\\
+			\samplecommand{hfill}\\
+			\samplebegin{minipage}\{0.32\samplecommand{linewdith}\}\\
+			\qquad ...\\
+			\sampleend{minipage}\\
+		\end{multicols}	
+	\end{example}
+\end{frame}
+
+\begin{frame}
+	The code above generate six minipages in a grid of 3 column $\times$ 2 row. Don't try to add up the width of minipages in a line for more than about 0.98\samplecommand{linewidth}, or the last minipage will be on a new line.
+	The example on the previous page is printed with a  \structure{multicols} environment, different from \samplecommand{multicolumn} command in a table.
+	\begin{command}
+		\samplecommand{usepackage}\{multicol\}\\
+		\samplebegin{multicols}\{\structure{col\_num}\}\\
+		\qquad ...\\
+		\sampleend{multicols}
+	\end{command}
+	This will generate a paragraph with \structure{col\_num} columns as shown in the example.	
 \end{frame}
 
 \begin{frame}
