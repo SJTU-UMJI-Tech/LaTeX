@@ -160,5 +160,20 @@
 
 \begin{frame}
 	\frametitle{Geometry package}
-	
+	The settings of the layout of the pages is in \structure{geometry} package.
+	\begin{command}
+		\samplecommand{usepackage}\{geometry\}\\
+		\samplecommand{geometry}\{\structure{options}\}
+	\end{command}
+	Some of the \structure{options} are listed below:
+	\begin{itemize}
+		\item \structure{paper} - same as the paper settings in documentclass
+		\item \structure{layout} - use another type of paper's layout
+		\item \structure{left/right} - the blank length on the left/right
+		\item \structure{top/bottom} - the blank length on the top/bottom
+	\end{itemize}
+	\begin{example}
+		\samplecommand{geometry}\{paper=a4paper,layout=a5paper\}
+		\samplecommand{geometry}\{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm\}
+	\end{example}
 \end{frame}

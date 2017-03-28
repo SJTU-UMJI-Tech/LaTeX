@@ -6,7 +6,7 @@ const util = require("util"),
     fs = require("fs");
 
 console.log('Reading Tex Files ...');
-let string = fs.readFileSync('lecture.tex', 'utf-8');
+let string = fs.readFileSync('lecture/lecture.tex', 'utf-8');
 
 console.log('Compiling into pdf ...');
 
