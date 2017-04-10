@@ -26,11 +26,11 @@
 	\begin{align*}
 	\color{blue} curl\backslash\ F
 	\text{=}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\uline{\ }z\}\{\backslash partial\ y\}\\
-	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ z\}\backslash right)\backslash hat\{n\_x\}\\
-	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ z\}\\
-	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_z\}\{\backslash partial\ x\}\backslash right)\backslash hat\{n\_y\}\\
-	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\_y\}\{\backslash partial\ x\}\\
-	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\_x\}\{\backslash partial\ y\}\backslash right)\backslash hat\{n\_z\}
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\uline{\ }y\}\{\backslash partial\ z\}\backslash right)\backslash hat\{n\uline{\ }x\}\\
+	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\uline{\ }x\}\{\backslash partial\ z\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\uline{\ }z\}\{\backslash partial\ x\}\backslash right)\backslash hat\{n\uline{\ }y\}\\
+	\color{blue} \text{+}\backslash left & \color{blue} (\backslash frac\{\backslash partial\ F\uline{\ }y\}\{\backslash partial\ x\}\\
+	& \color{blue} \text{-}\backslash frac\{\backslash partial\ F\uline{\ }x\}\{\backslash partial\ y\}\backslash right)\backslash hat\{n\uline{\ }z\}
 	\end{align*}
 	In the script, only a space after \structure{\textbackslash} will be printed as a space, \structure{\textbackslash partial} prints the symbol \structure{$\partial$}, \structure{\textbackslash frac\{...\}\{...\}} makes a \structure{fraction}, \structure{\textbackslash left(} and \structure{\textbackslash right)} makes \structure{brackets} (of course they can be nested and must be in couple, but you can use two kinds of brackets on the both side, i.e., \structure{\textbackslash left[} and \structure{\textbackslash right\textbackslash rbrace}, in which you must use \structure{\textbackslash rbrace} or \structure{\textbackslash \}} to print a right brace \structure{$\rbrace$} \\
 \end{frame}
@@ -119,7 +119,7 @@
 	\begin{example}
 		\samplebegin{align}\\
 		\qquad a+b \& \samplecommand{Leftrightarrow} b+a \samplecommand{\textbackslash}\\
-		\qquad (a+b)+c \samplecommand{Leftrightarrow} a+(b+c) \\
+		\qquad (a+b)+c \& \samplecommand{Leftrightarrow} a+(b+c) \\
 		\sampleend{align}
 	\end{example}
 	\begin{align}
