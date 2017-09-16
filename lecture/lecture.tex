@@ -99,7 +99,22 @@
 % Indexentry for a word (Word inserted into the text)
 \newcommand{\wi}[1]{\index{#1}#1}
 
-%\includeonly{basic_usage}
+\usepackage{minted}
+\usemintedstyle{autumn}
+\setminted{
+    linenos,
+    breaklines,
+    fontsize=\footnotesize,
+    tabsize=4,
+    xleftmargin=2em
+}
+\setmintedinline{
+	fontsize=\footnotesize
+}
+\newcommand{\LC}[1]{\mintinline{latex}{#1}}
+
+% Debug one chapter
+\includeonly{maths}
 
 \begin{document}
 
