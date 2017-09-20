@@ -81,11 +81,9 @@
 	\begin{example}
 		\inputminted{latex}{examples/simple.tex}
 	\end{example}
-	
-	The main body of your document starts with \LC{\begin{document}} and ends with \LC{\end{document}} the \structure{document} environment. All of the contents you'd like to display should be in it, and it \alert{MUST} be \alert{unique} in the whole file.
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[fragile,label=documentclass]
 	\frametitle{All begins with documentclass}
 	\begin{definition}
 		In a \LaTeX\ file, the \structure{first} line must be \\
@@ -102,11 +100,11 @@
 	Some details about the \structure{article} class will be introduced later in the lecture. More features about other classes and options can be found in the \LaTeX\ Document on your own.
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile,label=package]
 	\frametitle{Magic of packages}
-	Some environments or commands cannot be used directly. In this case,  \structure{packages} should be included between \structure{documentclass} and \structure{document environment}.
+	\LaTeX\ is a macro-based language, where most of useful commands are not built-in commands. These commands are defined in various packages, which should be included between \LC{\documentclass} and \LC{\begin{document}}.
 	\begin{command}
-		\samplecommand{usepackage}[\structure{optional\_args}]\{\structure{name}\}
+		\mint{latex}|\usepackage[options]{name}|
 	\end{command}
 	There are some very useful packages that you can \alert{ALWAYS} include:
 	\begin{description}
@@ -119,19 +117,39 @@
 	The usages of these and more packages will be introduced further.
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Title, Author and Date}
-	It's very useful to generate a title on the first page of a document, then these commands can be added between \structure{documentclass} and \structure{document environment}.
-	\begin{command}
-		\samplecommand{title}\{\structure{the title}\}\\
-		\samplecommand{author}\{\structure{the author}\}\\
-		\samplecommand{date}\{\structure{the date}\}\\
-	\end{command}
-	You can simply use \samplecommand{date}\{\samplecommand{today}\} to display today's date.\\[0.5em]
-	Then in the \structure{document environment}, use the command \samplecommand{maketitle} to generate a title.
+	It's very useful to generate a title on the first page of a document, then these commands can be added between \LC{\documentclass} and \LC{\begin{document}}.
+	\begin{example}
+		\begin{minted}{latex}
+\title{title}
+\author{author name}
+\date{\today}
+		\end{minted}
+	\end{example}
+	You can simply use \LC{\date{\today}} to display your system date now.\\[0.5em]
+	Then in the \structure{document environment}, use the command \LC{\maketitle} to generate the title page.
 \end{frame}
 
-\subsection{Introduction of some basic document classes}
+\begin{frame}[fragile]
+	\frametitle{Main body of document}
+	The main body of your document starts with \LC{\begin{document}} and ends with \LC{\end{document}} is called the \structure{document} environment. All of the contents you'd like to display should be in it, and it \alert{MUST} be \alert{unique} in the whole file.
+	\begin{example}
+		\begin{minted}{latex}
+\begin{document}
+    \maketitle
+    Hello, \LaTeX !
+    % TODO: Add more contents
+    ...
+\end{document}
+		\end{minted}
+	\end{example}
+	The title page is also added in this example.
+\end{frame}
+
+\subsection{Basic document classes}
+
+\againframe{documentclass}
 
 \begin{frame}
 	\frametitle{The article class}
@@ -149,9 +167,52 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}
+	\frametitle{The beamer class}
+\end{frame}
 
+\subsection{Common packages}
 
-\subsection{Common syntax}
+\againframe{package}
+
+\begin{frame}
+	\frametitle{Geometry package}
+	The settings of the layout of the pages is in \structure{geometry} package.
+	\begin{command}
+		\samplecommand{usepackage}\{geometry\}\\
+		\samplecommand{geometry}\{\structure{options}\}
+	\end{command}
+	Some of the \structure{options} are listed below:
+	\begin{itemize}
+		\item \structure{paper} - same as the paper settings in documentclass
+		\item \structure{layout} - use another type of paper's layout
+		\item \structure{left/right} - the blank length on the left/right
+		\item \structure{top/bottom} - the blank length on the top/bottom
+	\end{itemize}
+	\begin{example}
+		\samplecommand{geometry}\{paper=a4paper,layout=a5paper\}
+		\samplecommand{geometry}\{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm\}
+	\end{example}
+\end{frame}
+
+\subsection{Part, chapter, section and paragraph}
+
+\begin{frame}
+	\frametitle{Dividing into sections}
+	\begin{command}
+		\samplecommand{section(*)}\{\structure{name}\}\\
+		\samplecommand{subsection(*)}\{\structure{name}\}\\
+		\samplecommand{subsubsection(*)}\{\structure{name}\}\\
+	\end{command}
+	The default style of sections is like\\
+	\structure{1 Example Section Name}\\
+	\structure{1.2 Example Subsection Name}\\
+	\structure{1.2.3 Example Subsubsection Name}\\[0.5em]
+	If a star(\alert{*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
+	\alert{Notice:} Sections can be sorted into commands, not environments, so it doesn't have \structure{begin} and \structure{end} clauses. However, the whole contents between two sections is belonged to one section
+\end{frame}
+
+\subsection{Learn more - syntax of \LaTeX}
 
 \begin{frame}
 	\frametitle{The common syntax of \LaTeX\ commands}
@@ -198,41 +259,6 @@
 	\end{example}
 \end{frame}
 
-\subsection{Sections}
 
-\begin{frame}
-	\frametitle{Dividing into sections}
-	\begin{command}
-		\samplecommand{section(*)}\{\structure{name}\}\\
-		\samplecommand{subsection(*)}\{\structure{name}\}\\
-		\samplecommand{subsubsection(*)}\{\structure{name}\}\\
-	\end{command}
-	The default style of sections is like\\
-	\structure{1 Example Section Name}\\
-	\structure{1.2 Example Subsection Name}\\
-	\structure{1.2.3 Example Subsubsection Name}\\[0.5em]
-	If a star(\alert{*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
-	\alert{Notice:} Sections can be sorted into commands, not environments, so it doesn't have \structure{begin} and \structure{end} clauses. However, the whole contents between two sections is belonged to one section
-\end{frame}
 
-\subsection{Geometry}
 
-\begin{frame}
-	\frametitle{Geometry package}
-	The settings of the layout of the pages is in \structure{geometry} package.
-	\begin{command}
-		\samplecommand{usepackage}\{geometry\}\\
-		\samplecommand{geometry}\{\structure{options}\}
-	\end{command}
-	Some of the \structure{options} are listed below:
-	\begin{itemize}
-		\item \structure{paper} - same as the paper settings in documentclass
-		\item \structure{layout} - use another type of paper's layout
-		\item \structure{left/right} - the blank length on the left/right
-		\item \structure{top/bottom} - the blank length on the top/bottom
-	\end{itemize}
-	\begin{example}
-		\samplecommand{geometry}\{paper=a4paper,layout=a5paper\}
-		\samplecommand{geometry}\{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm\}
-	\end{example}
-\end{frame}
