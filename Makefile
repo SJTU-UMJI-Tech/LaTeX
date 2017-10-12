@@ -2,7 +2,7 @@ PWD           = $(shell pwd)
 LECTURE_DIR   = ${PWD}/lecture
 OUTPUT_DIR    = ${PWD}/build
 LATEX         = latexmk
-OPTIONS       = -pdfxe -cd --shell-escape -synctex=1 -halt-on-error -deps -time -quiet
+OPTIONS       = -xelatex -cd -shell-escape -synctex=1 -halt-on-error -deps -time -quiet
 CLEAN_OPTIONS = -C -cd
 
 define make_lecture
