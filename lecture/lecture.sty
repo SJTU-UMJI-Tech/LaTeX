@@ -1,4 +1,3 @@
-\documentclass{beamer}
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 
@@ -6,7 +5,6 @@
 \usepackage[OT2,OT1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{geometry}
-\usepackage{listings} 
 \usepackage{enumerate}
 \usepackage{multirow}
 \usepackage{multicol}
@@ -17,9 +15,9 @@
 \usepackage{amssymb}
 \usepackage{mathrsfs}
 \usepackage{latexsym}
-\usepackage[scheme=plain]{ctex}
-\usepackage{tikz}
-\usepackage{hyperref}
+%\usepackage[scheme=plain]{ctex}
+%\usepackage{tikz}
+%\usepackage{hyperref}
 \usepackage{verbatim}
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
@@ -31,22 +29,6 @@
 \newcommand{\sampleaccent}[3]{\samplecommand{#1}\{#3\}\quad #2{#3}}
 \newcommand{\samplesymbol}[2]{\samplecommand{#1}\quad #2}
 
-\usepackage{listings}
-\lstset{
-	language=[LaTeX]TeX, numbers=none, tabsize=4,
-	framexleftmargin=1.5mm, frame=none,
-	backgroundcolor=\color{white},
-	keywordstyle=\color{blue}\bfseries,
-	identifierstyle=\bf, breaklines=true, 
-	basicstyle=\tiny,rulecolor=\color{brown}, 
-	numberstyle=\color[RGB]{20,20,20}
-}
-
-\title{Introduction to \LaTeX}
-\author{Liu Yihao}
-\date{\today}
-\institute{SJTU-UMJI}
-
 % Copied from lshort.sty
 %
 % Symbol Entry for Math Symbol Tables
@@ -56,7 +38,7 @@
 \newcommand{\SC}[1]{#1&\texttt{\string#1}\hspace*{1ex}}
 % for accents in text mode
 \newcommand{\A}[1]{#1&\texttt{\string#1}\hspace*{1ex}}
-\renewcommand{\B}[2]{#1#2&\texttt{\string#1{} #2}\hspace*{1ex}}
+\newcommand{\B}[2]{#1#2&\texttt{\string#1{} #2}\hspace*{1ex}}
 
 \newcommand{\W}[2]{$#1{#2}$&
   \texttt{\string#1}\texttt{\string{\string#2\string}}\hspace*{1ex}}
@@ -112,28 +94,11 @@
 	fontsize=\footnotesize
 }
 \newcommand{\LC}[1]{\mintinline{latex}{#1}}
+\newcommand{\LCL}[1]{\mint[linenos=false]{latex}|#1|}
 
-% Debug one chapter
-\includeonly{maths}
+\newcommand{\myhref}[1]{\href{#1}{\color{blue}\underline{#1}}}
 
-\begin{document}
-
-\begin{frame}
-	\titlepage	
-\end{frame}
-
-\include{get_start}
-
-\include{basic_usage}
-
-\include{text}
-
-\include{maths}
-
-\include{graphic_table}
-
-\include{advantage_usage}
-
-\include{reference}
-
-\end{document}
+\title{Introduction to \LaTeX}
+\author{Liu Yihao}
+\date{\today}
+\institute{SJTU-UMJI}

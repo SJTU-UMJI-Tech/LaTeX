@@ -1,0 +1,264 @@
+\part{Getting Started}
+
+\section{Getting Started}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{What is \LaTeX}
+
+\begin{frame}
+	\frametitle{What is \LaTeX}
+	\begin{block}{From Wikipedia, the free encyclopedia}
+		LaTeX (lah-tekh, lah-tek or lay-tek, a shortening of Lamport TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italic), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as \LaTeX.
+	\end{block}
+\end{frame}
+
+\subsection{Installation of \LaTeX}
+\begin{frame}
+	\frametitle{Installation of \LaTeX}
+	Though there are some other distributions of \LaTeX (like MikTeX), TexLive is recommended in this lecture.
+	\begin{block}{Windows \& Linux}
+		Download TeXLive on the following website (a mirror provided by HUST, Huazhong University of Science and Technology) \\
+		\myhref{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}
+	\end{block}
+	\begin{block}{MacOS}
+		Download MacTeX on the following website\\
+		\myhref{http://tug.org/mactex/mactex-download.html}
+	\end{block}
+	\begin{block}{Linux (Ubuntu or Debian)}
+		Enter the command (fast if you have mirror apt sources) \\
+		\alert{sudo apt-get install texlive-full}
+	\end{block}
+\end{frame}
+
+\subsection{Selection of IDEs}
+
+\begin{frame}
+	\frametitle{Selection of IDEs}
+	There are various IDEs recommended that support \LaTeX , for example\\
+	\begin{block}{Texmaker}
+		\myhref{http://www.xm1math.net/texmaker/}
+	\end{block}
+	\begin{block}{Sublime Text}
+		\myhref{http://www.sublimetext.com/} \\[0.5em]
+		Follow the instructions on \myhref{https://www.zhihu.com/question/36038602}
+	\end{block}
+	\begin{block}{Tex Studio}
+		\myhref{http://www.texstudio.org/}
+	\end{block}
+	They all have cross-platform support for Windows, Linux and MacOS.
+\end{frame}
+
+\subsection{Documentation}
+
+\begin{frame}
+	\frametitle{Documentation on your computer}
+	If you've installed a full version of TeXLive (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you.\\[0.5em]
+	Open the command line and input the command\\
+	\alert{texdoc} \structure{docname}\\[0.5em]
+	For example, you can use the following types for the \structure{docname}
+	\begin{description}
+		\item[tex] 		about \structure{TeX}\\
+		\item[article] 	about documentclass \structure{article}\\
+		\item[beamer] 	about documentclass \structure{beamer} (used to create slides)\\
+		\item[pgf]		about \structure{TikZ} and \structure{PGF} (used to draw graphs)\\
+	\end{description}
+	\ \\[-0.5em]
+	Try to \alert{texdoc} about all new things and then you'll be an expert in \LaTeX.
+\end{frame}
+
+\section{The Basic Usages}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{A simple document}
+
+\begin{frame}
+	\frametitle{A simple document}
+	A typical (simplest) \LaTeX\ example is presented here.
+	\begin{example}
+		\inputminted{latex}{examples/simple.tex}
+	\end{example}
+\end{frame}
+
+\begin{frame}[fragile,label=documentclass]
+	\frametitle{All begins with documentclass}
+	\begin{definition}
+		In a \LaTeX\ file, the \structure{first} line must be \\
+		\mint{latex}|\documentclass[options]{class}|
+	\end{definition}
+	For example, you can use the following types for the \structure{class}
+	\begin{description}
+		\item[ariticle]	Write a report or an science article
+		\item[book] 	Write a book
+		\item[beamer]	Produce a lecture silde like this!
+	\end{description}
+	Actually some options can be added, such as
+	\mint{latex}|\documentclass[11pt,twoside,a4paper]{article}|
+	Some details about the \structure{article} class will be introduced later in the lecture. More features about other classes and options can be found in the \LaTeX\ Document on your own.
+\end{frame}
+
+\begin{frame}[fragile,label=package]
+	\frametitle{Magic of packages}
+	\LaTeX\ is a macro-based language, where most of useful commands are not built-in commands. These commands are defined in various packages, which should be included between \LC{\documentclass} and \LC{\begin{document}}.
+	\begin{command}
+		\mint{latex}|\usepackage[options]{name}|
+	\end{command}
+	There are some very useful packages that you can \alert{ALWAYS} include:
+	\begin{description}
+		\item[amsmath] Define various maths environments
+		\item[amssymb] Define various maths symbols
+		\item[geometry] Adjust the margin, paper size, and etc.
+		\item[enumerate] Generate a list like this!
+		\item[graphicx] Insert image of all types
+	\end{description}
+	The usages of these and more packages will be introduced further.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Title, Author and Date}
+	It's very useful to generate a title on the first page of a document, then these commands can be added between \LC{\documentclass} and \LC{\begin{document}}.
+	\begin{example}
+		\begin{minted}{latex}
+\title{title}
+\author{author name}
+\date{\today}
+		\end{minted}
+	\end{example}
+	You can simply use \LC{\date{\today}} to display your system date now.\\[0.5em]
+	Then in the \structure{document environment}, use the command \LC{\maketitle} to generate the title page.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Main body of document}
+	The main body of your document starts with \LC{\begin{document}} and ends with \LC{\end{document}} is called the \structure{document} environment. All of the contents you'd like to display should be in it, and it \alert{MUST} be \alert{unique} in the whole file.
+	\begin{example}
+		\begin{minted}{latex}
+\begin{document}
+    \maketitle
+    Hello, \LaTeX !
+    % TODO: Add more contents
+    ...
+\end{document}
+		\end{minted}
+	\end{example}
+	The title page is also added in this example.
+\end{frame}
+
+\subsection{Basic document classes}
+
+\againframe{documentclass}
+
+\begin{frame}
+	\frametitle{The article class}
+	The \structure{article} class is the most basic class in \LaTeX, it provides you with some normalized structure and format for report writing. So usually you will use the following command as the first line of your tex document
+	\mint{latex}|\documentclass[options]{article}|
+	Some of the options values are listed below (the default values are \alert{alerted})
+	\begin{itemize}
+		\item \alert{10pt}, \structure{11pt}, \structure{12pt} - the font size of the document
+		\item \structure{a4paper}, \structure{a5paper}, \alert{letterpaper} - the size of paper
+		\item \structure{fleqn} - make the math equations left aligned (default middle aligned)
+		\item \structure{leqno} - display the serial numbers of math equations on the left (default on the right)
+		\item \structure{titlepage}, \alert{notitlepage} - whether to make the title an entire page
+		\item \alert{onecolumn}, \structure{twocolumn} - the number of columns of the document
+		\item \structure{twoside}, \alert{oneside} - influence the position of something on the page
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{The beamer class}
+\end{frame}
+
+\subsection{Common packages}
+
+\againframe{package}
+
+\begin{frame}
+	\frametitle{Geometry package}
+	The settings of the layout of the pages is in \structure{geometry} package.
+	\begin{command}
+		\samplecommand{usepackage}\{geometry\}\\
+		\samplecommand{geometry}\{\structure{options}\}
+	\end{command}
+	Some of the \structure{options} are listed below:
+	\begin{itemize}
+		\item \structure{paper} - same as the paper settings in documentclass
+		\item \structure{layout} - use another type of paper's layout
+		\item \structure{left/right} - the blank length on the left/right
+		\item \structure{top/bottom} - the blank length on the top/bottom
+	\end{itemize}
+	\begin{example}
+		\samplecommand{geometry}\{paper=a4paper,layout=a5paper\}
+		\samplecommand{geometry}\{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm\}
+	\end{example}
+\end{frame}
+
+\subsection{Part, chapter, section and paragraph}
+
+\begin{frame}
+	\frametitle{Dividing into sections}
+	\begin{command}
+		\samplecommand{section(*)}\{\structure{name}\}\\
+		\samplecommand{subsection(*)}\{\structure{name}\}\\
+		\samplecommand{subsubsection(*)}\{\structure{name}\}\\
+	\end{command}
+	The default style of sections is like\\
+	\structure{1 Example Section Name}\\
+	\structure{1.2 Example Subsection Name}\\
+	\structure{1.2.3 Example Subsubsection Name}\\[0.5em]
+	If a star(\alert{*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
+	\alert{Notice:} Sections can be sorted into commands, not environments, so it doesn't have \structure{begin} and \structure{end} clauses. However, the whole contents between two sections is belonged to one section
+\end{frame}
+
+\subsection{Learn more - syntax of \LaTeX}
+
+\begin{frame}
+	\frametitle{The common syntax of \LaTeX\ commands}
+	\begin{definition}
+		\structure{Command} is a word which can be identified by Latex and represents a certain function in output file, or in relation with some specific character or format
+	\end{definition}
+	All \LaTeX\ commands have the following syntax\\
+	\samplecommand{command\_name}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\{\structure{required\_args}\}
+	\begin{description}
+		\item[special\_args]	Seldom used in basic usage, for certain special usages in some packages
+		\item[optional\_args]	Used to define mode of the command, if not specified, \LaTeX\ will use the default mode
+		\item[required\_args]	Must be filled
+	\end{description}
+	If you want to connect a letter after a command, a space must be appended after the command or \LaTeX\ won't be able to compile it correctly. But two commands can be directly connected since there is a \structure{\textbackslash} before each command.
+\end{frame}
+
+\begin{frame}
+	\frametitle{The common syntax of \LaTeX\ environments}
+	\begin{definition}
+		\structure{Environment} is an encapsulated part which has a certain format so that it will not be influenced by outer context
+	\end{definition}
+	All \LaTeX\ environments have the following syntax\\
+	\samplebegin{\alert{environment\_name}}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\\
+	\qquad...\\
+	\sampleend{\alert{environment\_name}}\\
+	\begin{description}
+		\item[special\_args]	Similar to commands
+		\item[optional\_args]	Similar to commands
+	\end{description}
+	It is recommended to have a tab indent in each environment or your tex codes will be difficult to read by others or even \alert{yourself}.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Environment in enviornment}
+	Of course, the environments can be nested.\\
+	\begin{example}
+		\samplebegin{\alert{environment\_name}}\\
+		\qquad ...\\
+		\qquad\samplebegin{\alert{environment\_name\_2}}\\
+		\qquad\qquad ...\\
+		\qquad\sampleend{\alert{environment\_name\_2}}\\
+		\qquad ...\\
+		\sampleend{\alert{environment\_name}}\\
+	\end{example}
+\end{frame}
+
+
+
+

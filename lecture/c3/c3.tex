@@ -1,3 +1,5 @@
+\part{Maths}
+
 \section{Use Maths in \LaTeX}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
@@ -14,7 +16,7 @@
 		\samplecommand{end}\{equation(\structure{*})\}\\
 	\end{command}
 	\begin{example}
-		\input{examples/maths/curl.tex}
+		\input{examples/curl.tex}
 	\end{example}
 	If a star(\structure{*}) is added, the sequence number of the equation won't be displayed. Note that the environment name in the \samplecommand{begin} and \samplecommand{end} statements must be the same(both or neither have a \structure{*} here).
 \end{frame}
@@ -23,7 +25,7 @@
 	The \LaTeX\ script of the equation above is quite long, but not so difficult as you think so. All of the useless spaces are omitted, so please pay attention to the necessary spaces (marked in \textvisiblespace).
 
 	
-	\inputminted[showspaces]{latex}{examples/maths/curl.tex}
+	\inputminted[showspaces]{latex}{examples/curl.tex}
 	
 	In the script, only a space after \LC{\ }will be printed as a space. \\
 	\LC{\partial} prints the symbol \structure{$\partial$}, \LC{\frac{...}{...}} makes a \structure{fraction}. \\

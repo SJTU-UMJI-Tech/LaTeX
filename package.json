@@ -7,10 +7,9 @@
     "url": "https://github.com/SJTU-UMJI-Tech/LaTeX"
   },
   "scripts": {
-    "start": "node ./build.js"
+    "qrcode": "node ./qrcode.js"
   },
   "dependencies": {
-    "gammalatex": "0.0.8",
     "qrcode": "^0.7.1"
   }
 }
