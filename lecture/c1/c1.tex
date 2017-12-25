@@ -10,8 +10,10 @@
 \begin{frame}
 	\frametitle{What is \LaTeX}
 	\begin{block}{From Wikipedia, the free encyclopedia}
-		LaTeX (lah-tekh, lah-tek or lay-tek, a shortening of Lamport TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italic), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as \LaTeX.
+		LaTeX (lah-tekh, lah-tek or lay-tek, a shortening of Lamport TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italic), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as \LaTeX.	\\[0.5em]
+	Reference: \myhref{https://en.wikipedia.org/wiki/Latex                                      }
 	\end{block}
+
 \end{frame}
 
 \subsection{Installation of \LaTeX}
@@ -36,7 +38,7 @@
 
 \begin{frame}
 	\frametitle{Selection of IDEs}
-	There are various IDEs recommended that support \LaTeX , for example\\
+	There are various IDEs recommended that support \LaTeX , for example
 	\begin{block}{Texmaker}
 		\myhref{http://www.xm1math.net/texmaker/}
 	\end{block}
@@ -44,8 +46,9 @@
 		\myhref{http://www.sublimetext.com/} \\[0.5em]
 		Follow the instructions on \myhref{https://www.zhihu.com/question/36038602}
 	\end{block}
-	\begin{block}{Tex Studio}
-		\myhref{http://www.texstudio.org/}
+	\begin{block}{Atom}
+		\myhref{http://www.atom.io/} \\[0.5em]
+		And install the package \alert{atom-latex}
 	\end{block}
 	They all have cross-platform support for Windows, Linux and MacOS.
 \end{frame}
@@ -68,7 +71,7 @@
 	Try to \alert{texdoc} about all new things and then you'll be an expert in \LaTeX.
 \end{frame}
 
-\section{The Basic Usages}
+\section{The Introduction Area}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
@@ -83,7 +86,9 @@
 	\end{example}
 \end{frame}
 
-\begin{frame}[fragile,label=documentclass]
+\subsection{Basic document classes}
+
+\begin{frame}[fragile]
 	\frametitle{All begins with documentclass}
 	\begin{definition}
 		In a \LaTeX\ file, the \structure{first} line must be \\
@@ -95,61 +100,10 @@
 		\item[book] 	Write a book
 		\item[beamer]	Produce a lecture silde like this!
 	\end{description}
-	Actually some options can be added, such as
+	Some options can be added, like
 	\mint{latex}|\documentclass[11pt,twoside,a4paper]{article}|
 	Some details about the \structure{article} class will be introduced later in the lecture. More features about other classes and options can be found in the \LaTeX\ Document on your own.
 \end{frame}
-
-\begin{frame}[fragile,label=package]
-	\frametitle{Magic of packages}
-	\LaTeX\ is a macro-based language, where most of useful commands are not built-in commands. These commands are defined in various packages, which should be included between \LC{\documentclass} and \LC{\begin{document}}.
-	\begin{command}
-		\mint{latex}|\usepackage[options]{name}|
-	\end{command}
-	There are some very useful packages that you can \alert{ALWAYS} include:
-	\begin{description}
-		\item[amsmath] Define various maths environments
-		\item[amssymb] Define various maths symbols
-		\item[geometry] Adjust the margin, paper size, and etc.
-		\item[enumerate] Generate a list like this!
-		\item[graphicx] Insert image of all types
-	\end{description}
-	The usages of these and more packages will be introduced further.
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Title, Author and Date}
-	It's very useful to generate a title on the first page of a document, then these commands can be added between \LC{\documentclass} and \LC{\begin{document}}.
-	\begin{example}
-		\begin{minted}{latex}
-\title{title}
-\author{author name}
-\date{\today}
-		\end{minted}
-	\end{example}
-	You can simply use \LC{\date{\today}} to display your system date now.\\[0.5em]
-	Then in the \structure{document environment}, use the command \LC{\maketitle} to generate the title page.
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Main body of document}
-	The main body of your document starts with \LC{\begin{document}} and ends with \LC{\end{document}} is called the \structure{document} environment. All of the contents you'd like to display should be in it, and it \alert{MUST} be \alert{unique} in the whole file.
-	\begin{example}
-		\begin{minted}{latex}
-\begin{document}
-    \maketitle
-    Hello, \LaTeX !
-    % TODO: Add more contents
-    ...
-\end{document}
-		\end{minted}
-	\end{example}
-	The title page is also added in this example.
-\end{frame}
-
-\subsection{Basic document classes}
-
-\againframe{documentclass}
 
 \begin{frame}
 	\frametitle{The article class}
@@ -169,30 +123,90 @@
 
 \begin{frame}
 	\frametitle{The beamer class}
+	\centering Read the source code of this project and you will learn much about it ...
 \end{frame}
 
-\subsection{Common packages}
+\subsection{Use packages}
 
-\againframe{package}
+\begin{frame}[fragile]
+	\frametitle{Magic of packages}
+	\LaTeX\ is a macro-based language, where most of useful commands are not built-in commands. These commands are defined in various packages, which should be included between \LC{\documentclass} and \LC{\begin{document}}.
+	\begin{command}
+		\mint{latex}|\usepackage[options]{name}|
+	\end{command}
+	There are some very useful packages that you can \alert{ALWAYS} include:
+	\begin{description}
+		\item[amsmath] Define various maths environments
+		\item[amssymb] Define various maths symbols
+		\item[geometry] Adjust the margin, paper size, and etc.
+		\item[enumerate] Generate a list like this!
+		\item[graphicx] Insert image of all types
+	\end{description}
+	The usages of these and more packages will be introduced further.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Common used packages}
+	\inputminted{latex}{examples/packages.tex}
+
+\end{frame}
+
+%\begin{frame}
+%	\frametitle{Geometry package}
+%	The settings of the layout of the pages is in \structure{geometry} package.
+%	\begin{command}
+%		\samplecommand{usepackage}\{geometry\}\\
+%		\samplecommand{geometry}\{\structure{options}\}
+%	\end{command}
+%	Some of the \structure{options} are listed below:
+%	\begin{itemize}
+%		\item \structure{paper} - same as the paper settings in documentclass
+%		\item \structure{layout} - use another type of paper's layout
+%		\item \structure{left/right} - the blank length on the left/right
+%		\item \structure{top/bottom} - the blank length on the top/bottom
+%	\end{itemize}
+%	\begin{example}
+%		\samplecommand{geometry}\{paper=a4paper,layout=a5paper\}
+%		\samplecommand{geometry}\{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm\}
+%	\end{example}
+%\end{frame}
+
+\section{Document Body}
 
 \begin{frame}
-	\frametitle{Geometry package}
-	The settings of the layout of the pages is in \structure{geometry} package.
-	\begin{command}
-		\samplecommand{usepackage}\{geometry\}\\
-		\samplecommand{geometry}\{\structure{options}\}
-	\end{command}
-	Some of the \structure{options} are listed below:
-	\begin{itemize}
-		\item \structure{paper} - same as the paper settings in documentclass
-		\item \structure{layout} - use another type of paper's layout
-		\item \structure{left/right} - the blank length on the left/right
-		\item \structure{top/bottom} - the blank length on the top/bottom
-	\end{itemize}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Title page}
+\begin{frame}[fragile]
+	\frametitle{Title, Author and Date}
+	It's very useful to generate a title on the first page of a document, in order to achieve it, these commands should first be added between \LC{\documentclass} and \LC{\begin{document}}.
 	\begin{example}
-		\samplecommand{geometry}\{paper=a4paper,layout=a5paper\}
-		\samplecommand{geometry}\{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm\}
+		\begin{minted}{latex}
+\title{title}
+\author{author name}
+\date{\today}
+		\end{minted}
 	\end{example}
+	You can simply use \LC{\date{\today}} to display your system date now.\\[0.5em]
+	Then in the \structure{document environment}, use the command \LC{\maketitle} to generate the title page.
+\end{frame}
+
+\subsection{Body}
+\begin{frame}[fragile]
+	\frametitle{Main body of document}
+	The main body of your document which starts with \LC{\begin{document}} and ends with \LC{\end{document}} is called the \structure{document} environment. All of the contents you'd like to display should be in it, and it \alert{MUST} be \alert{unique} in the whole file.
+	\begin{example}
+		\begin{minted}{latex}
+\begin{document}
+    \maketitle
+    Hello, \LaTeX !
+    % TODO: Add more contents
+    ...
+\end{document}
+		\end{minted}
+	\end{example}
+	The title page is also added in this example.
 \end{frame}
 
 \subsection{Part, chapter, section and paragraph}

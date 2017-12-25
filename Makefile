@@ -2,11 +2,16 @@ PWD           = $(shell pwd)
 LECTURE_DIR   = ${PWD}/lecture
 OUTPUT_DIR    = ${PWD}/build
 LATEX         = latexmk
+LATEX_VERSION = $(shell ${LATEX} --version | grep -oe '[0-9]\.[0-9]' | sed 's/\.//g')
+LATEX_FLAG    = $(shell [ '${LATEX_VERSION}' -ge '45' ] && echo 1 || echo 0)
+ifeq (0, ${LATEX_FLAG})
+	LATEX := ${PWD}/third_party/latexmk
+endif
 OPTIONS       = -xelatex -cd -shell-escape -synctex=1 -halt-on-error -deps -time -quiet
 CLEAN_OPTIONS = -C -cd
 
 define make_lecture
-	${LATEX} ${OPTIONS} ${LECTURE_DIR}/$(1)/$(2).tex > ${LECTURE_DIR}/$(1)/${LATEX}.log
+	${LATEX} ${OPTIONS} ${LECTURE_DIR}/$(1)/$(2).tex > ${LECTURE_DIR}/$(1)/make.log
 	cp ${LECTURE_DIR}/$(1)/$(2).pdf ${OUTPUT_DIR}/$(2).pdf
 endef
 
@@ -30,7 +35,10 @@ all: init
 
 init:
 	[ -d "${OUTPUT_DIR}" ] || mkdir ${OUTPUT_DIR}
-	
+
+check:
+	${LATEX} -v
+
 clean:
 	$(call clean_lecture,c1,c1_get_started)
 	$(call clean_lecture,c2,c2_text)

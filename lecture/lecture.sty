@@ -4,6 +4,7 @@
 \usepackage[greek,english]{babel}
 \usepackage[OT2,OT1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 \usepackage{geometry}
 \usepackage{enumerate}
 \usepackage{multirow}
@@ -17,7 +18,6 @@
 \usepackage{latexsym}
 %\usepackage[scheme=plain]{ctex}
 %\usepackage{tikz}
-%\usepackage{hyperref}
 \usepackage{verbatim}
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
@@ -96,7 +96,7 @@
 \newcommand{\LC}[1]{\mintinline{latex}{#1}}
 \newcommand{\LCL}[1]{\mint[linenos=false]{latex}|#1|}
 
-\newcommand{\myhref}[1]{\href{#1}{\color{blue}\underline{#1}}}
+\newcommand{\myhref}[1]{{\color{blue}\url{#1}}}
 
 \title{Introduction to \LaTeX}
 \author{Liu Yihao}
