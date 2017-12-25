@@ -11,7 +11,7 @@
 	\frametitle{What is \LaTeX}
 	\begin{block}{From Wikipedia, the free encyclopedia}
 		LaTeX (lah-tekh, lah-tek or lay-tek, a shortening of Lamport TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italic), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as \LaTeX.	\\[0.5em]
-	Reference: \myhref{https://en.wikipedia.org/wiki/Latex                                      }
+	Reference: \myhref{https://en.wikipedia.org/wiki/Latex}
 	\end{block}
 
 \end{frame}
@@ -60,6 +60,7 @@
 	If you've installed a full version of TeXLive (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you.\\[0.5em]
 	Open the command line and input the command\\
 	\alert{texdoc} \structure{docname}\\[0.5em]
+	You can also use the online version \myhref{http://www.texdoc.net/}\\[0.5em]
 	For example, you can use the following types for the \structure{docname}
 	\begin{description}
 		\item[tex] 		about \structure{TeX}\\
@@ -105,7 +106,7 @@
 	Some details about the \structure{article} class will be introduced later in the lecture. More features about other classes and options can be found in the \LaTeX\ Document on your own.
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{The article class}
 	The \structure{article} class is the most basic class in \LaTeX, it provides you with some normalized structure and format for report writing. So usually you will use the following command as the first line of your tex document
 	\mint{latex}|\documentclass[options]{article}|
@@ -146,7 +147,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Common used packages}
+	\frametitle{Common packages}
 	\inputminted{latex}{examples/packages.tex}
 
 \end{frame}
