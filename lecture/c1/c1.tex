@@ -152,6 +152,21 @@
 
 \end{frame}
 
+\subsection{Title page}
+\begin{frame}[fragile]
+	\frametitle{Title, Author and Date}
+	It's very useful to generate a title on the first page of a document, in order to achieve it, these commands should first be added between \LC{\documentclass} and \LC{\begin{document}}.
+	\begin{example}
+		\begin{minted}{latex}
+\title{title}
+\author{author name}
+\date{\today}
+		\end{minted}
+	\end{example}
+	You can simply use \LC{\date{\today}} to display your system date now.\\[0.5em]
+	Then in the \structure{document environment} (will be introduced in the next section), use the command \LC{\maketitle} to generate the title page.
+\end{frame}
+
 %\begin{frame}
 %	\frametitle{Geometry package}
 %	The settings of the layout of the pages is in \structure{geometry} package.
@@ -178,21 +193,6 @@
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
-\subsection{Title page}
-\begin{frame}[fragile]
-	\frametitle{Title, Author and Date}
-	It's very useful to generate a title on the first page of a document, in order to achieve it, these commands should first be added between \LC{\documentclass} and \LC{\begin{document}}.
-	\begin{example}
-		\begin{minted}{latex}
-\title{title}
-\author{author name}
-\date{\today}
-		\end{minted}
-	\end{example}
-	You can simply use \LC{\date{\today}} to display your system date now.\\[0.5em]
-	Then in the \structure{document environment}, use the command \LC{\maketitle} to generate the title page.
-\end{frame}
-
 \subsection{Body}
 \begin{frame}[fragile]
 	\frametitle{Main body of document}
@@ -201,30 +201,63 @@
 		\begin{minted}{latex}
 \begin{document}
     \maketitle
+    \tableofcontents
     Hello, \LaTeX !
     % TODO: Add more contents
     ...
 \end{document}
 		\end{minted}
 	\end{example}
-	The title page is also added in this example.
+	The title page and table of contents are also added in this example. The position and order of them can be arbitrary, and there can be multiple table of contents in one document.
 \end{frame}
 
-\subsection{Part, chapter, section and paragraph}
+\subsection{Part, Chapter, Section and Paragraph}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Dividing into sections}
 	\begin{command}
-		\samplecommand{section(*)}\{\structure{name}\}\\
-		\samplecommand{subsection(*)}\{\structure{name}\}\\
-		\samplecommand{subsubsection(*)}\{\structure{name}\}\\
+	\begin{multicols}{2}
+		\begin{minted}{latex}
+\section{name}
+\subsection{name}
+\subsubsection{name}
+		\end{minted}
+		\begin{minted}{latex}
+\section*{name}
+\subsection*{name}
+\subsubsection*{name}
+		\end{minted}
+	\end{multicols}
 	\end{command}
 	The default style of sections is like\\
 	\structure{1 Example Section Name}\\
-	\structure{1.2 Example Subsection Name}\\
-	\structure{1.2.3 Example Subsubsection Name}\\[0.5em]
-	If a star(\alert{*}) is added, the sequence number of the section, subsection or subsubsection won't be displayed.\\
-	\alert{Notice:} Sections can be sorted into commands, not environments, so it doesn't have \structure{begin} and \structure{end} clauses. However, the whole contents between two sections is belonged to one section
+	\structure{1.1 Example Subsection Name}\\
+	\structure{1.1.1 Example Subsubsection Name}\\[0.5em]
+	If a star(\alert{*}) is added, the sequence number will be hidden, and it won't be added to the table of contents.\\
+	\alert{Note:} (Sub)sections can be sorted into commands, not environments, so it doesn't have \LC{\begin} and \LC{\end} clauses. However, the whole contents between two (sub)sections is belonged to one (sub)section.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Other structures - Chapter, Part and Paragraph}
+	\begin{command}
+	\begin{multicols}{2}
+		\begin{minted}{latex}
+\chapter{name}
+\part{name}
+\paragraph{name}
+\subparagraph{name}
+		\end{minted}
+		\begin{minted}{latex}
+\chapter*{name}
+\part*{name}
+\paragraph*{name}
+\subparagraph*{name}
+		\end{minted}
+	\end{multicols}
+	\end{command}
+	In document classes such as \structure{report} and \structure{book}, some outer structures of \structure{section} (\LC{\chapter} and \LC{\part}) can be used. \\
+	\LC{\paragraph} and \LC{\subparagraph} are used for the title of small paragraphs in a (sub)section.\\
+	If a star(\alert{*}) is added, the effect is the same.\\
 \end{frame}
 
 \subsection{Learn more - syntax of \LaTeX}
@@ -274,6 +307,15 @@
 	\end{example}
 \end{frame}
 
+\section*{Questions}
 
+\begin{frame}
+	\frametitle{Questions}
+	\begin{itemize}
+		\item A document is default in portrait layout, how to generate a document in landscape layout?
+		\item What happens when a package is imported several times? Based on the fact that some packages use other packages as dependency, try to explain why package conflicts occur. How to avoid this problem?
+		
+	\end{itemize}
+\end{frame}
 
 
