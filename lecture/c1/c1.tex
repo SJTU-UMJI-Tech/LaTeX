@@ -255,12 +255,28 @@
 		\end{minted}
 	\end{multicols}
 	\end{command}
-	In document classes such as \structure{report} and \structure{book}, some outer structures of \structure{section} (\LC{\chapter} and \LC{\part}) can be used. \\
-	\LC{\paragraph} and \LC{\subparagraph} are used for the title of small paragraphs in a (sub)section.\\
-	If a star(\alert{*}) is added, the effect is the same.\\
+	In document classes such as \structure{report} and \structure{book}, some outer structures of \structure{section} (\LC{\chapter} and \LC{\part}) can be used. \\[0.5em]
+	\LC{\paragraph} and \LC{\subparagraph} are used for the title of small paragraphs in a (sub)section.\\[0.5em]
+	If a star(\alert{*}) is added, the effect will be the same as in the sections (sequence numbers will be hidden).
 \end{frame}
 
-\subsection{Learn more - syntax of \LaTeX}
+\begin{frame}
+	\frametitle{Questions}
+	\begin{itemize}
+		\item A document is default in portrait layout, how to generate a document in landscape layout?
+		\item What happens when a package is imported several times? Based on the fact that some packages use other packages as dependency, try to explain why package conflicts occur. How to avoid this problem?
+
+	\end{itemize}
+\end{frame}
+
+
+\section{Learn more - syntax of \LaTeX}
+
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Command}
 
 \begin{frame}
 	\frametitle{The common syntax of \LaTeX\ commands}
@@ -276,6 +292,8 @@
 	\end{description}
 	If you want to connect a letter after a command, a space must be appended after the command or \LaTeX\ won't be able to compile it correctly. But two commands can be directly connected since there is a \structure{\textbackslash} before each command.
 \end{frame}
+
+\subsection{Environment}
 
 \begin{frame}
 	\frametitle{The common syntax of \LaTeX\ environments}
@@ -308,12 +326,3 @@
 \end{frame}
 
 \section*{Questions}
-
-\begin{frame}
-	\frametitle{Questions}
-	\begin{itemize}
-		\item A document is default in portrait layout, how to generate a document in landscape layout?
-		\item What happens when a package is imported several times? Based on the fact that some packages use other packages as dependency, try to explain why package conflicts occur. How to avoid this problem?
-
-	\end{itemize}
-\end{frame}

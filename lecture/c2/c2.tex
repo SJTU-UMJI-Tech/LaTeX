@@ -168,7 +168,7 @@
 	\samplecolorbox{green}&\samplecolorbox{orange}&\samplecolorbox{violet}&\samplecolorbox{brown}&\samplecolorbox{lightgray}\\
 	\samplecolorbox{pink}&\samplecolorbox{white}&\samplecolorbox{cyan}&\samplecolorbox{lime}&\samplecolorbox{purple}\\
 	\samplecolorbox{yellow}&\samplecolorbox{darkgray}&\samplecolorbox{magenta}&\samplecolorbox{red}\\
-	\end{tabular}		
+	\end{tabular}
 	\\[0.5em]
 	You can find more information in the documentation of \structure{xcolor} (\alert{texdoc} \structure{xcolor})
 \end{frame}
@@ -241,4 +241,29 @@
 		\samplecommand{centerline}\\
 		\samplecommand{rightline}
 	\end{command}
+\end{frame}
+
+\section{Learn more - scope in \LaTeX}
+
+\subsection{Scope}
+
+\begin{frame}[fragile]
+	\frametitle{Usage of scope in \LaTeX}
+	First, you should realize the meaning of ``scope'' in programming. Let's start with a simple example in C/C++ (assuming you know that):
+	\inputminted{c++}{examples/scope.cpp}
+\end{frame}
+
+\begin{frame}[fragile]
+	In the example of C/C++, we use brackets \structure{\{\}} to define a scope, which is just the same in \LaTeX. In addition, notice that an enviornment or a command also defines a scope.
+
+	\begin{example}
+	\begin{multicols}{2}
+		\inputminted{latex}{examples/scope.tex}
+		\columnbreak
+		\input{examples/scope.tex}
+	\end{multicols}
+	\end{example}
+
+	With the usage of scopes, you can flexibly change the color, font and anything else in a self-defined range of document.
+
 \end{frame}
