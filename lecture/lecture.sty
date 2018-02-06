@@ -93,8 +93,10 @@
 \setmintedinline{
 	fontsize=\footnotesize
 }
-\newcommand{\LC}[1]{\mintinline{latex}{#1}}
-\newcommand{\LCL}[1]{\mint[linenos=false]{latex}|#1|}
+\newcommand{\LC}[1]{\mintinline{latex}{ #1 }}
+\newcommand{\LCL}[1]{\begin{minted}{latex}{
+#1
+}\end{minted}}
 
 \newcommand{\myhref}[1]{{\color{blue}\url{#1}}}
 

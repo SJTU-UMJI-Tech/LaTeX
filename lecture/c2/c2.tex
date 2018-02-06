@@ -1,39 +1,22 @@
 \part{Text}
 
-\section{Use Text in \LaTeX}
+\section{Modify the plain text}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
 \subsection{UTF-8 encoding}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Use UTF-8 encoding in \LaTeX}
 	UTF-8 encoding is widely used in modern computer applications, so it's useful to include the \structure{inputenc} package and use UTF-8 encoding.
 	\begin{command}
-		\samplecommand{usepackage}[utf-8]\{inputenc\}
+		\mintinline{latex}{\usepackage[utf-8]{inputenc}}
 	\end{command}
 	\begin{example}
 		café
 	\end{example}
-	However, different operating systems and compiling engines have different support on UTF-8 encoding, some UTF-8 codes that work on your computer may not work on others, so it is recommended to use commands (will be introduced later) instead of directly copy and paste the UTF-8 codes from the Internet.
-\end{frame}
-
-\begin{frame}
-	(This part is not important)\\
-	If you want to use a language other than English, another package \structure{babel} in needed.
-	\begin{command}
-		\samplecommand{usepackage}[\structure{languages}]\{babel\}
-		\begin{itemize}
-			\item \structure{languages} - a list of languages, the last one to be the default language
-		\end{itemize}
-	\end{command}
-	\begin{example}
-		\samplecommand{usepackage}[greek,english]\{babel\}\\
-		\samplecommand{textgreek}\{abcdefgABCDEFG\}\\
-	\end{example}
-	Then \LaTeX\ will print \textgreek{abcdefgABCDEFG}\\
-	Of course, you can use some commands these greek letters, such as \samplecommand{alpha}, \samplecommand{beta} and etc, which is more convenient when you only need to print few of them, and it doesn't need any package listed above.
+	However, different operating systems and compiling engines have different support on UTF-8 encoding, some UTF-8 codes that work on your computer may not work on others (though rarely), so it is recommended to use commands (will be introduced later) instead of directly copy and paste the UTF-8 codes from the Internet.
 \end{frame}
 
 \subsection{Special symbols and accents}
@@ -173,7 +156,32 @@
 	You can find more information in the documentation of \structure{xcolor} (\alert{texdoc} \structure{xcolor})
 \end{frame}
 
-\subsection{Enumerate}
+
+\begin{frame}
+	\frametitle{Ulem package}
+	If you want to add some lines on the text, use the \structure{ulem} package.
+	\begin{command}
+		\samplecommand{usepackage}\{ulem\}\\
+		\samplecommand{uline}\{Sample Text\}
+	\end{command}
+	There are different kinds of lines supported:
+	\begin{itemize}
+		\item \sampletext{uline}{\uline}
+		\item \sampletext{uuline}{\uuline}
+		\item \sampletext{uwave}{\uwave}
+		\item \sampletext{sout}{\sout}
+		\item \sampletext{xout}{\xout}
+		\item \sampletext{dashuline}{\dashuline}
+		\item \sampletext{dotuline}{\dotuline}
+	\end{itemize}
+\end{frame}
+
+\section{Layout}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Enumeration}
 \begin{frame}
 	\frametitle{Enumerate and Item}
 	When you need to enumerate some items as a list, you may use the \structure{enumerate} package.
@@ -206,26 +214,7 @@
 	In this case, the position of \structure{style} is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
 \end{frame}
 
-\subsection{Other useful things}
-
-\begin{frame}
-	\frametitle{Ulem package}
-	If you want to add some lines on the text, use the \structure{ulem} package.
-	\begin{command}
-		\samplecommand{usepackage}\{ulem\}\\
-		\samplecommand{uline}\{Sample Text\}
-	\end{command}
-	There are different kinds of lines supported:
-	\begin{itemize}
-		\item \sampletext{uline}{\uline}
-		\item \sampletext{uuline}{\uuline}
-		\item \sampletext{uwave}{\uwave}
-		\item \sampletext{sout}{\sout}
-		\item \sampletext{xout}{\xout}
-		\item \sampletext{dashuline}{\dashuline}
-		\item \sampletext{dotuline}{\dotuline}
-	\end{itemize}
-\end{frame}
+\subsection{Alignment}
 
 \begin{frame}
 	\frametitle{Text align}
@@ -243,7 +232,32 @@
 	\end{command}
 \end{frame}
 
-\section{Learn more - scope in \LaTeX}
+\section{Learn more - multi languages and scope in \LaTeX}
+\begin{frame}
+	\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+
+\subsection{Multi Languages}
+
+\begin{frame}[fragile]
+	\frametitle{Spelling languages}
+	If you want to use a language with characters similar to English, package \structure{babel} can be used (exactly the same name as \href{http://babeljs.io/}{babel}).
+	\begin{command}
+		\mintinline{latex}{\usepackage[languages]{babel}}
+		\footnotesize
+		\begin{itemize}
+			\item \structure{languages} - a list of languages, the last one to be the default language
+		\end{itemize}
+	\end{command}
+	\begin{example}
+		\mintinline{latex}{\usepackage[greek,english]{babel}} \\
+		\mintinline{latex}{\textgreek{abcdefgABCDEFG}}
+	\end{example}
+	Then \LaTeX\ will print \textgreek{abcdefgABCDEFG} \\
+	Of course, you can use some simple commands to print these greek letters directly, such as \LC{\alpha}, \LC{\beta} and etc, which is more convenient only when few of them are needed.
+\end{frame}
+
+
 
 \subsection{Scope}
 
@@ -264,6 +278,6 @@
 	\end{multicols}
 	\end{example}
 
-	With the usage of scopes, you can flexibly change the color, font and anything else in a self-defined range of document.
+	With the usage of scopes, you can flexibly change the color, font or anything else you wish in a self-defined range of the document.
 
 \end{frame}
