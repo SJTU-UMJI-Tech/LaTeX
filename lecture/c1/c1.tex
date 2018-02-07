@@ -29,8 +29,8 @@
 		\myhref{http://tug.org/mactex/mactex-download.html}
 	\end{block}
 	\begin{block}{Linux (Ubuntu or Debian)}
-		Enter the command (fast if you have mirror apt sources) \\
-		\alert{sudo apt-get install texlive-full}
+		Enter the command (fast with apt source mirror) \\
+		\mintinline{shell}|sudo apt-get install texlive-full|
 	\end{block}
 \end{frame}
 
@@ -72,7 +72,7 @@
 	Try to \alert{texdoc} about all new things and then you'll be an expert in \LaTeX.
 \end{frame}
 
-\section{The Introduction Area}
+\section{Layout of the Document}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
@@ -93,26 +93,26 @@
 	\frametitle{All begins with documentclass}
 	\begin{definition}
 		In a \LaTeX\ file, the \structure{first} line must be \\
-		\mint{latex}|\documentclass[options]{class}|
+		\mintinline{latex}|\documentclass[options]{class}|
 	\end{definition}
 	For example, you can use the following types for the \structure{class}
 	\begin{description}
 		\item[ariticle]	Write a report or an science article
-		\item[book] 	Write a book
+		\item[report] 	Write a report
 		\item[beamer]	Produce a lecture silde like this!
 	\end{description}
-	Some options can be added, like
-	\mint{latex}|\documentclass[11pt,twoside,a4paper]{article}|
-	Some details about the \structure{article} class will be introduced later in the lecture. More features about other classes and options can be found in the \LaTeX\ Document on your own.
+	Some options can be added, for example, a typical case can be
+	\mintinline{latex}|\documentclass[11pt,twoside,a4paper]{article}| \\[0.5em]
+	Some details about the \structure{article} class will be introduced on the next page. More features about other classes and options can be found in the \LaTeX\ Document on your own.
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{The article class}
 	The \structure{article} class is the most basic class in \LaTeX, it provides you with some normalized structure and format for report writing. So usually you will use the following command as the first line of your tex document
-	\mint{latex}|\documentclass[options]{article}|
+	\mintinline{latex}|\documentclass[options]{article}| \\[0.5em]
 	Some of the options values are listed below (the default values are \alert{alerted})
 	\begin{itemize}
-		\item \alert{10pt}, \structure{11pt}, \structure{12pt} - the font size of the document
+		\item \alert{10pt}, \structure{11pt}, \structure{12pt} or other sizes - the font size of the document
 		\item \structure{a4paper}, \structure{a5paper}, \alert{letterpaper} - the size of paper
 		\item \structure{fleqn} - make the math equations left aligned (default middle aligned)
 		\item \structure{leqno} - display the serial numbers of math equations on the left (default on the right)
@@ -123,8 +123,14 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{The beamer class}
-	\centering Read the source code of this project and you will learn much about it ...
+	\frametitle{Other classes}
+
+	Read the source code of this project and you will learn much about the \structure{beamer} class. \\
+
+	When writing a \alert{long} report, \structure{report} class can be used to provide some more layers of document and different type settings. It's very similar to the \structure{article} class, so it won't be specified. \\
+
+	There are some other document classes such as \structure{book}, \structure{letter} and etc., but I think you will never need them.
+
 \end{frame}
 
 \subsection{Use packages}
@@ -133,7 +139,7 @@
 	\frametitle{Magic of packages}
 	\LaTeX\ is a macro-based language, where most of useful commands are not built-in commands. These commands are defined in various packages, which should be included between \LC{\documentclass} and \LC{\begin{document}}.
 	\begin{command}
-		\mint{latex}|\usepackage[options]{name}|
+		\mintinline{latex}|\usepackage[options]{package}|
 	\end{command}
 	There are some very useful packages that you can \alert{ALWAYS} include:
 	\begin{description}
@@ -148,14 +154,15 @@
 
 \begin{frame}[fragile]
 	\frametitle{Common packages}
-	\inputminted{latex}{examples/packages.tex}
+	Here I provide a list of common used packages, you can start from using the commands of them after the lecture.
 
+	\inputminted{latex}{examples/packages.tex}
 \end{frame}
 
 \subsection{Title page}
 \begin{frame}[fragile]
 	\frametitle{Title, Author and Date}
-	It's very useful to generate a title on the first page of a document, in order to achieve it, these commands should first be added between \LC{\documentclass} and \LC{\begin{document}}.
+	It's very useful to generate a title on the first page of a document, in order to achieve it, these commands should first be added between \LC{\documentclass} and \mintinline{latex}{\begin{document}}.
 	\begin{example}
 		\begin{minted}{latex}
 \title{title}
@@ -163,7 +170,7 @@
 \date{\today}
 		\end{minted}
 	\end{example}
-	You can simply use \LC{\date{\today}} to display your system date now.\\[0.5em]
+	You can simply use \mintinline{latex}{\date{\today}} to display your system date now.\\[0.5em]
 	Then in the \structure{document environment} (will be introduced in the next section), use the command \LC{\maketitle} to generate the title page.
 \end{frame}
 
@@ -196,7 +203,7 @@
 \subsection{Body}
 \begin{frame}[fragile]
 	\frametitle{Main body of document}
-	The main body of your document which starts with \LC{\begin{document}} and ends with \LC{\end{document}} is called the \structure{document} environment. All of the contents you'd like to display should be in it, and it \alert{MUST} be \alert{unique} in the whole file.
+	The main body of your document which starts with \mintinline{latex}{\begin{document}} and ends with \mintinline{latex}{\end{document}} is called the \structure{document} environment. All of the contents you'd like to display should be in it, and it \alert{MUST} be \alert{unique} in the whole file.
 	\begin{example}
 		\begin{minted}{latex}
 \begin{document}
@@ -211,23 +218,24 @@
 	The title page and table of contents are also added in this example. The position and order of them can be arbitrary, and there can be multiple table of contents in one document.
 \end{frame}
 
-\subsection{Part, Chapter, Section and Paragraph}
+\subsection{Layers}
 
 \begin{frame}[fragile]
 	\frametitle{Dividing into sections}
 	\begin{command}
-	\begin{multicols}{2}
-		\begin{minted}{latex}
+		\begin{multicols}{2}
+			\begin{minted}{latex}
 \section{name}
 \subsection{name}
 \subsubsection{name}
-		\end{minted}
-		\begin{minted}{latex}
+			\end{minted}
+			\begin{minted}{latex}
 \section*{name}
 \subsection*{name}
 \subsubsection*{name}
-		\end{minted}
-	\end{multicols}
+			\end{minted}
+		\end{multicols}
+		\vspace{-0.5em}
 	\end{command}
 	The default style of sections is like\\
 	\structure{1 Example Section Name}\\
@@ -240,25 +248,63 @@
 \begin{frame}[fragile]
 	\frametitle{Other structures - Chapter, Part and Paragraph}
 	\begin{command}
-	\begin{multicols}{2}
-		\begin{minted}{latex}
+		\begin{multicols}{2}
+			\begin{minted}{latex}
 \chapter{name}
 \part{name}
 \paragraph{name}
 \subparagraph{name}
-		\end{minted}
-		\begin{minted}{latex}
+			\end{minted}
+			\begin{minted}{latex}
 \chapter*{name}
 \part*{name}
 \paragraph*{name}
 \subparagraph*{name}
-		\end{minted}
-	\end{multicols}
+			\end{minted}
+		\end{multicols}
+		\vspace{-0.5em}
 	\end{command}
 	In document classes such as \structure{report} and \structure{book}, some outer structures of \structure{section} (\LC{\chapter} and \LC{\part}) can be used. \\[0.5em]
 	\LC{\paragraph} and \LC{\subparagraph} are used for the title of small paragraphs in a (sub)section.\\[0.5em]
 	If a star(\alert{*}) is added, the effect will be the same as in the sections (sequence numbers will be hidden).
 \end{frame}
+
+\subsection{Command}
+
+\begin{frame}[fragile]
+	\frametitle{Command}
+	\begin{definition}
+		\structure{Command} is a word which can be identified by \LaTeX\ and represents a certain function in output file, or in relation with some specific character or format
+	\end{definition}
+\end{frame}
+
+\subsection{Environment}
+
+\begin{frame}[fragile]
+	\frametitle{Environment}
+	\begin{definition}
+		\structure{Environment} is an encapsulated part which has a certain format so that it will not be influenced by outer context
+	\end{definition}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Environment in enviornment}
+	Of course, the environments can be nested. \\
+
+	\begin{example}
+		\begin{minted}{latex}
+\begin{environmentOne}
+    % ...
+    \begin{environmentTwo}
+        % ...
+    \end{environmentTwo}
+    % ...
+\end{environmentOne}
+		\end{minted}
+	\end{example}
+\end{frame}
+
+\section*{Questions}
 
 \begin{frame}
 	\frametitle{Questions}
@@ -269,7 +315,6 @@
 	\end{itemize}
 \end{frame}
 
-
 \section{Learn more - syntax of \LaTeX}
 
 \begin{frame}
@@ -278,51 +323,31 @@
 
 \subsection{Command}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{The common syntax of \LaTeX\ commands}
-	\begin{definition}
-		\structure{Command} is a word which can be identified by Latex and represents a certain function in output file, or in relation with some specific character or format
-	\end{definition}
-	All \LaTeX\ commands have the following syntax\\
-	\samplecommand{command\_name}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\{\structure{required\_args}\}
+	All \LaTeX\ commands have the following syntax \\
+
+	\mintinline{latex}{\commandName<specialArgs>[optionalArgs]{requiredArgs}}
 	\begin{description}
-		\item[special\_args]	Seldom used in basic usage, for certain special usages in some packages
-		\item[optional\_args]	Used to define mode of the command, if not specified, \LaTeX\ will use the default mode
-		\item[required\_args]	Must be filled
+		\item[specialArgs]	Seldom used in basic usage, for certain special usages in some packages
+		\item[optionalArgs]	Used to define mode of the command, if not specified, \LaTeX\ will use the default mode
+		\item[requiredArgs]	Must be filled
 	\end{description}
-	If you want to connect a letter after a command, a space must be appended after the command or \LaTeX\ won't be able to compile it correctly. But two commands can be directly connected since there is a \structure{\textbackslash} before each command.
+	If you want to connect a letter after a command, a space must be appended after the command or \LaTeX\ won't be able to compile it correctly. But two commands can be directly connected since there is a \mintinline{latex}{\} before each command.
 \end{frame}
 
 \subsection{Environment}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{The common syntax of \LaTeX\ environments}
-	\begin{definition}
-		\structure{Environment} is an encapsulated part which has a certain format so that it will not be influenced by outer context
-	\end{definition}
-	All \LaTeX\ environments have the following syntax\\
-	\samplebegin{\alert{environment\_name}}\textless \structure{special\_args}\textgreater [\structure{optional\_args}]\\
-	\qquad...\\
-	\sampleend{\alert{environment\_name}}\\
-	\begin{description}
-		\item[special\_args]	Similar to commands
-		\item[optional\_args]	Similar to commands
-	\end{description}
+	All \LaTeX\ environments have the following syntax \\
+
+	\begin{minted}{latex}
+\begin{environmentName}<specialArgs>[optionalArgs]{requiredArgs}
+    % ...
+\end{environmentName}
+	\end{minted}
+	\structure{specialArgs}, \structure{optionalArgs}, \structure{requiredArgs} are similar to those in a \structure{command} \\
+
 	It is recommended to have a tab indent in each environment or your tex codes will be difficult to read by others or even \alert{yourself}.
 \end{frame}
-
-\begin{frame}
-	\frametitle{Environment in enviornment}
-	Of course, the environments can be nested.\\
-	\begin{example}
-		\samplebegin{\alert{environment\_name}}\\
-		\qquad ...\\
-		\qquad\samplebegin{\alert{environment\_name\_2}}\\
-		\qquad\qquad ...\\
-		\qquad\sampleend{\alert{environment\_name\_2}}\\
-		\qquad ...\\
-		\sampleend{\alert{environment\_name}}\\
-	\end{example}
-\end{frame}
-
-\section*{Questions}
