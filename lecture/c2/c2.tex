@@ -176,22 +176,24 @@
 	\end{itemize}
 \end{frame}
 
-\section{Layout}
+\section{Typesetting}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
 \subsection{Enumeration}
-\begin{frame}
-	\frametitle{Enumerate and Item}
+\begin{frame}[fragile]
+	\frametitle{Enumerate}
 	When you need to enumerate some items as a list, you may use the \structure{enumerate} package.
 	\begin{command}
-		\samplecommand{usepackage}\{enumerate\}\\
-		\samplebegin{enumerate}[\structure{style}]\\
-		\qquad\samplecommand{item} ...\\
-		\qquad\samplecommand{item} ...\\
-		\qquad\samplecommand{item} ...\\
-		\sampleend{enumerate}
+		\begin{minted}{latex}
+\usepackage{enumerate}
+\begin{enumerate}[style]
+\item % ...
+\item % ...
+\item % ...
+\end{enumerate}
+		\end{minted}
 	\end{command}
 	This will generate a normal list with the serial numbers in the specified \structure{style}, which could be the following (as example)
 	\begin{itemize}
@@ -201,23 +203,26 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
+	\frametitle{Itemize}
 	If you want to generate an unordered list, use \structure{itemize} instead of \structure{enumerate}.
 	\begin{command}
-		\samplecommand{usepackage}\{enumerate\}\\
-		\samplebegin{itemize}\\
-		\qquad\samplecommand{item}[\structure{style}] ...\\
-		\qquad\samplecommand{item}[\structure{style}] ...\\
-		\qquad\samplecommand{item}[\structure{style}] ...\\
-		\sampleend{itemize}
+		\begin{minted}{latex}
+\usepackage{enumerate}
+\begin{itemize}
+\item[style] % ...
+\item[style] % ...
+\item[style] % ...
+\end{itemize}
+		\end{minted}
 	\end{command}
-	In this case, the position of \structure{style} is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
+	In this case, \structure{style} should be added after each item, which is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
 \end{frame}
 
 \subsection{Alignment}
 
 \begin{frame}
-	\frametitle{Text align}
+	\frametitle{Alignment}
 	If you want to align a paragraph of text, use these three environments for left/center/right align.
 	\begin{command}
 		\samplebegin{flushleft/center/flushright}\\
@@ -232,12 +237,48 @@
 	\end{command}
 \end{frame}
 
+\subsection{Minipage and Multicolumn}
+
+\begin{frame}[fragile]
+	\frametitle{Minipage}
+	\structure{minipage} is a very useful environment for dividing pages into a grid.
+	\begin{example}
+		\begin{multicols}{2}
+			\inputminted[xleftmargin=1.5em]{latex}{examples/minipage.tex}
+		\end{multicols}
+	\end{example}
+\end{frame}
+
+\begin{frame}
+	The code above generate six minipages in a grid of 3 columns $\times$ 2 rows. Don't try to add up the width of minipages in a line for more than about \LC{0.98\linewidth} (since a minipage have a small margin on each side), or the last minipage will be on a new line. \\[0.5em]
+	For each minipage, it can be seem as an independent \LaTeX\ document, where text, formulas, graphics, tables and etc. can be inserted, and most importantly, they won't affect each other. What's more, you can even use minipages in a minipage to form a multi-level nesting. \\
+
+	The example on the previous page is printed with a  \structure{multicols} environment. \\[0.5em]
+	It will generate a paragraph with several columns as shown in the example. The detailed usages are shown on the next page.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{The multicol package}
+	When typesetting contents with small line width and many lines (for example, source code), the \structure{multicol} package is recommended.
+	\begin{command}
+		\begin{minted}{latex}
+\usepackage{multicol}
+\begin{multicols}{cols}
+	% contents on column one
+	\breakcolumn % break the current column here
+	% contents on column two
+\end{multocols}
+		\end{minted}
+	\end{command}
+	Here \structure{cols} is the number of columns, it must be specified. If \LC{\breakcolumn} is not used, the \structure{multicol} package will automatically balance the length of each column. Take the typesetting of source code about minipage as a preview.
+\end{frame}
+
 \section{Learn more - multi languages and scope in \LaTeX}
 \begin{frame}
 	\tableofcontents[currentsection,hideothersubsections]
 \end{frame}
 
-\subsection{Multi Languages}
+\subsection{Multiple Languages}
 
 \begin{frame}[fragile]
 	\frametitle{Spelling languages}
