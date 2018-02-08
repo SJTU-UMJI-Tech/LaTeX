@@ -6,11 +6,21 @@ The built PDF are saved in the `build` directory.
 
 [The old version](https://github.com/SJTU-UMJI-Tech/LaTeX/raw/master/lecture_old_version.pdf)
 
-## Requirements
-latexmk >= 4.5 (lower versions have different behavior in -cd option)
-xelatex (shipped with modern LaTeX distributions)
-GNU make (make on Linux/OS X, or mingw-make on Windows)
+## Development
 
-## Compiling
+### Requirements
+xelatex (shipped with modern LaTeX distributions)  
+GNU make (make on Linux/OS X, or mingw-make on Windows)  
+Python library pygments (display source code elegantly)
 
+### Compile with Makefile
+
+#### On Windows
+Install mingw and add it to the PATH.  
+run `mingw32-make` in bash (git bash recommended) to generate pdf files
+
+#### On Linux and Mac OS
 run `make` to generate pdf files
+
+### Compile tex file directly
+`-shell-escape` option must be added (a requirement of the minted package)
