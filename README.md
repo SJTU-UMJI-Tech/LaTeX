@@ -16,7 +16,7 @@ Python library pygments (display source code elegantly)
 ### Compile with Makefile
 
 #### On Windows
-Install mingw and add it to the PATH.  
+Install mingw-w64 and add it to the PATH.  
 run `mingw32-make` in bash (git bash recommended) to generate pdf files
 
 #### On Linux and Mac OS
