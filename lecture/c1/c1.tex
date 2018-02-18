@@ -144,7 +144,7 @@
 	\begin{command}
 		\mintinline{latex}|\usepackage[options]{package}|
 	\end{command}
-	There are some very useful packages that you can \alert{ALWAYS} include:
+	There are some very useful packages that you may \alert{ALWAYS} include:
 	\begin{description}
 		\item[amsmath] Define various maths environments
 		\item[amssymb] Define various maths symbols
@@ -211,14 +211,16 @@
 		\begin{minted}{latex}
 \begin{document}
     \maketitle
-    \tableofcontents
+    \newpage   %start the following contents in a new page
+    \tableofcontents %automatically generate a table of content
+    \newpage
     Hello, \LaTeX !
     % TODO: Add more contents
     ...
 \end{document}
 		\end{minted}
 	\end{example}
-	The title page and table of contents are also added in this example. The position and order of them can be arbitrary, and there can be multiple table of contents in one document.
+	The position and order of title page and table of contents can be arbitrary, and there can be multiple table of contents in one document.
 \end{frame}
 
 \subsection{Layers}
@@ -245,7 +247,7 @@
 	\structure{1.1 Example Subsection Name}\\
 	\structure{1.1.1 Example Subsubsection Name}\\[0.5em]
 	If a star(\alert{*}) is added, the sequence number will be hidden, and it won't be added to the table of contents.\\
-	\alert{Note:} (Sub)sections can be sorted into commands, not environments, so it doesn't have \LC{\begin} and \LC{\end} clauses. However, the whole contents between two (sub)sections is belonged to one (sub)section.
+	\alert{Note:} (Sub)sections can be sorted into commands, not environments, so it doesn't have \LC{\begin} and \LC{\end} clauses. However, the whole contents between two (sub)sections is belonged to the former (sub)section.
 \end{frame}
 
 \begin{frame}[fragile]
