@@ -78,10 +78,15 @@
 	\{\samplecommand{bf} Sample Text\}
 \end{frame}
 
-\begin{frame}
-	Sometimes we don't want to transform the font types, instead, we can only change the font type of some specified text, then the following commands are used (you can similarly use all font types on the previous page)
+\begin{frame}[fragile]
+	Sometimes we don't want to transform  all the font types, instead, we can only change the font type of some specified text.
+	\begin{example}
+		\begin{minted}{latex}
+\textbf{Sample text}
+		\end{minted}
+	\end{example}
+	There are more options for fonts.
 	\begin{itemize}
-		\item \sampletext{textbf}{\textbf}
 		\item \sampletext{textit}{\textit}
 		\item \sampletext{textsc}{\textsc}
 	\end{itemize}
@@ -188,12 +193,12 @@
 \end{itemize}
 		\end{minted}
 	\end{command}
-	In this case, \structure{style} should be added after each item, which is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
+	In this case, \structure{style} must be added after each item, which is different from that in \structure{enumerate}, and the symbol displayed in the beginning of each item will be exactly same as the \structure{style}. If \structure{style} is not added, a default style will be used.
 \end{frame}
 
 \subsection{Alignment}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Alignment}
 	If you want to align a paragraph of text, use these three environments for left/center/right align.
 	\begin{command}
@@ -203,9 +208,11 @@
 	\end{command}
 	However, if only a single line needs to be aligned, use these three commands.
 	\begin{command}
-		\samplecommand{leftline}\\
-		\samplecommand{centerline}\\
-		\samplecommand{rightline}
+		\begin{minted}{latex}
+\leftline{}
+\centerline{}
+\rightline{}
+		\end{minted}
 	\end{command}
 \end{frame}
 
@@ -231,7 +238,8 @@
 	\begin{itemize}
 		\item \samplecommand{newline} - begin a new line
 		\item \alert{\textbackslash\textbackslash} - begin a new line
-		\item \alert{\textbackslash\textbackslash[offset]} - begin a new line with an offset
+		\item \samplecommand{par} - begin a new paragraph(a new line with indent)
+		\item \alert{\textbackslash\textbackslash [}\structure{offset}\alert{]} - begin a new line with an vertical offset, \structure{offset} is the size of needed space
 		\item \samplecommand{linebreak} - begin a new line with the words discrete
 		\item \samplecommand{newpage} - begin a new page
 		\item \alert{\%} - begin a line comment
@@ -239,18 +247,35 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Precise Spacing}
+	\frametitle{Precise Spacing/Unprecise Spacing}
 	When trying to separate two paragraphs by a certain space, many new learners of \LaTeX\ may use multiple empty lines and linebreaks, which is not so accurate. Actually, \LaTeX\ provides a precise spacing mechanism.
 	\begin{command}
 		\mintinline{latex}{\vspace{space}}\\
 		\mintinline{latex}{\vspace*{space}}
 	\end{command}
-	The \structure{space} can be anything presenting a size, such as \structure{1cm}, \structure{2em} and \structure{10pt}. The details of spacing unit will be introduced on the next page.
+	When trying to show the next paragraph or sentence precisely at the bottom of the current page, we can use
+	\begin{command}
+		\mintinline{latex}{\vfill}
+	\end{command}
+	between the contents of two paragraphs to separate them.
 \end{frame}
 
 \begin{frame}
 	\frametitle{Spacing units}
-
+	The \structure{space} can be anything representing a size, such as \structure{1cm}, \structure{2em} and \structure{10pt}. In \LaTeX, spacing units can be
+	\begin{itemize}
+		\item \structure{cm}
+		\item \structure{mm}
+		\item \structure{in} - inch, 1 inch = 2.54 cm
+		\item \structure{pt} - 72 pt = 1 inch, the smallest unit in \LaTeX
+		\item \structure{em} - 1em equals to the width of letter M
+		\item \structure{ex} - 1ex equals to the width of letter x
+		\item \samplecommand{linewidth} - the width of current line in the container
+		\item \samplecommand{pagewidth} - the width of the page
+		\item \samplecommand{pageheight} - the height of the page
+		\item \samplecommand{textwidth} - the normal width of text on the page
+		\item \samplecommand{textheight} - the normal height of text on the page
+	\end{itemize}
 \end{frame}
 
 \subsection{Minipage and Multicolumn}
@@ -266,11 +291,8 @@
 \end{frame}
 
 \begin{frame}
-	The code above generate six minipages in a grid of 3 columns $\times$ 2 rows. Don't try to add up the width of minipages in a line for more than about \LC{0.98\linewidth} (since a minipage have a small margin on each side), or the last minipage will be on a new line. \\[0.5em]
+	The code above generate six minipages in a grid of 3 columns $\times$ 2 rows. Don't try to add up the width of minipages in a line for more than about \LC{0.98\linewidth} (since a minipage have a small margin on each side), or the last minipage may be on a new line. \\[0.5em]
 	For each minipage, it can be seem as an independent \LaTeX\ document, where text, formulas, graphics, tables and etc. can be inserted, and most importantly, they won't affect each other. What's more, you can even use minipages in a minipage to form a multi-level nesting. \\
-
-	The example on the previous page is printed with a  \structure{multicols} environment. \\[0.5em]
-	It will generate a paragraph with several columns as shown in the example. The detailed usages are shown on the next page.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -280,13 +302,13 @@
 		\begin{minted}{latex}
 \usepackage{multicol}
 \begin{multicols}{cols}
-	% contents on column one
-	\breakcolumn % break the current column here
-	% contents on column two
-\end{multocols}
+    % contents on column one
+    \breakcolumn % break the current column here
+    % contents on column two
+\end{multicols}
 		\end{minted}
 	\end{command}
-	Here \structure{cols} is the number of columns, it must be specified. If \LC{\breakcolumn} is not used, the \structure{multicol} package will automatically balance the length of each column. Take the typesetting of source code about minipage as a preview.
+	Here \structure{cols} is the number of columns, it must be specified. If \LC{\breakcolumn} is not used, the \structure{multicol} package will automatically balance the length of each column.
 \end{frame}
 
 \section{Learn more - multi languages and scope in \LaTeX}
@@ -322,7 +344,7 @@
 	\end{command}
 	The default \LaTeX\ compiler \structure{pdflatex} doesn't have support on Chinese input with \structure{ctex} package, \structure{xelatex} is a recommended modern \LaTeX\ compiler as a replacement. \\
 
-	However, the \structure{ctex} package is too heavy and it can slow down the total compilation speed seriously. Examples of commands in this package will be provided in a short and brief lecture alone.
+	However, the \structure{ctex} package is too heavy and it can slow down the total compilation speed seriously. 
 \end{frame}
 
 \subsection{Scope}
@@ -334,7 +356,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	In the example of C/C++, we use brackets \structure{\{\}} to define a scope, which is just the same in \LaTeX. In addition, notice that an enviornment or a command also defines a scope.
+	In the example of C/C++, we use brackets \structure{\{\}} to define a scope, which is just the same in \LaTeX. In addition, notice that an environment or a command also defines a scope.
 
 	\begin{example}
 	\begin{multicols}{2}
