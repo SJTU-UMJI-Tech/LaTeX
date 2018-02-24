@@ -265,7 +265,11 @@
 
 \begin{frame}
 	\frametitle{Easy ways to create a table}
-	With \structure{multirow} and \structure{multicolumn}, we can almost draw tables of any style, but this coding process can never be as easy as the graphic one, like making tables in Word or Excel.\\
+	With \structure{multirow} and \structure{multicolumn}, we can almost draw tables of any style, but this coding process can never be as easy as the graphic one, like making tables in Word or Excel. Is there any ways to convert graphic tables into \LaTeX codes directly?\\
+	\begin{itemize}
+		\item Use \LaTeX Table Generator: \myhref{http://www.tablesgenerator.com/}
+		\item Excel2latex: \myhref{https://ctan.org/tex-archive/support/excel2latex/}
+	\end{itemize}
 	
 \end{frame}
 
@@ -298,6 +302,38 @@
 \end{frame}
 
 \begin{frame}
+	We usually want to place the graphs or tables just below or above the content where we mention them, but even when we type \structure{[h]} in position, you can not ensure that it will appear at the ideal position, and there are several methods to make up for this.
+	\begin{itemize}
+		\item Change \structure{[h]} to \structure{[!h]}
+		\item Change \structure{[h]} to \structure{[H]}
+		\item Use \samplecommand{newpage} to move the following content to the next page
+	\end{itemize}
+	However, the first two methods still cannot ensure the position of the table or graph, so what is the best way to solve this?
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Reference}
+	To solve the problem mentioned in the last page, we can use reference.\\
+	You may remember the \samplecommand{label} command used in equations, graphs and tables, they are used for reference in other parts of the document.
+	\begin{command}
+		\samplecommand{ref}\{\structure{label}\}
+	\end{command}
+	\begin{example}
+	\begin{minipage}{0.5\linewidth}
+		\begin{minted}{latex}
+Figure \ref{fig-sample-1} \\
+Figure \ref{fig-sample}
+		\end{minted}
+	\end{minipage}
+	\begin{minipage}{0.4\linewidth}
+		Figure \ref{fig-sample-1} \\
+		Figure \ref{fig-sample}
+	\end{minipage}
+	\end{example}
+	Once the position of these figures are changed, or some more figures are added between them, the number of them will change, but there label won't. So \LaTeX\ will automatically generate the correct number for them and you don't need to modify them again and again.
+\end{frame}
+
+\begin{frame}
 	\frametitle{The array environment}
 	When you use \structure{tabular} in maths environment, the text format in the \structure{tabular} won't be italic. However, there is a replacement of \structure{tabular}, which is \structure{array} environment.
 	\begin{command}
@@ -308,35 +344,4 @@
 	The properties and usages of these two environment are exactly the same. \\[0.5em]
 	Note that there is also a package called \structure{array}, which is an enhancement of both \structure{tabular} and \structure{array}, you may use \alert{texdoc} \structure{array} to learn about it.
 	
-\end{frame}
-
-\subsection{Draw graphs}
-
-\begin{frame}
-	\frametitle{Draw graphs with TikZ and PGF}
-	In your VE203, if you write your homework in \LaTeX\ (with a 10\% bonus), you will need this package to draw graphs. There is a document of more than one thousand pages about it (\alert{texdoc} \structure{tikz} or \alert{texdoc} \structure{pgf})\\
-	\begin{minipage}{0.45\linewidth}
-		\begin{example}
-			\centering
-%			\input{tikz/relation}
-		\end{example}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.5\linewidth}
-%		\samplecommand{usepackage}\{tikz\}\\
-%		\lstinputlisting{tikz/relation.tex}
-	\end{minipage}
-\end{frame}
-
-\begin{frame}
-	\begin{minipage}{0.53\linewidth}
-		\begin{example}
-			\centering
-%			\input{tikz/binary_tree}
-		\end{example}`
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.42\linewidth}
-%		\lstinputlisting{tikz/binary_tree.tex}
-	\end{minipage}
 \end{frame}

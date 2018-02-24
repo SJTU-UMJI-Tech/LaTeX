@@ -360,6 +360,45 @@ The concentration of [H$_3$O$^+$] ([$H_3O^+$]) is \dots
 	\end{example}
 \end{frame}
 
+\begin{frame}[fragile]
+	If you take Vv285 and want to use \LaTeX to finish your homework, you may use \structure{gmatrix}.
+	\begin{example}
+		\begin{minipage}{0.5\linewidth}
+			\begin{minted}{latex}
+\usepackage{gauss}
+\begin{equation*}
+    \begin{array}{ccc|}
+        4 & 2 & -2 \\
+        -3 & 1 & 0 \\
+        1 & 4 & 2
+    \end{array}
+    \begin{gmatrix}
+        -2 \\ 6 \\ -9
+        \rowops
+        \swap{0}{2}
+        \add[*(3)]{0}{1}
+    \end{gmatrix}
+\end{equation*}
+			\end{minted}
+		\end{minipage}
+		\begin{minipage}{0.4\linewidth}
+			\begin{equation*}
+    \begin{array}{ccc|}
+        4 & 2 & -2 \\
+        -3 & 1 & 0 \\
+        1 & 4 & 2
+    \end{array}
+    \begin{gmatrix}
+        -2 \\ 6 \\ -9
+        \rowops
+        \swap{0}{2}
+        \add[*(3)]{0}{1}
+    \end{gmatrix}
+\end{equation*}
+		\end{minipage}
+	\end{example}
+\end{frame}
+
 \begin{frame}
 	\frametitle{The gather/gathered environment}
 	The \structure{gather/gathered} environment is used to print multiline equations, similar to the \structure{align/aligned} environment but all of the lines align in center. Each line of the equation will be ordered.
