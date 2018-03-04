@@ -1,0 +1,180 @@
+\documentclass{article}[12pt]
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{indentfirst}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{ctex}
+\usepackage{gauss}
+\usepackage[version=4]{mhchem}
+
+\begin{document}
+\section{Text and typesetting}
+	\subsection{Special symbols}
+		\noindent
+		Here are some special symbols:
+		\#, \$, \%, \&, \~, \`, \{, \}, \textbackslash
+		\begin{verbatim} 
+			\\\-> @#$%&*   
+		\end{verbatim} % here these symbols won't be translated
+		% here to type and compile more if you want
+		
+	\subsection{Modify style}
+		\noindent
+		{\bf This sentence will be presented in a boldfaced style.}\\
+		\textbf{Boldface}
+		
+	\subsection{Modify size}
+		\noindent
+		{\Large Large words} \\
+		\begin{Large}
+			Large
+		\end{Large}
+		
+	\subsection{Modify color}
+		\noindent
+		\textcolor{teal}{words}\\
+		{\color{teal} words}
+		
+	\subsection{ulem}
+		\noindent
+		\uline{Sample}
+		% here to try more
+
+	\subsection{Enumerate}
+		\begin{enumerate}[a.]
+			\item apple
+			\item banana
+			\item orange
+		\end{enumerate}
+		
+	\subsection{Itemize}
+		\begin{itemize}
+			\item[$\spadesuit$] apple
+			\item[$\spadesuit$] banana
+			\item[$\spadesuit$] orange
+		\end{itemize}
+
+	\newpage
+	\subsection{Minipage}
+		\begin{minipage}{0.3\linewidth}
+			Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. 
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. 
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. 
+		\end{minipage}
+		\vfill
+		\begin{minipage}{0.3\linewidth}
+			Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat nec pellentesque leo, temporibus scelerisque nec.
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat nec pellentesque leo, temporibus scelerisque nec.
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat nec pellentesque leo, temporibus scelerisque nec.
+		\end{minipage}
+		
+	\newpage
+	\subsection{multicol}
+		\begin{multicols}{2}
+			Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat nec pellentesque leo, temporibus scelerisque nec.
+		\end{multicols}
+
+	\subsection{ctex}
+		% 这里是中文哦！ 记得切换成XeLaTeX编译！ 否则会报错哦！
+		
+\section{Math}
+	\subsection{Normal equations}
+		\begin{equation}
+			{\rm rot}\ F=\left(\frac{\partial F_z}{\partial y}-\frac{\partial F_y}{\partial z}\right)\hat{n_x}+\left(\frac{\partial F_x}{\partial z}-\frac{\partial F_z}{\partial x}\right)\hat{n_y}+\left(\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}\right)\hat{n_z}
+		\end{equation}
+		
+	\subsection{Aligned}
+		\begin{equation*}
+			\left\lbrace
+			\begin{aligned}
+				x+y&=1\\
+				x-y&=1
+			\end{aligned}
+			\right.
+			\Longrightarrow
+			\left\lbrace
+			\begin{aligned}
+				x&=1\\
+				y&=0
+			\end{aligned}
+			\right.
+		\end{equation*}
+
+	\subsection{Inline basic commands}
+		\noindent
+		Inline equation: $1+2+3=6$.\\
+		$\sqrt[3]{2}$ \\
+		$\overbrace{1234567}^{\dots}$
+		
+	\subsection{Matrix}
+	\begin{equation*}
+		\begin{vmatrix}
+			a & b\\
+			c & d
+		\end{vmatrix}
+	\end{equation*}
+	\begin{equation*}
+		\left.
+		\begin{array}{ccc|}
+			a & b & c\\
+			d & e & f\\
+			h & i & j
+		\end{array}
+		\right.
+		\begin{gmatrix}
+			x\\
+			y\\
+			z
+			\rowops
+			\add[*3]{0}{2}
+		\end{gmatrix}
+	\end{equation*}
+	
+\section{Tables\&Graphs}
+% Omit graphs
+	\subsection{Table}
+		Here is a table
+		\begin{table}[!h]
+			\centering
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				\multirow{4}{*}{Table} & Title 1 & Title 2 & Title 3 & Title 4 \\
+				\cline{2-5}
+				 & \multicolumn{2}{c|}{Text 1} & \multicolumn{2}{c|}{\multirow{3}{*}{Text 3}} \\
+				\cline{2-3}
+				& \multicolumn{2}{c|}{Text 2} & \multicolumn{2}{c|}{} \\
+				\cline{2-3}
+				& Text 4 & Text 5 & \multicolumn{2}{c|}{} \\
+				\hline
+			\end{tabular}
+			\caption{A table}
+			\label{table-1}
+		\end{table}
+	\subsection{Reference}
+	We can refer to Table \ref{table-1} here.
+\section{Something more}
+ 	\subsection{Chemical formulas}
+ 		\ce{2 CO + O2 -> 2 CO2}\\ % pay attention to spaces here.
+ 		\ce{HA (l) + H2O (l) <=> H3O+ (aq) + A- (aq)}
+\end{document}
