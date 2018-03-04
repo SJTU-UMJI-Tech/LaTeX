@@ -12,7 +12,7 @@
 		\end{itemize}
 	\end{command}
 	\begin{example}
-		\samplecommand{newcommand}\{\samplecommand{samplecommand}\}[1]\{\samplecommand{alert}\{\samplecommand{textbackslash} \#1\}\}
+		\samplecommand{newcommand}\{\samplecommand{samplecommand}\}[1]\{\samplecommand{textbackslash} \#1\}
 	\end{example}
 	It is defined to simply display the commands in red in this lecture.
 \end{frame}
@@ -21,11 +21,11 @@
 	\frametitle{Renewcommand}
 	Another times you need to redefine the commands, then \samplecommand{renewcommand} can be used. It's very similar to \samplecommand{newcommand}, the only difference is that you must use \samplecommand{newcommand} when the command doesn't exists, while using \samplecommand{renewcommand} when the command has been defined (by you or \LaTeX\ packages) before.
 	\begin{command}
-		\samplecommand{renewcommand}\{\samplecommand{definedcommand}\}[\structure{arg\_num}]\{\structure{code}\}
+		\samplecommand{renewcommand}\samplecommand{definedcommand}[\structure{arg\_num}]\{\structure{code}\}
 	\end{command}
 	\begin{example}
-		\samplecommand{renewcommand}\{\samplecommand{thesection}\}\{\samplecommand{Roman}\{section\}\}
-		\samplecommand{renewcommand}\{\samplecommand{thesubsection}\}\{\samplecommand{Alph}\{subsection\}\}
+		\samplecommand{renewcommand}\samplecommand{thesection}\{\samplecommand{Roman}\{section\}\}
+		\samplecommand{renewcommand}\samplecommand{thesubsection}\{\samplecommand{Alph}\{subsection\}\}
 	\end{example}
 	By default, the number before the section titles of \samplecommand{section} is 1, 2, 3, etc, this command will change them to a capital form of roman numbers, I, II, III, etc. And subsection numbers become A, B, C, etc.
 \end{frame}
@@ -58,6 +58,23 @@
 		\samplecommand{input}\{\structure{file}\} - Directly replace the command with the whole file, doesn't start a new page, but the compiling won't speed up.	
 	\end{command} 
 	If you are including a .tex file, then the extension name can be omitted. Another command \samplecommand{includeonly}\{\structure{list}\} can be added to the beginning of the document, so that only the include files in \structure{list} are compiled and others are ignored, this is very useful in debugging huge projects.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Insert pdf}
+	If you want to insert pdf files into your tex file, you can 
+	\begin{command}
+	\begin{minted}{latex}
+\usepackage{pdfpages}
+\includepdf{file}
+	\end{minted}
+	\end{command}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Chemical formulas}
+	For typing formulas in \LaTeX, besides equation environment, you can also use \structure{mhchem} package.
+	\\The documentation for \structure{mhchem} can be referred at \myhref{http://ctan.mirrors.hoobly.com/macros/latex/contrib/mhchem/mhchem.pdf}
 \end{frame}
 
 \begin{frame}
