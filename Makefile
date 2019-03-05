@@ -16,10 +16,12 @@ define make_lecture
 endef
 
 define clean_lecture
-	${LATEX} ${CLEAN_OPTIONS} -C ${LECTURE_DIR}/$(1)/$(2).tex
+	${LATEX} ${CLEAN_OPTIONS} ${LECTURE_DIR}/$(1)/$(2).tex
 endef
 
-separate: c1 c2 c3 c4 c5
+.PHONY: all
+
+all: c1 c2 c3 c4 c5 lecture_all
 
 c1: init
 	$(call make_lecture,c1,c1_get_started)
@@ -36,7 +38,7 @@ c4: init
 c5: init
 	$(call make_lecture,c5,c5_advanced_usage)
 
-all: init
+lecture_all: init
 	$(call make_lecture,all,lecture_all)
 
 init:

@@ -9,11 +9,21 @@
 
 \begin{frame}
 	\frametitle{What is \LaTeX}
-	\begin{block}{From Wikipedia, the free encyclopedia}
-		LaTeX (lah-tekh, lah-tek or lay-tek, a shortening of Lamport TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as article, book, and letter), to stylise text throughout a document (such as bold and italic), and to add citations and cross-references. A TeX distribution such as TeX Live or MikTeX is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. Within the typesetting system, its name is stylised as \LaTeX.	\\[0.5em]
-	Reference: \myhref{https://en.wikipedia.org/wiki/Latex}
+	\begin{block}{From Wikipedia, the free encyclopedia\footnotemark[1]}
+		\LaTeX\ (lah-tekh, lah-tek or lay-tek, a shortening of Lamport \TeX) is a document preparation system. When writing, the writer uses plain text in markup tagging conventions to define the general structure of a document (such as \structure{article}, \structure{book}, and \structure{letter}), to stylize text throughout a document (such as \textbf{bold} and \textit{italic}), and to add citations\footnotemark[1] and cross-references. \medskip
+		
+		A \TeX\ distribution such as \TeX Live or Mik\TeX\ is used to produce an output file (such as PDF or DVI) suitable for printing or digital distribution. \medskip
+		
+		Within the typesetting system, its name is stylized as \LaTeX.	
 	\end{block}
+	
+	\footnotetext[1]{\LaTeX\ - \url{https://en.wikipedia.org/wiki/Latex}}
 
+\end{frame}
+
+\begin{frame}
+	\frametitle{A brief History}
+	
 \end{frame}
 
 \subsection{Installation of \LaTeX}
@@ -22,11 +32,11 @@
 	Though there are some other distributions of \LaTeX (like MikTeX), TexLive is recommended in this lecture.
 	\begin{block}{Windows \& Linux}
 		Download TeXLive on the following website (a mirror provided by HUST, Huazhong University of Science and Technology) \\
-		\myhref{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}
+		\url{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}
 	\end{block}
 	\begin{block}{MacOS}
 		Download MacTeX on the following website\\
-		\myhref{http://tug.org/mactex/mactex-download.html}
+		\url{http://tug.org/mactex/mactex-download.html}
 	\end{block}
 	\begin{block}{Linux (Ubuntu or Debian)}
 		Enter the command (fast with apt source mirror) \\
@@ -41,18 +51,18 @@
 	\small
 	There are various IDEs recommended that support \LaTeX , for example
 	\begin{block}{Texmaker}
-		\myhref{http://www.xm1math.net/texmaker/}
+		\url{http://www.xm1math.net/texmaker/}
 	\end{block}
 	The installation process for Texmaker could be slow without vpn or Shadowsocks. 
 	\begin{block}{Sublime Text}
-		\myhref{http://www.sublimetext.com/} \\[0.5em]
+		\url{http://www.sublimetext.com/} \\[0.5em]
 	\end{block}
-	Follow the instructions on \myhref{https://www.zhihu.com/question/36038602}
+	Follow the instructions on \url{https://www.zhihu.com/question/36038602}
 	\begin{block}{Atom}
-		\myhref{http://www.atom.io/} \\[0.5em]
+		\url{http://www.atom.io/} \\[0.5em]
 	\end{block}
 	Install the package \alert{atom-latex} 
-	\\(see \myhref{https://github.com/James-Yu/Atom-LaTeX} for details)
+	\\(see \url{https://github.com/James-Yu/Atom-LaTeX} for details)
 	\\They all have cross-platform support for Windows, Linux and MacOS.
 \end{frame}
 
@@ -60,10 +70,10 @@
 
 \begin{frame}
 	\frametitle{Documentation on your computer}
-	If you've installed a full version of TeXLive (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you.\\[0.5em]
+	If you've installed a full version of \TeX Live (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you.\\[0.5em]
 	Open the command line and input the command\\
 	\alert{texdoc} \structure{docname}\\[0.5em]
-	You can also use the online version \myhref{http://www.texdoc.net/}\\[0.5em]
+	You can also use the online version \url{http://www.texdoc.net/}\\[0.5em]
 	For example, you can use the following types for the \structure{docname}
 	\begin{description}
 		\item[tex] 		about \structure{TeX}\\
