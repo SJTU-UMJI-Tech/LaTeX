@@ -96,10 +96,8 @@
 \setmintedinline{
 	fontsize=\footnotesize
 }
-\newcommand{\LC}[1]{\mintinline{latex}{ #1 }}
-\newcommand{\LCL}[1]{\begin{minted}{latex}{
-#1
-}\end{minted}}
+\newmintinline[LC]{latex}{}
+\newminted[LCL]{latex}{}
 
 \newcommand{\myhref}[1]{{\color{blue}\url{#1}}}
 %\hypersetup{colorlinks=true,breaklinks=true,urlcolor=blue}

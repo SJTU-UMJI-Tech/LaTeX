@@ -7,31 +7,32 @@
 
 \subsection{Equation}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{The equation environment}
 	An \structure{equation} environment contains a set of maths equations
 	\begin{command}
-		\samplecommand{begin}\{equation(\structure{*})\}\\
-		\qquad ...\\
-		\samplecommand{end}\{equation(\structure{*})\}\\
+		\begin{minted}{latex}
+\begin{equation(*)}
+% ...
+\end{equation(*)}
+		\end{minted}
 	\end{command}
 	\begin{example}
 		\input{examples/curl.tex}
 	\end{example}
-	If a star(\structure{*}) is added, the sequence number of the equation won't be displayed. Note that the environment name in the \samplecommand{begin} and \samplecommand{end} statements must be the same(both or neither have a \structure{*} here).
+	If a star(\structure{*}) is added, the sequence number of the equation won't be displayed. Note that the environment name in the \LC{\begin} and \LC{\end} statements must be the same (both or neither have a \structure{*} here).
 \end{frame}
 
 \begin{frame}[fragile]
 	The \LaTeX\ script of the equation above is quite long, but not so difficult as you think so. All of the useless spaces are omitted, so please pay attention to the necessary spaces (marked in \textvisiblespace).
 
-	
 	\inputminted[showspaces]{latex}{examples/curl.tex}
 	
 	In equation environment, unlike in plain text, normal spaces will not lead to visible spaces in output. Only \structure{\textbackslash\textvisiblespace } or \LC{\quad,\qquad} etc. will create spaces between words. \\
 	\LC{\partial} prints the symbol \structure{$\partial$}, \LC{\frac{...}{...}} makes a \structure{fraction}. \\
 	\LC{\left(} and \LC{\right(} make \structure{brackets} that fit the equation's height. \\
 	Brackets can be nested and must be in couple, and you can use two kinds of brackets on the both side, i.e., \LC{\left[} and \LC{\right\rbrace}. \\
-	Note that you should use \LC{\rbrace} or \LC{\}} to print a right brace )(\structure{$\rbrace$}) \\
+	Note that you should use \LC{\rbrace} or \LC{\} to print a right brace  (\structure{$\rbrace$}) \\
 \end{frame}
 
 \begin{frame}[fragile]
@@ -95,13 +96,13 @@ In order to deal with extremely long equations or equation with multiple lines, 
 	\\Note that the row number of the code above is wrong\dots
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Something more about equation environment}
     What if the space between equation and the main body paragraph is considered larger than expectation? Is there any way to modify the line spacing?
 \\In default style of equation is like
     \begin{example}
 		your body paragraph is supposed to be typed here\\
-		\samplebegin{equation}a \samplecommand{times} b = c \sampleend{equation}\\
+		\LC{\begin{equation} a \times b = c \end{equation}}\\
 		your body paragraph is supposed to be typed here\\
 	\end{example}
     your body paragraph is supposed to be typed here

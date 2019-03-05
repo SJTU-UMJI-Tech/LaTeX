@@ -22,24 +22,33 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{A brief History}
+	\frametitle{A brief History of \TeX}
+	Donald Kunuth from Stanford University is the specialist in programming art. In year 1977, he had just received his first samples from the new typesetting system of the publisher's, and its quality was so far below that of the first edition of Volume 2 that he couldn't stand it. Kunuth decided to implement a mathematical composition system by himself (since he is a computer scientist). He figured that this would take about 6 months (Ultimately, it took nearly 10 years). The system is named as \TeX, of both the meaning of Greek letters $\tau\epsilon\chi$, and ``technical ''. \medskip
+	
+	\LaTeX\ was created in 1983 by Leslie Lamport, when he was working at SRI. He needed to write \TeX\ macros for his own use, and thought with a little extra effort he could make a general package usable by others. Then \LaTeX\  developed rapidly and now there are thousands of packages written in \TeX\ macros available for direct usage.
 	
 \end{frame}
 
 \subsection{Installation of \LaTeX}
 \begin{frame}
 	\frametitle{Installation of \LaTeX}
-	Though there are some other distributions of \LaTeX (like MikTeX), TexLive is recommended in this lecture.
+	Though there are some other distributions of \LaTeX (like Mik\TeX), \TeX Live is recommended in this lecture.
 	\begin{block}{Windows \& Linux}
-		Download TeXLive on the following website (a mirror provided by HUST, Huazhong University of Science and Technology) \\
-		\url{http://mirror.hust.edu.cn/CTAN/systems/texlive/Images/}
+		Download \TeX Live on the \href{https://mirrors.tuna.tsinghua.edu.cn/}{tuna mirrors}
+		\smallskip
+				
+		\small{\url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/}}
 	\end{block}
 	\begin{block}{MacOS}
-		Download MacTeX on the following website\\
-		\url{http://tug.org/mactex/mactex-download.html}
+		Download Mac\TeX\ on the \href{https://mirrors.tuna.tsinghua.edu.cn/}{tuna mirrors}		
+		\smallskip
+		
+		\small{\url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/mac/mactex/}}
 	\end{block}
-	\begin{block}{Linux (Ubuntu or Debian)}
-		Enter the command (fast with apt source mirror) \\
+	\begin{block}{Linux (Debian/Ubuntu)}
+		Enter the command (fast with apt source mirror) 
+		\smallskip
+		
 		\mintinline{shell}|sudo apt-get install texlive-full|
 	\end{block}
 \end{frame}
@@ -53,35 +62,54 @@
 	\begin{block}{Texmaker}
 		\url{http://www.xm1math.net/texmaker/}
 	\end{block}
-	The installation process for Texmaker could be slow without vpn or Shadowsocks. 
+	 
 	\begin{block}{Sublime Text}
-		\url{http://www.sublimetext.com/} \\[0.5em]
+		\url{http://www.sublimetext.com/}
 	\end{block}
 	Follow the instructions on \url{https://www.zhihu.com/question/36038602}
-	\begin{block}{Atom}
-		\url{http://www.atom.io/} \\[0.5em]
+	
+	\begin{block}{Visual Studio Code}
+		\url{https://code.visualstudio.com/}
 	\end{block}
-	Install the package \alert{atom-latex} 
-	\\(see \url{https://github.com/James-Yu/Atom-LaTeX} for details)
-	\\They all have cross-platform support for Windows, Linux and MacOS.
+	Follow the instructions on \url{https://zhuanlan.zhihu.com/p/38178015}
+	\bigskip
+	
+	They all have cross-platform support for Windows, Linux and MacOS.
+\end{frame}
+
+\subsection{\LaTeX\ Online}
+
+\begin{frame}
+	\frametitle{Write \LaTeX\ on Overleaf}
+
+	Another alternative choice is to write \LaTeX\ online with the technology of \href{https://www.overleaf.com/}{Overleaf}. It's free for personal usage and supports share editing which is very useful in group work.
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{overleaf.png}
+	\caption{Layout of the Overleaf Online \LaTeX\ Editor.}
+	\end{figure}
 \end{frame}
 
 \subsection{Documentation}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Documentation on your computer}
-	If you've installed a full version of \TeX Live (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you.\\[0.5em]
-	Open the command line and input the command\\
-	\alert{texdoc} \structure{docname}\\[0.5em]
+	If you've installed a full version of \TeX Live (as strongly recommended), the \LaTeX\ documentation about all you want to is in front of you. 
+	\smallskip
+	
+	Open the command line and input the command \smallskip
+	
+	\mintinline{shell}|texdoc <docname>| \smallskip
+	
 	You can also use the online version \url{http://www.texdoc.net/}\\[0.5em]
 	For example, you can use the following types for the \structure{docname}
 	\begin{description}
-		\item[tex] 		about \structure{TeX}\\
-		\item[article] 	about documentclass \structure{article}\\
-		\item[beamer] 	about documentclass \structure{beamer} (used to create slides)\\
-		\item[pgf]		about \structure{TikZ} and \structure{PGF} (used to draw graphs)\\
+		\item[tex] 		about \structure{\TeX}
+		\item[article] 	about documentclass \structure{article}
+		\item[beamer] 	about documentclass \structure{beamer} (used to create slides)
+		\item[pgf]		about \structure{TikZ} and \structure{PGF} (used to draw graphs)
 	\end{description}
-	\ \\[-0.5em]
+	\smallskip
 	Try to \alert{texdoc} about all new things and then you'll be an expert in \LaTeX.
 \end{frame}
 
