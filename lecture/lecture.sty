@@ -1,27 +1,164 @@
-\usetheme{CambridgeUS}
-\usecolortheme{dolphin}
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{lecture}[2020/02/02 LaTeX Lecture]
 
-\usepackage[greek,english]{babel}
-\usepackage[OT2,OT1]{fontenc}
-\usepackage[utf8]{inputenc}
+\RequirePackage{etoolbox}
 
-\usepackage{hyperref}
+\makeatletter
+
+\newcommand*{\lectureroman}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\newcommand{\insertlecturename}{\ifnum\c@part=0\relax{}\else{Lecture \lectureroman{\insertpartnumber}: \insertpart}\fi}
+
+\AtBeginPart{%
+  \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+}
+%% number, shortname, page.
+\providecommand\beamer@partintoc[3]{%
+  \ifnum\c@tocdepth=-1\relax
+    % requesting onlyparts.
+    \makebox[6em]{Lecture \lectureroman{#1}:} #2
+    \par
+  \fi
+}
+\define@key{beamertoc}{onlyparts}[]{%
+  \c@tocdepth=-1\relax
+}
+
+
+
+%\usetheme{CambridgeUS}
+%\usecolortheme{dolphin}
+
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+%\makeatletter
+\mode<presentation>
+{
+  \usetheme{Boadilla}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{seahorse} % or try albatross, beaver, crane, ...
+  \usefonttheme{professionalfonts}  % or try serif, structurebold, ...
+  %\setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+  \useoutertheme[height=0pt,width=2.75cm]{sidebar}
+%  \useinnertheme{rectangles}
+  \setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortauthor\expandafter\ifblank\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\inserttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertlecturename
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\setbeamertemplate{headline}{}
+\setbeamerfont{title in sidebar}{size=\fontsize{7.5}{4}\linespread{2}\selectfont}
+\setbeamerfont{subtitle in sidebar}{size=\fontsize{6}{4}\linespread{2}\selectfont}
+\setbeamerfont{author in sidebar}{size=\fontsize{6}{4}\linespread{2}\selectfont}
+\setbeamerfont{section in sidebar}{size=\fontsize{7}{4}\linespread{2}\selectfont}
+\setbeamerfont{subsection in sidebar}{size=\fontsize{6}{4}\linespread{1.75}\selectfont}
+\setbeamerfont{section in sidebar shaded}{size=\fontsize{6}{4}\linespread{1.75}\selectfont}
+\patchcmd{\insertverticalnavigation}%
+{\ifx\beamer@nav@css\beamer@hidetext{\usebeamertemplate{section in sidebar}}\else{\usebeamertemplate{section in sidebar shaded}}\fi}%
+{{\usebeamertemplate{section in sidebar}}}{}{}
+}
+\expandafter\patchcmd\csname beamer@@tmpl@sidebar left\endcsname% <cmd>
+  {\insertshorttitle[width=\beamer@tempdim,center,respectlinebreaks]\par}% <search>
+  {\insertshorttitle[width=\beamer@tempdim,center,respectlinebreaks]\par\vskip0.5em\usebeamerfont{subtitle in sidebar}\usebeamercolor[fg]{subtitle in sidebar}\parbox{\beamer@sidebarwidth}{\centering\insertlecturename}\par}% <replace>
+  {}{}% <success><failure>
+%\setbeamertemplate{sidebar left}{}
+%\makeatother
+
+
+%\makeatletter
+%\setbeamertemplate{headline}
+%{%
+%    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
+%    \end{beamercolorbox}
+%    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+%      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
+%      \usebeamerfont{title in head/foot}\insertshorttitle
+%    \end{beamercolorbox}
+%    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+%      leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+%      \usebeamerfont{section in head/foot}%
+%      \ifbeamer@tree@showhooks
+%        \setbox\beamer@tempbox=\hbox{\insertpart}%
+%        \ifdim\wd\beamer@tempbox>1pt%
+%          \hskip2pt\raise1.9pt\hbox{\vrule width0.4pt height1.875ex\vrule width 5pt height0.4pt}%
+%          \hskip1pt%
+%        \fi%
+%      \else%  
+%        \hskip6pt%
+%      \fi%
+%      \insertpart
+%    \end{beamercolorbox}
+%    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+%      leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+%      \usebeamerfont{subsection in head/foot}%
+%      \ifbeamer@tree@showhooks
+%        \setbox\beamer@tempbox=\hbox{\insertsectionhead}%
+%        \ifdim\wd\beamer@tempbox>1pt%
+%          \hskip9.4pt\raise1.9pt\hbox{\vrule width0.4pt height1.875ex\vrule width 5pt height0.4pt}%
+%          \hskip1pt%
+%        \fi%
+%      \else%  
+%        \hskip12pt%
+%      \fi%
+%      \insertsectionhead
+%    \end{beamercolorbox}
+%    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{lower separation line head}
+%    \end{beamercolorbox}
+%}
+%\makeatother
+
+\RequirePackage{etoolbox}
+\newbool{wholelecture}
+
+
+\RequirePackage[greek,english]{babel}
+\RequirePackage[OT2,OT1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+
+\RequirePackage{hyperref}
 \hypersetup{colorlinks=true,breaklinks=true,linkcolor=,urlcolor=blue}
 
-\usepackage{geometry}
-\usepackage{enumerate}
-\usepackage{multirow}
-\usepackage{multicol}
-\usepackage{ulem}
-\usepackage{graphicx}
-\usepackage{subfigure}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathrsfs}
-\usepackage{latexsym}
-%\usepackage[scheme=plain]{ctex}
-%\usepackage{tikz}
-\usepackage{verbatim}
+\RequirePackage{geometry}
+\RequirePackage{enumerate}
+\RequirePackage{multirow}
+\RequirePackage{multicol}
+\RequirePackage{ulem}
+\RequirePackage{graphicx}
+%\RequirePackage{subfig}
+\RequirePackage{subcaption}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{esint}
+\RequirePackage{relsize}
+\RequirePackage{mathrsfs}
+\RequirePackage{latexsym}
+\RequirePackage{array}
+%\RequirePackage[scheme=plain]{ctex}
+\RequirePackage{tikz}
+\RequirePackage{verbatim}
+\RequirePackage{physics}
+\RequirePackage{gauss}
+\RequirePackage{systeme}
+\RequirePackage{longtable}
+\RequirePackage{newverbs}
+\RequirePackage{xurl}
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
 \newcommand{\samplebegin}[1]{\structure{\textbackslash begin}\{#1\}}
@@ -84,7 +221,7 @@
 % Indexentry for a word (Word inserted into the text)
 \newcommand{\wi}[1]{\index{#1}#1}
 
-\usepackage{minted}
+\RequirePackage{minted}
 \usemintedstyle{autumn}
 \setminted{
     linenos,
@@ -97,9 +234,20 @@
 	fontsize=\footnotesize
 }
 \newmintinline[LC]{latex}{}
+\newmintinline[LCS]{latex}{fontsize=\scriptsize}
 \newminted[LCL]{latex}{}
+\newcommand{\LCX}[1]{$#1$ & \LC|#1|}
+\newverbcommand{\LCXV}%
+{\VerbatimOut{\jobname.tmp}}%
+{\endVerbatimOut%
+1 & 1}
+%\input{\jobname.tmp} & \inputminted{latex}{\jobname.tmp}}
+
 
 \newcommand{\myhref}[1]{{\color{blue}\url{#1}}}
+\newcommand{\urllink}[1]{\href{#1}{\beamergotobutton{Link}}}
+
+
 %\hypersetup{colorlinks=true,breaklinks=true,urlcolor=blue}
 % ,linkcolor=blue,urlcolor=blue,citecolor=blue,filecolor=blue
 
@@ -107,3 +255,98 @@
 \author{Liu Yihao}
 \date{\today}
 \institute{SJTU-UMJI Technology Department}
+
+%\booltrue{wholelecture}
+
+
+\newcommand{\newlecture}[2]{
+  \renewcommand{\partname}{Lecture}
+  \lecture{#2}{Lecture #1}
+  \part{#2}
+  \setcounter{part}{#1}
+  \begin{frame}
+    \ifbool{wholelecture}{
+      \partpage\label{lecture-#1}
+    }{
+      \subtitle{Lecture \lectureroman{#1}: #2}
+      \titlepage
+    }
+  \end{frame}
+}
+\AtBeginSubsection[] % Do nothing for \section*
+{
+  \begin{frame}<beamer>
+%    \frametitle{Outline}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide]
+  \end{frame}
+}
+
+\newcommand{\packagename}[1]{\structure{\texttt{#1}}}
+
+\RequirePackage{fp}
+
+\begingroup
+\catcode`\^^M\active%
+\global\def\activeeol{^^M}%
+\endgroup
+
+\makeatletter
+\newenvironment{latexexamplesplit}
+{\@ifnextchar[\latexexamplesplit@\latexexamplesplit@noargs}
+{\end{VerbatimOut}%
+\begin{example}
+\begin{minipage}{\latexexamplesplit@left\textwidth}
+~
+\inputminted{latex}{\jobname.tmp}
+\end{minipage}
+\hfill
+\begin{minipage}{\latexexamplesplit@right\textwidth}
+\input{\jobname.tmp}
+\end{minipage}
+\end{example}
+}
+\def\latexexamplesplit@[#1]{%
+\FPset\latexexamplesplit@all{0.96}%
+\FPset\latexexamplesplit@left{#1}
+\FPsub\latexexamplesplit@right\latexexamplesplit@all\latexexamplesplit@left%
+\VerbatimEnvironment
+\begin{VerbatimOut}{\jobname.tmp}%
+}
+\def\latexexamplesplit@noargs#1{%
+\edef\temp{[0.48]\activeeol\string#1}%
+\expandafter\latexexamplesplit@\temp
+}
+
+\newenvironment{latexexample}
+{\VerbatimOut{\jobname.tmp}}
+{\endVerbatimOut
+\begin{example}
+~
+\inputminted{latex}{\jobname.tmp}
+
+\input{\jobname.tmp}
+\end{example}
+}
+
+\newenvironment{latexexampleframe}
+{\VerbatimOut{\jobname.tmp}}
+{\endVerbatimOut
+
+\begin{frame}
+\begin{example}
+\inputminted{latex}{\jobname.tmp}
+\end{example}
+\end{frame}
+
+\begin{frame}
+\input{\jobname.tmp}
+\end{frame}
+}
+
+\makeatother%
+
+
+
+% maths
+\DeclareMathOperator{\Mr}{M_{\mathbb{R}}}
+

@@ -1,0 +1,1401 @@
+\newlecture{3}{Maths}
+
+\section{Use Maths in \LaTeX}
+
+\subsection{Math Expressions}
+
+\begin{frame}[fragile]{Introduction}
+Basic equations in \LaTeX\ can be easily ``programmed'', for example: \footnote[1]{Some of this part is ported from the tutorial of Overleaf: \urllink{https://www.overleaf.com/learn/latex/Mathematical_expressions}}
+\begin{latexexample}
+The well known Pythagorean theorem \(x^2 + y^2 = z^2\) was 
+proved to be invalid for other exponents. 
+Meaning the next equation has no integer solutions:
+
+\[ x^n + y^n = z^n \]
+\end{latexexample}
+\end{frame}
+
+\begin{frame}[fragile]{Subscripts and Superscripts}
+The use of superscripts and subscripts is very common in mathematical expressions involving exponents, indexes, and in some special operators. \footnote[1]{Some of this part is ported from the tutorial of Overleaf: \urllink{https://www.overleaf.com/learn/latex/Subscripts_and_superscripts}}
+
+\begin{latexexample}
+\[ a_1^2 + a_2^2 = a_3^2 \]
+\end{latexexample}
+
+Note that here we use \LC|\[| and \LC|\]| to typeset a mathematical expression. You may see many people (including myself in the past) using a pair of \LC|$$| instead. It is a plain-\TeX\ command, and is nowadays heavily deprecated. See this discussion \urllink{https://tex.stackexchange.com/questions/503/why-is-preferable-to} on Stack Exchange for more information. 
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+If the expression contains long superscripts or subscripts, these need to be collected in braces, as \LaTeX normally applies the mathematical commands \LC{^} and \LC{_} only to the following character:
+
+\begin{latexexample}
+\[ x^{2 \alpha} - 1 = y_{ij} + y_{ij}  \]
+\[ (a^n)^{r+s} = a^{nr+ns}  \]
+\[ x^abc, \quad x_abc, \quad x^abc_abc \]
+\[ x^{abc}, \quad x_{abc}, \quad x^{abc}_{abc} \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]{Brackets and Parentheses}
+Parentheses and brackets are very common in mathematical formulas. You can easily control the size and style of brackets in \LaTeX. \footnote[1]{Some of this part is ported from the tutorial of Overleaf: \urllink{https://www.overleaf.com/learn/latex/Brackets_and_Parentheses}} \medskip
+
+Here's how to type some common math braces and parentheses in \LaTeX: \medskip
+
+\begin{center}
+\begin{tabular}{ ccc }
+Type & \LaTeX & Code \\\hline
+Parentheses; round brackets	 & \LCX{(x+y)} \\
+Brackets; square brackets &	 \LCX{[x+y]} \\
+Braces; curly brackets	& \LCX{\{x+y\}} \\
+Angle brackets	& \LCX{\langle x+y \rangle} \\
+Pipes; vertical bars & \LCX{|x+y|} \\
+Double pipes & \LCX{\|x+y\|} \\
+Floor brackets & \LCX{\lfloor x+y \rfloor} \\
+Ceil brackets & \LCX{\lceil x+y \rceil} \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]
+The size of brackets and parentheses can be manually set, or they can be resized dynamically in your document, as shown in the next example:
+
+\begin{latexexample}
+\[ F = G \left( \frac{m_1 m_2}{r^2} \right) \]
+\end{latexexample}
+
+Notice that to insert the parentheses or brackets, the \LC{\left} and \LC{\right} commands are used. Even if you are using only one bracket, both commands are mandatory, you can use invisible brackets \LC{\left.} or \LC{\right.} for this.
+
+\begin{latexexample}
+\[ \int_a^b x^2 {\rm d} x = \left. \frac{1}{3}x^3 \right|_a^b \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]
+Sometimes you may want to control the sizes of the brackets yourselves, which is called manually sized brackets. The commands listed are designed for thus purpose. \medskip
+
+\begin{center}
+\begin{tabular}{ ccc }
+Size & \LaTeX & Code \\[2pt] \hline
+big	 & \LCX{\big( \big)} \\[5pt]
+Big &	 \LCX{\Big[ \Big]} \\[5pt]
+bigg	& \LCX{\bigg\{ \bigg\}} \\[5pt]
+Bigg	& \LCX{\Bigg| \Bigg|} \\
+\end{tabular}
+\end{center}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Mathematical Modes}
+
+\LaTeX\ allows two writing modes for mathematical expressions: the \structure{inline} mode and the \structure{display} mode. The first one is used to write formulas that are part of a text. The second one is used to write expressions that are not part of a text or paragraph, and are therefore put on separate lines. \medskip
+
+To put your equations in \structure{inline} mode use \LC|\(| and \LC|\)|, \LC|$| and \LC|$| or \LC|\begin{math} | and \LC|\end{math}|. They all work and the choice is a matter of taste.
+
+\begin{latexexample}
+In physics, the mass-energy equivalence is stated 
+by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
+\end{latexexample}
+
+The \structure{display} mode is usually used with mathematical environments together, which will be discussed in the next subsection.
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Numbering of Equations}
+The \structure{display} mode has two versions: \structure{numbered} and \structure{unnumbered}.
+
+\begin{latexexample}
+The mass-energy equivalence is described by the famous equation
+\[E=mc^2\]
+discovered in 1905 by Albert Einstein. 
+In natural units ($c$ = 1), the formula expresses the identity
+\begin{equation}
+E=m
+\end{equation}
+\end{latexexample}
+\end{frame}
+
+\subsection{Math Environments}
+
+
+\begin{frame}[fragile]{The \packagename{equation} Environment}
+	An \packagename{equation} environment contains a set of maths equations
+	\begin{command}
+		\begin{minted}{latex}
+\begin{equation(*)}
+% ...
+\end{equation(*)}
+		\end{minted}
+	\end{command}
+	\begin{example}
+		\input{../examples/curl.tex}
+	\end{example}
+	If a star(\structure{*}) is added, the sequence number of the equation won't be displayed (this feature is from the \packagename{amsmath} package, and should behave very similar as directly using \LC|\[| and \LC|\]|). Note that the environment name in the \LC{\begin} and \LC{\end} statements must be the same (both or neither have a \structure{*} here).
+\end{frame}
+
+\begin{frame}[fragile]
+	The \LaTeX\ script of the equation above is quite long, but not so difficult as you think so. All of the useless spaces are omitted, so please pay attention to the necessary spaces (marked in \textvisiblespace). \medskip
+
+	\inputminted[showspaces]{latex}{../examples/curl.tex}
+	
+	In math environments, unlike in plain text, normal spaces will not lead to visible spaces in output. Only  \LC|\|\packagename{\textvisiblespace} or \LC{\quad,\qquad} etc. will create spaces between words. \medskip
+	
+	\LC{\partial} prints the symbol \structure{$\partial$}, \LC{\frac{...}{...}} makes a \structure{fraction}. \medskip
+	
+	\LC{\left(} and \LC{\right(} make \structure{braces} that fit the equation's height. \medskip
+	
+	It is written in plain-\LaTeX, and things can even be easier with packages like \packagename{physics}, which will be demonstrated later.
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{split} Environment (inline)}
+
+In order to deal with extremely long equations or equation with multiple lines, we can use the \packagename{split} environment. It is an \structure{inline} environment being used in other maths environments.
+\begin{latexexamplesplit}
+\begin{equation}
+  \begin{split}
+    F &= 1+2+3+4+5 \\
+      &= 15
+  \end{split}
+\end{equation}
+\end{latexexamplesplit}
+
+\LC{&} is used to align the equal marks, and \LC{\\} is used to split the equation into two lines. Only one equation number will be generated in an \packagename{equation} environment. \medskip
+
+The \packagename{split} environment is designed to serve as the entire body of an equation, or an entire line of an \packagename{align} or \packagename{gather} environment. There cannot be any printed material before or after it within the same enclosing structure. 
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{aligned} Environment (inline)}
+For linear equation systems, the \packagename{aligned} environment can be used, which is similar to the \packagename{split} environment above. It is also an \structure{inline} environment, which can be used in \structure{inline} mode such as \LC|$$|! Here \packagename{split} doesn't work because \LC|\left| and \LC|\right| is an enclosing structure. See this discussion \urllink{https://tex.stackexchange.com/questions/187938/whats-the-difference-between-split-and-aligned} for more information.
+
+\begin{latexexamplesplit}
+Equations:
+$
+  \left\lbrace\begin{aligned}
+    x+y &= 1 \\ x-y &= 1
+  \end{aligned}\right.
+  \Longrightarrow
+  \left\lbrace\begin{aligned}
+    x &= 1 \\ y &= 0
+  \end{aligned}\right.
+$
+\end{latexexamplesplit}
+
+Actually things can also be easier with packages like \packagename{systeme}, which will be demonstrated later.
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{align} Environment}
+
+An \packagename{align} environment can be used to simply the \packagename{split} or \packagename{aligned} in the  \packagename{equation} environment. But it numbers the equation on each line.
+
+\begin{latexexamplesplit}
+\begin{align}
+  F &= 1+2+3+4+5 \\
+    &= 15
+\end{align}
+\end{latexexamplesplit}
+
+Use \packagename{align*} so that there will be no number(s).
+
+\begin{latexexamplesplit}[0.6]
+\begin{align*}
+  a+b & \Leftrightarrow b+a \\
+  (a+b)+c & \Leftrightarrow a+(b+c)
+\end{align*}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+The ampersand character \LC{&} determines where the equations align. Let's check a more complex example:
+
+\begin{latexexample}
+\begin{align*}
+  x&=y           &  w &=z              &  a&=b+c \\
+  2x&=-y         &  3w&=\frac{1}{2}z   &  a&=b \\
+  -4 + 5x&=2+y   &  w+2&=-1+w          &  ab&=cb
+\end{align*}
+\end{latexexample}
+
+Here we arrange the equations in three columns. \LaTeX assumes that each equation consists of two parts separated by an \LC{&}; also that each equation is separated from the one before by an \LC{&}.
+
+\end{frame}
+
+
+\begin{frame}[fragile]{The \packagename{gather} Environment}
+
+If you just need to display a set of consecutive equations, centered and with no alignment whatsoever, use the \packagename{gather} environment. The asterisk trick to set/unset the numbering of equations also works here.
+
+\begin{latexexamplesplit}
+\begin{gather} 
+  2x - 5y =  8 \\ 
+  3x^2 + 9y =  3a + c
+\end{gather}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{gathered} Environment (inline) }
+
+There is also an \structure{inline} version of \packagename{gather}, called \packagename{gathered}. The relationship of them is similar to \packagename{align} and \packagename{aligned}.
+
+\begin{latexexamplesplit}
+\begin{equation} 
+  \begin{gathered} 
+    2x - 5y =  8 \\ 
+    3x^2 + 9y =  3a + c
+  \end{gathered}
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{The \packagename{multline} Environment}
+For equations longer than a line use the \packagename{multline} environment. Insert a double backslash to set a point for the equation to be broken. The first part will be aligned to the left and the second part will be displayed in the next line and aligned to the right.
+
+\begin{latexexample}
+\begin{multline}
+  p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3 \\ 
+         - 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline}
+\end{latexexample}
+
+The equation number will be in the last line, use \packagename{multline*} for no numbering.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+For equations equal or longer then three lines,
+
+\begin{latexexample}
+\begin{multline*}
+  a+b+c=1 \\ 
+  b+c=2 \\
+  c+d=1 \\
+  d=3
+\end{multline*}
+\end{latexexample}
+
+Here, the first column aligns left, the last aligns right and others align center. 
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{flalign} Environment}
+For equations aligned left, use the \packagename{flalign} environment. It is similar to the \packagename{align} environment.
+
+\begin{latexexample}
+\begin{flalign}
+  a+b &=1=& b+a \\
+  b   &=2=& c
+\end{flalign}
+\end{latexexample}
+
+You may notice that the columns are aligned left except that the right most column is aligned right, different from the \packagename{align} environment.
+
+\end{frame}
+
+
+\subsection{Spacing in Math Mode}
+
+\begin{frame}[fragile]{Horizontal Spacing}
+Horizontal spacing in maths mode is useful in several situations, let's see an example: \footnote[1]{Some of this part is ported from the tutorial of Overleaf: \urllink{https://www.overleaf.com/learn/latex/Spacing_in_math_mode}} \medskip
+
+\begin{latexexample}
+Assume we have the next sets
+\[
+S = \{ z \in \mathbb{C}\, |\, |z| < 1 \} \quad 
+\textrm{and} \quad S_2=\partial{S}
+\]
+\end{latexexample}
+
+As you see in this example, a mathematical text can be explicitly spaced by means of some special commands.
+
+\end{frame}
+
+\begin{frame}[fragile]
+The spacing depends on the command you insert, the example below contains a complete list of spaces and how they look like.
+
+\begin{latexexamplesplit}
+\begin{align*}
+f(x) =& x^2\! +3x\! +2 \\
+f(x) =& x^2+3x+2 \\
+f(x) =& x^2\, +3x\, +2 \\
+f(x) =& x^2\: +3x\: +2 \\
+f(x) =& x^2\; +3x\; +2 \\
+f(x) =& x^2\ +3x\ +2 \\
+f(x) =& x^2\quad +3x\quad +2 \\
+f(x) =& x^2\qquad +3x\qquad +2
+\end{align*}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]{Vertical Spacing}
+    When the space between \structure{display} maths and the main body paragraph is considered larger than expectation, is there any way to modify the line spacing? \medskip
+    
+    In default style of \structure{display} mode is like
+
+\begin{latexexample}
+your body paragraph is supposed to be typed here
+\begin{equation}
+  a \times b = c 
+\end{equation}
+your body paragraph is supposed to be typed here
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]
+You can use \LC{\setlength} to set the \structure{displayskip}. \medskip
+	
+\begin{command}
+\begin{LCL}
+\setlength\abovedisplayskip{<length>}
+\setlength\belowdisplayskip{<length>}
+\end{LCL}
+\end{command}
+
+\begin{latexexample}
+\setlength\abovedisplayskip{0em}
+\setlength\belowdisplayskip{0em}
+your body paragraph is supposed to be typed here
+\begin{equation}
+  a \times b = c 
+\end{equation}
+your body paragraph is supposed to be typed here
+\end{latexexample}
+
+\end{frame}
+
+
+
+%\subsection{Inline}
+
+%\begin{frame}[fragile]
+%	\frametitle{A simple method of entering math environment}
+%	Usually, we can use \alert{\$\$}\dots\alert{\$\$} to display a maths equation instead of \samplecommand{begin}\{equation*\}\dots\samplecommand{end}\{equation*\}, which almost have same effect.\\[0.5em]
+%	However, there is another style of math environment, inline style, which will display the maths equation on the same line of the text before it. It is used like \alert{\$}\dots\alert{\$}
+%	\begin{example}
+%		\begin{minted}{latex}
+%This is a simple equation $$x^2+y^2=1$$
+%This is a simple inline equation $x^2+y^2=1$  \\
+%The concentration of [H$_3$O$^+$] ([$H_3O^+$]) is \dots
+%		\end{minted}
+%	\end{example}
+%		This is a simple equation $$x^2+y^2=1$$
+%		This is a simple inline equation $x^2+y^2=1$  \\
+%		The concentration of [H$_3$O$^+$] ([$H_3O^+$]) is ...
+%\end{frame}
+
+%\begin{frame}
+%	\frametitle{The difference between inline and normal}
+%	Actually, the display style of inline and normal equations have some differences.
+%	\begin{example}
+%		\begin{minipage}{0.48\linewidth}
+%			\centering Expression
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering inline
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering normal
+%		\end{minipage}
+%		\vfill
+%		\begin{minipage}{0.48\linewidth}
+%			\samplecommand{left(}\samplecommand{frac}\{1\}\{\samplecommand{frac}\{1\}\{2\}\}\samplecommand{right)}\\
+%			\^{}\{\samplecommand{frac}\{1\}\{2\}\}\}
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering $\left(\frac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			$$\left(\frac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$$
+%		\end{minipage}
+%		\vfill
+%		\begin{minipage}{0.48\linewidth}
+%			\samplecommand{lim}\_\{n\samplecommand{to}\samplecommand{infty}\}a\_n=+\samplecommand{infty}
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering $\lim_{n\to\infty}a_n=+\infty$
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			$$\lim_{n\to\infty}a_n=+\infty$$
+%		\end{minipage}
+%		\vfill
+%		\begin{minipage}{0.48\linewidth}
+%			\samplecommand{sum}\_\{k=1\}\^{}\{10\}k=55
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering $\sum_{k=1}^{10}k=55$
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			$$\sum_{k=1}^{10}k=55$$
+%		\end{minipage}
+%	\end{example}
+%\end{frame} 
+%
+%\begin{frame}
+%	However, most of the differences can be fixed by some other commands
+%	\begin{example}
+%		\begin{minipage}{0.48\linewidth}
+%			\centering Expression
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering inline
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering normal
+%		\end{minipage}
+%		\vfill
+%		\begin{minipage}{0.48\linewidth}
+%			\samplecommand{left(}\samplecommand{dfrac}\{1\}\{\samplecommand{frac}\{1\}\{2\}\}\samplecommand{right)}\\
+%			\^{}\{\samplecommand{frac}\{1\}\{2\}\}\}
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering $\left(\dfrac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			$$\left(\dfrac{1}{\frac{1}{2}}\right)^{\frac{1}{2}}$$
+%		\end{minipage}
+%		\vfill
+%		\begin{minipage}{0.48\linewidth}
+%			\samplecommand{lim}\samplecommand{limits}\_\{n\samplecommand{to}\samplecommand{infty}\}a\_n=+\samplecommand{infty}
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering $\lim\limits_{n\to\infty}a_n=+\infty$
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			$$\lim\limits_{n\to\infty}a_n=+\infty$$
+%		\end{minipage}
+%		\vfill
+%		\begin{minipage}{0.48\linewidth}
+%			\samplecommand{sum}\samplecommand{limits}\_\{k=1\}\^{}\{10\}k=55
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			\centering $\sum\limits_{k=1}^{10}k=55$
+%		\end{minipage}
+%		\begin{minipage}{0.24\linewidth}
+%			$$\sum\limits_{k=1}^{10}k=55$$
+%		\end{minipage}
+%	\end{example}
+%	Here the command \samplecommand{limits} can be used in much more situations to fix the position of the bounds. The command \samplecommand{dfrac} is used to print a fraction in normal size.
+%\end{frame}
+
+\subsection{Basic Math Commands}
+
+\begin{frame}[fragile]{Fractions and Binomials}
+Fractions and binomial coefficients are common mathematical elements with similar characteristics - one number goes on top of another. \footnote[1]{Some of this part is ported from the tutorial of Overleaf: \urllink{https://www.overleaf.com/learn/latex/Fractions_and_Binomials}} 
+
+\begin{command}
+\begin{LCL}
+\frac{top}{bottom}  % fraction
+\binom{top}{bottom} % binomial coefficients
+\end{LCL}
+\end{command}
+
+Using fractions and binomial coefficients in an expression is straightforward.
+
+\begin{latexexample}
+The binomial coefficient is defined by the next expression:
+\[ \binom{n}{k} = \frac{n!}{k!(n-k)!} \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+In \structure{inline} and \structure{display} mode, the appearance of the fractions and binomials may differ. You can use \LC|\displaystyle| or \LC|\textstyle| to adjust the size of the fractions and binomials, or use \LC|\dfrac| if not all fractions in an equation need to be resized.
+
+\begin{latexexample}
+When displaying fractions in-line, for example $\frac{3x}{2}$
+you can set a different display style:  $ \displaystyle \frac{3x}{2} $.
+Or you can use $\dfrac{3x}{2}$. This is also true the other way around
+\[ f(x)=\binom{n}{x}=\frac{n!}{x!(n-x)!} \quad \textrm{and} \quad
+   f(x)=\textstyle\binom{n}{x}=\frac{n!}{x!(n-x)!} \]
+\end{latexexample}
+
+The command \LC|\displaystyle| will format the fractions and binomials as if they were in mathematical display mode. On the other side, \LC|\textstyle| will change the style of them as if they were part of the text.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+The usage of fractions is quite flexible, they can be nested to obtain more complex expressions. And \LC|\cfrac| can be used to make continued fractions.
+
+\begin{latexexample}
+The fractions can be nested
+\[ \frac{1+\frac{a}{b}}{1+\frac{1}{1+\frac{1}{a}}} \]
+Now a wild example
+\[ a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+\cdots}}} \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]{Operators}
+Characters in mathematical mode are usually shown in italics, but sometimes especial function names require different formatting (font and skip), this is accomplished by using operators defined in \LaTeX. \footnote[1]{Some of this part is ported from the tutorial of Overleaf: \urllink{https://www.overleaf.com/learn/latex/Operators}}\medskip
+
+Trigonometrical functions, logarithms, and some others can be written in a document by means of some special commands. 
+
+\begin{latexexample}
+\[ \sin(a + b ) = \sin(a)\cos(b) + \cos(a)\sin(b) \]
+\[ \log_a b = \frac{\log_c b}{\log_c a} = \frac{\ln b}{\ln a} \]
+\[ \tan a,\quad \arccos a,\quad \arcsin a,\quad \arctan a \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]{Integrals}
+
+Integral expression can be added using the command
+\begin{command}
+\begin{LCL}
+\int_{lower}^{upper} 
+\end{LCL}
+\end{command}
+
+Note, that integral expression may seems a little different in \structure{inline} and \structure{display} math mode - in \structure{inline} mode the integral symbol and the limits are compressed.
+
+\begin{latexexamplesplit}
+Integral $\int_{a}^{b} x^2 dx$ inside text
+\[ \int_{a}^{b} x^2 dx \]
+\end{latexexamplesplit}
+
+There is always an argue about whether \textit{italic} or roman style of ``d'' should be used in integrals and derivatives. There's no right or wrong. If you prefer to use roman style, try \packagename{commath} or \packagename{physics} package. Either of them provides some macros to insert the ``d'' you want simply.
+
+\end{frame}
+
+\begin{frame}[fragile]{Multiple Integrals}
+
+To obtain double/triple/multiple integrals you must use \packagename{amsmath} package.
+
+\begin{latexexamplesplit}[0.52]
+\begin{gather*}
+\iint_V \mu(u,v) \,du\,dv \\
+\iiint_V \mu(u,v,w) \,du\,dv\,dw \\
+\iiiint_V \mu(t,u,v,w) \,dt\,du\,dv\,dw \\
+\idotsint_V \mu(u_1,\dots,u_k) \,du_1 \dots du_k \\
+\end{gather*}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cyclic Integrals}
+
+To obtain cyclic integrals you must use \packagename{esint} package.
+
+\begin{latexexamplesplit}[0.52]
+\begin{gather*}
+\oint_V f(s) \,ds \\
+\oiint_V f(s,t) \,ds\,dt \\
+\end{gather*}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]{Limits, Sums and Products}
+
+Like integrals, limits, sums and products expression are compressed in \structure{inline} mode.
+
+\begin{command}
+\begin{LCL}
+\limits_{lower}
+\sum_{lower}^{upper} 
+\prod_{lower}^{upper} 
+\end{LCL}
+\end{command}
+
+\begin{latexexample}
+Limit $\lim_{x\to\infty} f(x)$ inside text	
+\[ \lim_{x\to\infty} f(x) \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{latexexample}
+Sum $\sum_{n=1}^{\infty} 2^{-n} = 1$ inside text
+\[ \sum_{n=1}^{\infty} 2^{-n} = 1 \]
+\end{latexexample}
+
+
+\begin{latexexample}
+Product $\prod_{i=a}^{b} f(i)$ inside text
+\[ \prod_{i=a}^{b} f(i) \]
+\end{latexexample}
+\end{frame}
+
+\begin{frame}[fragile]{Improvement of Integrals, Limits, Sums and Products}
+
+In \structure{inline} math mode the integral/sum/product lower and upper limits are placed right of integral symbol. Similar is for limit expressions. If you want the limits of an integral/sum/product to be specified above and below the symbol in \structure{inline} math mode (or in \structure{display} mode), use the \LC|\limits| command before limits specification.
+
+\begin{latexexample}
+Integral $\int_{a}^{b} x^2 dx$ inside text \par
+Improved integral $\int\limits_{a}^{b} x^2 dx$ inside text \par
+Use limits in display mode \[ \int\limits_{a}^{b} x^2 dx \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+Moreover, adding \LC|\displaystyle| beforehand will make the symbol in \structure{inline} mode large and easier to read, as in \structure{display} mode.
+
+\begin{latexexample}
+Limit $\lim_{x\to\infty} f(x)$ inside text \par
+Display style limit $\displaystyle\lim_{x\to\infty} f(x)$ inside text 
+\end{latexexample}
+
+On the other hand, \LC|\mathlarger| command (provided by \packagename{relsize} package) is used to get bigger integral symbol in display.
+
+\begin{latexexample}
+$\int\frac{1}{2}dx - \mathlarger{ \int\frac{1}{2}dx}$
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]{Other Math Symbols}
+
+Some examples of other common used math symbols are shown.
+
+\begin{center}
+\begin{tabular}{ ccc }
+Name & \LaTeX & Code \\\hline
+Square Root	 & \LCX{\sqrt{a}\ \sqrt[b]{a}} \\
+Over/Under Line & \LCX{\overline{a+b}\ \underline{a+b}} \\
+Over Brace & \LCX{\overbrace{1+2+\cdots+n}^n} \\
+Under Brace & \LCX{\underbrace{1+2+\cdots+n}_n} \\
+Over Arrow & \LCX{\overrightarrow{a+b}\ \overleftarrow{a+b}} \\
+Under Arrow & \LCX{\underrightarrow{a+b}\ \underleftarrow{a+b}} \\
+Dots & \LCX{\dots\ \cdot\ \cdots\ \vdots\ \ddots} \\
+\multirow{2}{*}{Arrows} & \LCX{\rightarrow\ \leftarrow\ \leftrightarrow} \\
+& \LCX{\Rightarrow\ \Leftarrow\ \Leftrightarrow} \\
+& \LCX{\longleftarrow\ \Longrightarrow}
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]{Mathematical Fonts}
+In mathematical mode as well as in text mode, you can change the typeface as needed. For instance, it's customary to represent real numbers with a blackboard bold font, or topological spaces with calligraphic font. \footnote[1]{Some of this part is ported from the tutorial of Overleaf: \urllink{https://www.overleaf.com/learn/latex/Mathematical_fonts}}\medskip
+
+For some elements is convenient to have the possibility of changing the font typeface.
+
+\begin{latexexample}
+Let \( \mathcal{T} \) be a topological space, a basis is defined as
+\[ \mathcal{B} = \{B_{\alpha} \in \mathcal{T}\, |\,  
+   U = \bigcup B_{\alpha} \forall U \in \mathcal{T} \} \]
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]{Mathematical Fonts for Capital Letters}
+
+There are some font typefaces that support only a limited number of characters; these fonts usually denote some special sets.
+
+\begin{latexexamplesplit}
+\begin{gather*}
+  RQSZ \\
+  \mathcal{RQSZ} \\
+  \mathfrak{RQSZ} \\
+  \mathbb{RQSZ}
+\end{gather*}
+\end{latexexamplesplit}
+
+This example shows Calligraphic, Fraktur and Blackboard bold typefaces. For instance, to display the R in blackboard bold typeface \LC|$\mathbb{R}$| will do the trick.
+
+\end{frame}
+
+\begin{frame}[fragile]{Other Mathematical Fonts}
+
+It's possible to set a different font family for a complete mathematical expression.
+
+\begin{latexexamplesplit}[0.6]
+\begin{gather*}
+  3x^2 \in R \subset Q \\
+  \mathnormal{3x^2 \in R \subset Q} \\
+  \mathrm{3x^2 \in R \subset Q} \\
+  \mathit{3x^2 \in R \subset Q} \\
+  \mathbf{3x^2 \in R \subset Q} \\
+  \mathsf{3x^2 \in R \subset Q} \\
+  \mathtt{3x^2 \in R \subset Q} 
+\end{gather*}
+\end{latexexamplesplit}
+
+In this case, not only letters but all characters change its appearance, for example \LC|$\mathit{3x^2}$| italicises the entire expression.
+
+\end{frame}
+
+\begin{frame}[fragile]{Define Own Symbols}
+
+If you need to add a personalized operator to be displayed in Roman font instead of italics use \LC|\DeclareMathOperator|, provided by the the package \packagename{amsmath}.
+
+\begin{example}
+\begin{LCL}
+\DeclareMathOperator{\Mr}{M_{\mathbb{R}}}
+User-defined operator for matrices with Real entries $ x \in \Mr $
+\end{LCL}
+User-defined operator for matrices with Real entries $ x \in \Mr $
+\end{example}
+
+The command can be slightly modified if you need that your defined operator uses subscripts, as the \LC|\lim| operator, in such case use \LC|\DeclareMathOperator*|. \medskip
+
+You can also use \LC|\mathop| to define a italics math operator supporting subscripts, and change it to Roman font by hand.
+
+\begin{latexexamplesplit}[0.78]
+\[ \mathop{\mathrm{limsup}}_{n\to\infty}\mathop{rot}F_n \]
+\end{latexexamplesplit}
+
+\end{frame}
+
+
+\subsection{Matrices and Arrays}
+
+\begin{frame}[fragile]{The \packagename{matrix} Environment (inline)}
+There are various kinds of matrix environments defined in \packagename{amsmath} package, they are \packagename{matrix}, \packagename{pmatrix}, \packagename{bmatrix}, \packagename{Bmatrix}, \packagename{vmatrix}, \packagename{Vmatrix}.
+\begin{command}
+\begin{LCL}
+\begin{[p/b/B/v/V]matrix}
+  a_{11} & a_{12} & ... & a_{1n} \\
+  a_{21} & a_{22} & ... & a_{2n} \\
+  ...    & ...    & ... & ...    \\
+  a_{n1} & a_{n2} & ... & a_{nn} \\
+\end{[p/b/B/v/V]matrix}
+\end{LCL}
+\end{command}
+
+\begin{latexexamplesplit}
+\begin{equation}
+  \begin{pmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+  \end{pmatrix}
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}
+	Here is some examples of the style of these matrix.
+	\begin{example}
+		\begin{minipage}{0.3\linewidth}
+			\centering \packagename{matrix}
+			$$\begin{matrix}a&b\\c&d\\\end{matrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \packagename{bmatrix}
+			$$\begin{bmatrix}a&b\\c&d\\\end{bmatrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \packagename{vmatrix}
+			$$\begin{vmatrix}a&b\\c&d\\\end{vmatrix}$$
+		\end{minipage}
+		\vfill
+		\ \\[1em]
+		\begin{minipage}{0.3\linewidth}
+			\centering \packagename{pmatrix}
+			$$\begin{pmatrix}a&b\\c&d\\\end{pmatrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \packagename{Bmatrix}
+			$$\begin{Bmatrix}a&b\\c&d\\\end{Bmatrix}$$
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\linewidth}
+			\centering \packagename{Vmatrix}
+			$$\begin{Vmatrix}a&b\\c&d\\\end{Vmatrix}$$
+		\end{minipage}
+	\end{example}
+	
+Some packages may also help simplify the typesetting of matrix, for example, there is some macros defined in the \packagename{physics} package to make identity matrix, or generate the examples above more simply. 
+	
+\end{frame}
+
+\begin{frame}[fragile]
+If you need to create matrices with different delimiters, you can add them manually to a plain matrix. For example:
+
+\begin{latexexamplesplit}
+\begin{equation}
+  \left\lceil
+  \begin{matrix}
+    1 & 2 & 3 \\
+    a & b & c
+    \end{matrix}
+  \right\rceil
+\end{equation}
+
+\begin{equation}
+  \left\langle
+  \begin{matrix}
+    1 & 2 & 3 \\
+    a & b & c
+  \end{matrix}
+  \right\rangle
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{smallmatrix} Environment}
+When typesetting inline math, the usual \packagename{matrix} environments above may look too big. It may be better to use \packagename{smallmatrix} in such situations, although you will need to provide your own delimiters.
+
+\begin{latexexample}
+Trying to typeset an inline matrix here
+$\begin{pmatrix}
+  a & b \\ 
+  c & d
+\end{pmatrix}$ 
+but it looks too big, so let's try 
+$\big(\begin{smallmatrix}
+  a & b \\
+  c & d
+\end{smallmatrix}\big)$ instead.
+\end{latexexample}
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{array} Environment}
+An \packagename{array} environment is actually a math mode \packagename{tabular} environment, and the usage of them are almost the same. You can refer to the lecture about tables for this part. \medskip
+
+A simple example is given here:
+\begin{latexexamplesplit}[0.4]
+\begin{equation}
+  \chi(\lambda) = 
+  \left| \begin{array}{ccc}
+    \lambda - a & -b & -c \\
+    -d & \lambda - e & -f \\
+    -g & -h & \lambda - i 
+  \end{array} \right|
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+
+\section{Useful Maths Packages}
+
+\subsection{Common Packages}
+
+\begin{frame}[fragile]{The \packagename{AMS-\LaTeX} Packages}
+AMS-\LaTeX\ is a collection of \LaTeX\ document classes and packages developed for the American Mathematical Society (AMS). \medskip
+
+It is an extension of plain-\LaTeX\ maths, with many new maths environments (most of them were introduced in the previous section), maths symbols and maths fonts. \medskip
+
+Usually you can insert all of the commands in the preamble of your document.
+
+\begin{command}
+\begin{LCL}
+\usepackage{amsmath}  % loads maths environments
+\usepackage{amssymb}  % loads maths symbols
+\usepackage{amsfonts} % loads maths fonts
+\end{LCL}
+\end{command}
+
+\end{frame}
+
+\begin{frame}[fragile]{Some Other Packages}
+
+Recall that we also use some other packages in this lecture:
+
+\begin{command}
+\begin{LCL}
+\usepackage{esint}    % for cyclic integrals
+\usepackage{relsize}  % for \mathlarger
+\end{LCL}
+\end{command}
+
+For a better \packagename{array} environment, though it's not mandatory (you can use it without the package), you're recommended to add the \packagename{array} package.
+
+\begin{command}
+\begin{LCL}
+\usepackage{array}
+\end{LCL}
+\end{command}
+
+\end{frame}
+
+\subsection{The \packagename{physics} Package}
+
+\begin{frame}[fragile]{The \packagename{physics} Package}
+
+To use the \packagename{physics} package, simply insert the command in the preamble of your document.
+
+\begin{command}
+\begin{minted}{latex}
+\usepackage{physics}
+\end{minted}
+\end{command}
+
+The goal of this package is to make typesetting equations for \packagename{physics} simpler, faster, and more human-readable. But it can also be used in various maths circumstances. \medskip
+
+To that end, the commands included in this package have names that make the purpose of each
+command immediately obvious and remove any ambiguity while reading and editing \packagename{physics} code. \medskip
+
+The documentation of the \packagename{physics} package can be found in \url{http://mirrors.ctan.org/macros/latex/contrib/physics/physics.pdf}.
+
+\end{frame}
+
+\begin{frame}[fragile]
+Recall the equation:
+\inputminted{latex}{../examples/curl.tex}
+
+Now we can rewrite it with the commands defined in the \packagename{physics} package.
+
+\begin{latexexample}
+\begin{equation}
+  \mathop{\rm rot}F=\qty(\pdv{F_z}{y}-\pdv{F_y}{z})\hat{n_x}+
+                    \qty(\pdv{F_x}{z}-\pdv{F_z}{x})\hat{n_y}+
+                    \qty(\pdv{F_y}{x}-\pdv{F_x}{y})\hat{n_z}
+\end{equation}
+\end{latexexample}
+
+\end{frame}
+
+
+% copy from physics package docs
+\newcommand\Vtextvisiblespace[1][.3em]
+{%
+	\mbox{\kern.06em\vrule height.3ex}%
+	\vbox{\hrule width#1}%
+	\hbox{\vrule height.3ex}
+}
+\newcommand{\cbox}[2][cyan]
+{\mathchoice
+	{\setlength{\fboxsep}{0pt}\colorbox{#1}{$\displaystyle#2$}}
+	{\setlength{\fboxsep}{0pt}\colorbox{#1}{$\textstyle#2$}}
+	{\setlength{\fboxsep}{0pt}\colorbox{#1}{$\scriptstyle#2$}}
+	{\setlength{\fboxsep}{0pt}\colorbox{#1}{$\scriptscriptstyle#2$}}
+}
+\newcommand{\typical}{\cbox{\phantom{A}}}
+\newcommand{\tall}{\cbox{\phantom{A^{\vphantom{x^x}}_x}}}
+\newcommand{\grande}{\cbox{\phantom{\frac{1}{xx}}}}
+\newcommand{\venti}{\cbox{\phantom{\sum_x^x}}}
+
+\begin{frame}[fragile]{Automatic Bracing}
+
+When typesetting maths equations, you may use something like \LC{\left(} and \LC{\right)} to make the braces taller than the typical ones. The \packagename{physics} package provides some macros to simplify and replace them. \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2cm} p{5cm} p{4cm} }
+\LCS|\quantity| & \LCS|\qty(\typical)| $\displaystyle\rightarrow \qty(\typical)$ & automatic $\qty(\;)$ braces \\
+& \LCS|\qty(\tall)| $\displaystyle\rightarrow \qty(\tall)$ & \\
+& \LCS|\qty(\grande)| $\displaystyle\rightarrow \qty(\grande)$ & \\
+& \LCS|\qty[\typical]| $\rightarrow \qty[\typical]$ & automatic $\qty[\;]$ braces \\[2pt]
+& \LCS+\qty|\typical|+ $\rightarrow \qty|\typical|$ & automatic $\qty|\;|$ braces \\[2pt]
+& \LCS|\qty{\typical}| $\rightarrow \qty{\typical}$ & automatic $\qty{\;}$ braces \\[2pt]
+& \LCS|\qty\big{}| $\rightarrow \qty\big{}$ & \multirow{2}{*}{\parbox{4cm}{manual sizing (works with any of the above bracket types)}} \\
+& \LCS|\qty\Big{}| $\rightarrow \qty\Big{}$ & \\
+& \LCS|\qty\bigg{}| $\rightarrow \qty\bigg{}$ & \\
+& \LCS|\qty\Bigg{}| $\rightarrow \qty\Bigg{}$ & \\
+& \LCS|\pqty{}| $\leftrightarrow$ \LCS|\qty()| & \multirow{2}{*}{\parbox{4cm}{alternative syntax; robust and more \LaTeX-friendly}} \\[2pt]
+& \LCS|\bqty{}| $\leftrightarrow$ \LCS|\qty[]| & \\[2pt]
+& \LCS+\vqty{}+ $\leftrightarrow$ \LCS+\qty||+ & \\[2pt]
+& \LCS|\Bqty{}| $\leftrightarrow$ \LCS|\qty{}| & \\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\scriptsize
+\begin{tabular}[l]{ p{2cm} p{5cm} p{4cm} }
+\LCS|\absolutevalue| & \LCS|\abs{a}| $\rightarrow \abs{a}$ & automatic sizing; equivalent to \LCS|\qty| \!\!\texttt{|a|} \\
+& \LCS|\abs\Big{a}| $\rightarrow \abs\Big{a}$ & inherits manual sizing syntax from \LCS|\qty| \\
+& \LCS|\abs*{\grande}| $\displaystyle\rightarrow \abs*{\grande}$ & star for no resize \\
+\LCS|\norm| & \LCS|\norm{a}| $\rightarrow \norm{a}$ & automatic sizing \\
+& \LCS|\norm\Big{a}| $\rightarrow \norm\Big{a}$ & manual sizing \\
+& \LCS|\norm*{\grande}| $\displaystyle\rightarrow \norm*{\grande}$ & star for no resize \\
+\LCS|\evaluated| & \LCS|\eval{x}_0^\infty| $\displaystyle\rightarrow \eval{x}_0^\infty$ & vertical bar for evaluation limits \\
+& \LCS|\eval(x| \!\!\texttt{|}\!\! \LCS|_0^\infty| $\displaystyle\rightarrow \eval(x|_0^\infty$ & alternate form \\
+& \LCS|\eval[x| \!\!\texttt{|}\!\! \LCS|_0^\infty| $\displaystyle\rightarrow \eval[x|_0^\infty$ & alternate form \\
+& \LCS|\eval[\venti| \!\!\texttt{|}\!\! \LCS|_0^\infty| $\displaystyle\rightarrow \eval[\venti|_0^\infty$ & automatic sizing\\
+& \LCS|\eval*[\venti| \!\!\texttt{|}\!\! \LCS|_0^\infty| $\displaystyle\rightarrow \eval*[\venti|_0^\infty$ & star for no resize \\
+\LCS|\order| & \LCS|\order{x^2}| $\rightarrow \order{x^2}$ & order symbol; automatic sizing and space handling \\
+& \LCS|\order\Big{x^2}| $\rightarrow \order\Big{x^2}$ & manual sizing \\
+& \LCS|\order*{\grande}| $\displaystyle\rightarrow \order*{\grande}$ & star for no resize \\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]{Vector Notation}
+
+You may use \LC|\mathbf| to make bold maths symbols, However, it won't always work. For example, with \LC|\mathbf{\alpha}| you may have $\mathbf{\alpha}$, which is actually not bold. These commands will help provide the correct $\vb*{\alpha}$. \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2cm} p{5cm} p{4cm} }
+\LCS|\vectorbold| & \LCS|\vb{a}| $\rightarrow \vb{a}$ & upright/no Greek \\
+& \LCS|\vb*{a}|, \LCS|\vb*{\theta}| $\rightarrow \vb*{a}$, $\vb*{\theta}$ & italic/Greek \\
+\LCS|\vectorarrow| & \LCS|\va{a}| $\rightarrow \va{a}$ & upright/no Greek \\
+& \LCS|\va*{a}|, \LCS|\va*{\theta}| $\rightarrow \va*{a}$, $\va*{\theta}$ & italic/Greek \\
+\LCS|\vectorunit| & \LCS|\vu{a}| $\rightarrow \vu{a}$ & upright/no Greek \\
+& \LCS|\vu*{a}|, \LCS|\vu*{\theta}| $\rightarrow \vu*{a}$, $\vu*{\theta}$ & italic/Greek \\
+\end{tabular}\bigskip
+
+\normalsize
+There are also some shorthand for vector operations. \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2cm} p{5cm} p{4cm} }
+\LCS|\dotproduct| & \LCS|\vdot| $\rightarrow \vdot$ as in $\vb{a} \vdot \vb{b}$ & note: \LCS|\dp| is a protected \TeX\ primitive \\
+\LCS|\crossproduct| & \LCS|\cross| $\rightarrow \cross$ as in $\vb{a} \cross \vb{b}$ & alternate name \\
+& \LCS|\cp| $\rightarrow \cp$ as in $\vb{a} \cp \vb{b}$ & shorthand name \\
+\end{tabular}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+The default del (nabla) symbol $\vnabla$ used in \packagename{physics} vector notation can be switched to appear with an arrow $\vec{\vnabla}$ by including the option \packagename{arrowdel} in the document preamble $\rightarrow$ \LC|\usepackage[arrowdel]{physics}|. \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2cm} p{5cm} p{4cm} }
+\LCS|\divergence| & \LCS|\div| $\rightarrow \div$ & note: \packagename{amsmath} symbol $\divisionsymbol$ renamed \LCS|\divisionsymbol| \\
+& \LCS|\div{\vb{a}}| $\rightarrow \div{\vb{a}}$ & default mode \\
+& \LCS|\div(\vb{a}+\tall)| $\displaystyle\rightarrow \div(\vb{a}+\tall)$ & long-form \\
+& \LCS|\div[\vb{a}+\tall]| $\displaystyle\rightarrow \div[\vb{a}+\tall]$ & \\[5pt]
+\LCS|\curl| & \LCS|\curl| $\rightarrow \curl$ & $\phantom{\tall}$ \\ 
+& \LCS|\curl{\vb{a}}| $\rightarrow \curl{\vb{a}}$ & default mode $\phantom{\tall}$ \\
+& \LCS|\curl(\vb{a}+\tall)| $\displaystyle\rightarrow \curl(\vb{a}+\tall)$ & long-form \\
+& \LCS|\curl[\vb{a}+\tall]| $\displaystyle\rightarrow \curl[\vb{a}+\tall]$ & \\[5pt]
+\LCS|\laplacian| & \LCS|\laplacian| $\rightarrow \laplacian$ & $\phantom{\tall}$ \\
+& \LCS|\laplacian{\Psi}| $\rightarrow \laplacian{\Psi}$ & default mode $\phantom{\tall}$ \\
+& \LCS|\laplacian(\Psi+\tall)| $\displaystyle\rightarrow \laplacian(\Psi+\tall)$ & long-form \\
+& \LCS|\laplacian[\Psi+\tall]| $\displaystyle\rightarrow \laplacian[\Psi+\tall]$ & 
+\end{tabular}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Operators}
+The standard set of trig functions is redefined in \packagename{physics} to provide automatic braces that behave like \LC|\qty()|. In addition, an optional power argument is provided. This behavior can be switched off by including the option \packagename{notrig} in the preamble $\rightarrow$ \LC|\usepackage[notrig]{physics}|. \medskip
+
+For example,
+\scriptsize
+\begin{tabular}[l]{ p{2cm} p{5cm} p{4cm} }
+\LCS|\sin| & \LCS|\sin(\grande)| $\displaystyle\rightarrow \sin(\grande)$ & automatic braces; old \LCS|\sin| renamed \LCS|\sine| \\
+& \LCS|\sin[2](x)| $\rightarrow \sin[2](x)$ & optional power \\
+& \LCS|\sin x| $\rightarrow \sin x$ & can still use without an argument
+\end{tabular}\medskip
+
+\normalsize
+Similar behavior has also been extended to the following functions: \medskip
+
+\scriptsize
+\begin{tabular}{ p{2cm} p{1.6cm} p{3cm} p{4cm} }
+\LCS|\exp(\tall)| & $\exp(\tall)$ & & \LCS|\exponential| \\
+\LCS|\log(\tall)| & $\log(\tall)$ & & \LCS|\logarithm| \\
+\LCS|\ln(\tall)| & $\ln(\tall)$ & old definitions $\Rightarrow$ & \LCS|\naturallogarithm| \\
+\LCS|\det(\tall)| & $\det(\tall)$ & & \LCS|\determinant| \\
+\LCS|\Pr(\tall)| & $\Pr(\tall)$ & & \LCS|\Probability|
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+There are also some new operators: \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2cm} p{5cm} p{4cm} }
+\LCS|\trace| or \LCS|\tr| & \LCS|\tr\rho| $\rightarrow \tr\rho$ also \LCS|\tr(\tall)| $\rightarrow \tr(\tall)$  & trace; same bracing as trig functions \\
+\LCS|\Trace| or \LCS|\Tr| & \LCS|\Tr\rho| $\rightarrow \Tr\rho$ & alternate \\[5pt]
+\LCS|\rank| & \LCS|\rank M| $\rightarrow \rank M$ & matrix rank \\[5pt]
+\LCS|\erf| & \LCS|\erf(x)|$\rightarrow \erf(x)$ & Gauss error function \\[5pt]
+\LCS|\Res| & \LCS|\Res[f(z)]|$\rightarrow \Res[f(z)]$ & residue; same bracing as trig functions \\[5pt]
+\LCS|\principalvalue| & \LCS|\pv{\int f(z) \dd{z}}|$\rightarrow \pv{\int f(z) \dd{z}}$ & Cauchy principal value \\ 
+& \LCS|\PV{\int f(z) \dd{z}}|$\rightarrow \PV{\int f(z) \dd{z}}$ & alternate \\[5pt]
+\LCS|\Re| & \LCS|\Re{z}| $\rightarrow \Re{z}$ & old \LCS|\Re| renamed to \LCS|\real| $\rightarrow \real$ \\
+\LCS|\Im| & \LCS|\Im{z}| $\rightarrow \Im{z}$ & old \LCS|\Im| renamed to \LCS|\imaginary| $\rightarrow \imaginary$
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]{Quick Quad Text}
+
+This set of commands produces text in math-mode padded by \LC|\quad| spacing on either side. This is meant to provide a quick way to insert simple words or phrases in a sequence of equations. Each of the following commands includes a starred version which pads the text only on the right side with \LC|\quad| for use in aligned environments such as \packagename{cases}. \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2.75cm} p{3cm} p{5cm} }
+\LCS|\qqtext| & \LCS|\qq{}| & general quick quad text with argument \\
+& \LCS|\qq{word or phrase}| $\rightarrow$ \Vtextvisiblespace[1em]$\text{word or phrase}$\Vtextvisiblespace[1em] & normal mode; left and right \LCS|\quad| \\
+& \LCS|\qq*{word or phrase}| $\rightarrow \text{word or phrase}$\Vtextvisiblespace[1em] & starred mode; right \LCS|\quad| only
+\end{tabular}\bigskip
+
+\normalsize
+Some special macros: \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2.75cm}  p{7cm} }
+\LCS|\qcomma| or \LCS|\qc| $\rightarrow ,$\Vtextvisiblespace[1em] & right \LCS|\quad| only \\
+\LCS|\qcc| $\rightarrow$\Vtextvisiblespace[1em]$\text{c.c.}$\Vtextvisiblespace[1em] & complex conjugate; left and right \LCS|\quad| unless starred \LCS|\qcc*| $\rightarrow \text{c.c.}$\Vtextvisiblespace[1em] \\
+\LCS|\qif| $\rightarrow$\Vtextvisiblespace[1em]$\text{if}$\Vtextvisiblespace[1em] & left and right \LCS|\quad| unless starred \LCS|\qif*| $\rightarrow \text{if}$\Vtextvisiblespace[1em]
+\end{tabular}\medskip
+
+\begin{tabular}[l]{ l }
+\LCS|\qthen|, \LCS|\qelse|, \LCS|\qotherwise|, \LCS|\qunless|, \LCS|\qgiven|, \LCS|\qusing|, \LCS|\qassume|, \LCS|\qsince|, \\
+\LCS|\qlet|, \LCS|\qfor|, \LCS|\qall|, \LCS|\qeven|, \LCS|\qodd|, \LCS|\qinteger|, \LCS|\qand|, \LCS|\qor|, \LCS|\qas|, \LCS|\qin|
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]{Derivatives}
+
+The default differential symbol $\dd$ which is used in \LC|\differential| and \LC|\derivative| can be switched to an italic form $d$ by including the option \packagename{italicdiff} in the preamble $\rightarrow$ \LC|\usepackage[italicdiff]{physics}|. \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2.75cm} p{4cm} p{4.25cm} }
+\LCS|\differential| & \LCS|\dd| $\rightarrow \dd$ & \\[2pt]
+& \LCS|\dd x| $\rightarrow \dd x$ & no spacing (not recommended) \\
+& \LCS|\dd{x}| $\rightarrow$ \textvisiblespace\,$\dd{x}$\textvisiblespace & automatic spacing based on neighbors \\
+& \LCS|\dd[3]{x}| $\rightarrow \dd[3]{x}$ & optional power \\[2pt]
+& \LCS|\dd(\cos\theta)| $\rightarrow \dd(\cos\theta)$ & long-form; automatic braces \\
+\LCS|\derivative| & \LCS|\dv{x}| $\displaystyle\rightarrow \dv{x}$ & one argument \\
+& \LCS|\dv{f}{x}| $\displaystyle\rightarrow \dv{f}{x}$ & two arguments \\
+& \LCS|\dv[n]{f}{x}| $\displaystyle\rightarrow \dv[n]{f}{x}$ & optional power \\
+& \LCS|\dv{x}(\grande)| $\displaystyle\rightarrow \dv{x}(\grande)$ & long-form; automatic braces, spacing \\
+& \LCS|\dv*{f}{x}| $\displaystyle\rightarrow \dv*{f}{x}$ & inline form using \LCS|\flatfrac| \\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\scriptsize
+\begin{tabular}[l]{ p{2.75cm} p{4cm} p{4.25cm} }
+\LCS|\partialderivative| & \LCS|\pderivative{x}| $\displaystyle\rightarrow \pderivative{x}$ & alternate name \\
+& \LCS|\pdv{x}| $\displaystyle\rightarrow \pdv{x}$ & shorthand name \\
+& \LCS|\pdv{f}{x}| $\displaystyle\rightarrow \pdv{f}{x}$ & two arguments \\
+& \LCS|\pdv[n]{f}{x}| $\displaystyle\rightarrow \pdv[n]{f}{x}$ & optional power \\
+& \LCS|\pdv{x}(\grande)| $\displaystyle\rightarrow \pdv{x}(\grande)$ & long-form \\
+& \LCS|\pdv{f}{x}{y}| $\displaystyle\rightarrow \pdv{f}{x}{y}$ & mixed partial \\[5pt]
+& \LCS|\pdv*{f}{x}| $\displaystyle\rightarrow \pdv*{f}{x}$ & inline form using \LCS|\flatfrac| \\[5pt]
+\LCS|\variation| & \LCS|\var{F[g(x)]}| $\rightarrow \var{F[g(x)]}$ & functional variation (works like \LCS|\dd|) \\
+& \LCS|\var(E-TS)| $\rightarrow \var(E-TS)$ & long-form \\
+\LCS|\functionalderivative| & \LCS|\fdv{g}| $\displaystyle\rightarrow \fdv{g}$ & functional derivative (works like \LCS|\dv|) \\
+& \LCS|\fdv{F}{g}| $\displaystyle\rightarrow \fdv{F}{g}$ & \\
+& \LCS|\fdv{V}(E-TS)| $\displaystyle\rightarrow \fdv{V}(E-TS)$ & long-form \\[5pt]
+& \LCS|\fdv*{F}{x}| $\displaystyle\rightarrow \fdv*{F}{x}$ & inline form using \LCS|\flatfrac|
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]{Matrices}
+
+The following matrix macros produce unformatted rows and columns of matrix elements for use as separate matrices as well as blocks within larger matrices. For example, the command \LC|\identitymatrix{2}| which has also has the shortcut \LC|\imat{2}| produces the elements of a $2 \times 2$ identity matrix $\smqty{\imat{2}}$ without braces or grouping. This allows the command to also be used within another matrix, as in: 
+
+\begin{latexexamplesplit}
+\begin{equation}
+  \begin{pmatrix}
+    \imat{2} \\ 
+    a & b
+  \end{pmatrix}
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]
+To specify elements on the right of left sides of our \LC|\imat{2}| sub-matrix we use the grouping command \LC|\matrixquantity| or \LC|\mqty| to effectively convert \LC|\imat{2}| into a single matrix element of a larger matrix:
+
+\begin{latexexamplesplit}[0.6]
+\begin{equation}
+  \begin{pmatrix}
+    \mqty{\imat{2}} & \mqty{a\\b} \\ 
+    \mqty{c & d}    & e
+  \end{pmatrix}
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]
+The extra \LC|\mqty| groups were required in this case in order to get the $a$ and $b$ elements to behave as a single element, since \LC|\mqty{\imat{2}}| also acts like a single matrix element (the same can be said of the grouped $c$ and $d$ elements). Finally, the outermost \texttt{pmatrix} environment could have also been replaced with the \texttt{physics} macro \LC|\mqty()|, allowing the above example to be written on one line:
+
+\begin{latexexamplesplit}[0.6]
+\begin{equation}
+  \mqty(
+    \mqty{\imat{2}} & \mqty{a\\b} \\ 
+    \mqty{c & d}    & e
+  )
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+The matrix commands are listed below: \medskip
+
+\scriptsize
+\begin{tabular}[l]{ p{2.25cm} p{5.25cm} p{3.5cm} }
+\LCS|\matrixquantity| & \LCS|\mqty{a & b \\ c & d}| $\displaystyle\rightarrow \mqty{a & b \\ c & d}$ & groups a set of matrix elements into a single object \\
+& \LCS|\mqty(a & b \\ c & d)| $\displaystyle\rightarrow {\mqty(a & b \\ c & d)}$ & parentheses \\
+& \LCS|\mqty*(a & b \\ c & d)| $\displaystyle\rightarrow {\mqty*(a & b \\ c & d)}$ & alternate parentheses \\
+& \LCS|\mqty[a & b \\ c & d]| $\displaystyle\rightarrow {\mqty[a & b \\ c & d]}$ & square brackets \\
+& \LCS+\mqty|a & b \\ c & d|+ $\displaystyle\rightarrow {\mqty|a & b \\ c & d|}$ & vertical bars \\
+& \LCS|\pmqty{}| $\leftrightarrow$ \LCS|\mqty()| & \multirow{2}{*}{\parbox{3.5cm}{alternative syntax; robust and more \LaTeX-friendly}} \\
+& \LCS|\Pmqty{}| $\leftrightarrow$ \LCS|\mqty*()| & \\
+& \LCS|\bmqty{}| $\leftrightarrow$ \LCS|\mqty[]| & \\
+& \LCS|\vmqty{}| $\leftrightarrow$ \LCS+\mqty||+ & \\
+\LCS|\smallmatrixquantity| & \LCS|\smqty{a & b \\ c & d}| $\displaystyle\rightarrow \smqty{a & b \\ c & d}$ & the \packagename{smallmatrix} form of \LCS|\mqty| \\
+& \LCS|\smqty()| or \LCS|\spmqty{}| & small version of \LCS|\mqty()| \\
+& \LCS|\smqty*()| or \LCS|\sPmqty{}| & small version of \LCS|\mqty*()|\\
+& \LCS|\smqty[]| or \LCS|\sbmqty{}| & small version of \LCS|\mqty[]| \\
+& \LCS+\smqty||+ or \LCS|\svmqty{}| & small version of \LCS+\mqty||+ \\
+\LCS|\matrixdeterminant| & \LCS|\mdet{a & b \\ c & d}| $\displaystyle\rightarrow {\mdet{a & b \\ c & d}}$ & matrix determinant \\
+& \LCS|\smdet{a & b \\ c & d}| $\displaystyle\rightarrow {\smdet{a & b \\ c & d}}$ & small matrix determinant \\
+\LCS|\identitymatrix| & \LCS|\imat{n}| & elements of $n \times n$ identity matrix \\
+& \LCS|\smqty(\imat{3})| $\displaystyle\rightarrow \smqty(\imat{3})$ & formatted with \LCS|\mqty| or \LCS|\smqty| \\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\scriptsize
+\begin{tabular}[l]{ p{2.25cm} p{5.25cm} p{3.5cm} }
+\LCS|\xmatrix| & \LCS|\xmat{x}{n}{m}| & elements of $n \times m$ matrix filled with $x$ \\
+& \LCS|\smqty(\xmat{1}{2}{3})| $\displaystyle\rightarrow \smqty(\xmat{1}{2}{3})$ & formatted with \LCS|\mqty| or \LCS|\smqty| \\
+& \LCS|\smqty(\xmat*{a}{3}{3})| $\displaystyle\rightarrow \smqty(\xmat*{a}{3}{3})$ & star for element indices \\
+& \LCS|\smqty(\xmat*{a}{3}{1})| $\displaystyle\rightarrow \smqty(\xmat*{a}{3}{1})$ & as a vector with indices \\
+& \LCS|\smqty(\xmat*{a}{1}{3})| $\displaystyle\rightarrow \smqty(\xmat*{a}{1}{3})$ & \\
+\LCS|\zeromatrix| & \LCS|\zmat{n}{m}| & $n \times m$ matrix filled with zeros \\
+& \LCS|\smqty(\zmat{2}{2})| $\displaystyle\rightarrow \smqty(\zmat{2}{2})$ & equivalent to \LCS|\xmat{0}{n}{m}| \\
+\LCS|\paulimatrix| & \LCS|\pmat{n}| & $n^\text{th}$ Pauli matrix \\
+& \LCS|\smqty(\pmat{0})| $\displaystyle\rightarrow \smqty(\pmat{0})$ & $n\in \lbrace 0,1,2,3$ or $x,y,z \rbrace$ \\
+& \LCS|\smqty(\pmat{1})| $\displaystyle\rightarrow \smqty(\pmat{1})$ & \\
+& \LCS|\smqty(\pmat{2})| $\displaystyle\rightarrow \smqty(\pmat{2})$ & \\
+& \LCS|\smqty(\pmat{3})| $\displaystyle\rightarrow \smqty(\pmat{3})$ & \\
+\LCS|\diagonalmatrix| & \LCS|\dmat{a,b,c,...}| & \multirow{2}{*}{\parbox{3.5cm}{specify up to eight diagonal or block diagonal elements}} \\
+& \LCS|\mqty(\dmat{1,2,3})| $\displaystyle\rightarrow \mqty(\dmat{1,2,3})$ & \\
+& \LCS|\mqty(\dmat[0]{1,2})| $\displaystyle\rightarrow \mqty(\dmat[0]{1,2})$ & optional argument to fill spaces \\
+& \LCS|\mqty(\dmat{1,2&3\\4&5})| $\displaystyle\rightarrow \mqty(\dmat{1,2&3\\4&5})$ & \parbox{3.5cm}{enter matrix elements for each block as a single diagonal element} \\
+\LCS|\antidiagonalmatrix| & \LCS|\admat{a,b,c,...}| & same as syntax as \LCS|\dmat| \\
+& \LCS|\mqty(\admat{1,2,3})| $\displaystyle\rightarrow \mqty(\admat{1,2,3})$ & \\
+\end{tabular}
+
+\end{frame}
+
+
+\subsection{The \packagename{systeme} Package}
+
+\begin{frame}[fragile]{The \packagename{systeme} Package}
+
+To use the \packagename{systeme} package, simply insert the command in the preamble of your document.
+
+\begin{command}
+\begin{minted}{latex}
+\usepackage{systeme}
+\end{minted}
+\end{command}
+
+This package can make it really easy when typesetting linear systems by the command \LC|\systeme|.
+\begin{latexexamplesplit}
+\begin{equation}
+  \systeme{
+    2a-3b+4c=2,
+    a+8b+5c=8,
+    -a+2b+c=-5
+  }
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]
+It also works for subscripts.
+\begin{latexexamplesplit}
+\begin{equation}
+  \systeme{
+    4x_1-x_2=3,
+    -x_1+5x_2=-1
+  }
+\end{equation}
+\end{latexexamplesplit}
+
+It can also reorder the variables and numbers in the equations.
+\begin{latexexamplesplit}
+\begin{equation}
+  \systeme{
+    3y+2x=0,
+    x-z+9=0,
+    2+3x+5-y-7+z=0
+  }
+\end{equation}
+\end{latexexamplesplit}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+Complicated coefficients can be handle correctly. Note that \LC{+} and \LC{-} should be replaced with \LC{\+} and \LC{\-} in the coefficients.
+\begin{latexexamplesplit}
+\begin{equation}
+  \systeme{
+    (2\+\sqrt{2})x-
+    (1\-\sqrt{2})y=1,
+    x+(1\+\sqrt{2})y=-1
+  }
+\end{equation}
+\end{latexexamplesplit}
+
+The documentation of the \packagename{systeme} package can be found in \url{http://mirrors.ctan.org/macros/generic/systeme/systeme_fr.pdf}, however it's in French, and the author is \structure{Manuel de l'utilisateur}.
+
+\end{frame}
+
+\subsection{The \packagename{gauss} Package}
+
+\begin{frame}[fragile]{The \packagename{gauss} Package}
+
+To use the \packagename{gauss} package, simply insert the command in the preamble of your document.
+
+\begin{command}
+\begin{minted}{latex}
+\usepackage{gauss}
+\end{minted}
+\end{command}
+
+This package provides \LaTeX-macros for typesetting operations on a
+matrix. By an ``operation on a matrix'' we understand a row operation
+or a column operation. It is named \packagename{gauss} because \structure{Gauss Elimination} is a widely used application of matrix operations. \medskip
+
+The documentation of the \packagename{systeme} package can be found in \url{http://mirrors.ctan.org/macros/latex/contrib/gauss/gauss-doc.pdf}.
+
+\end{frame}
+
+\begin{frame}[fragile]
+For example, if you are taking VV285 or working with other linear algebra stuffs in \LaTeX, you may use the \packagename{gmatrix} environment provided by the \packagename{gauss} package.
+
+\begin{latexexamplesplit}
+\begin{equation}
+  \begin{array}{ccc|}
+    4 & 2 & -2 \\
+    -3 & 1 & 0 \\
+    1 & 4 & 2
+  \end{array}
+  \begin{gmatrix}
+    -2 \\ 6 \\ -9
+    \rowops
+    \swap{0}{2}
+    \add[*(3)]{0}{1}
+  \end{gmatrix}
+\end{equation}
+\end{latexexamplesplit}
+\end{frame}
+
+

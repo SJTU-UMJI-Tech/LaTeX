@@ -1,16 +1,55 @@
 \documentclass{article}
 
-\title{1}
-\date{\today}
+\usepackage{minted}
+\usepackage{listings,fancyvrb,fp}
+
+\usemintedstyle{autumn}
+\setminted{
+    linenos,
+    breaklines,
+}
+
+\begingroup
+\catcode`\^^M\active%
+\global\def\activeeol{^^M}%
+\endgroup
+\makeatletter
+
+\newenvironment{mathsexamplesplit}
+{\@ifnextchar[\mathsexamplesplit@\mathsexamplesplit@noargs}
+{\end{VerbatimOut}%
+\begin{minipage}{\mathsexamplesplit@left\textwidth}
+~
+\inputminted{latex}{\jobname.tmp}
+\end{minipage}
+\hfill
+\begin{minipage}{\mathsexamplesplit@right\textwidth}
+\input{\jobname.tmp}
+\end{minipage}
+}
+\def\mathsexamplesplit@[#1]{%
+\FPset\mathsexamplesplit@all{0.96}%
+\if\relax\detokenize{#1}\relax
+\FPset\mathsexamplesplit@left{0.48}%
+\else%
+\FPset\mathsexamplesplit@left{#1}
+\fi%
+\FPsub\mathsexamplesplit@right\mathsexamplesplit@all\mathsexamplesplit@left%
+\VerbatimEnvironment
+\begin{VerbatimOut}{\jobname.tmp}%
+}
+\def\mathsexamplesplit@noargs#1{%
+\edef\temp{[]\activeeol\string#1}%
+\expandafter\mathsexamplesplit@\temp
+}
+\makeatother
 
 \begin{document}
 
-\section{111}
-\subsection{222}
-\subsubsection{333}
+\begin{mathsexamplesplit}[0.3]
+$1+1+1+1+1+1+1=2$
+\end{mathsexamplesplit}
 
-\maketitle
+\end{document}
 
-
-\end{document} 
- 
+%\FPset\mathsexamplesplit@left{0.48}%

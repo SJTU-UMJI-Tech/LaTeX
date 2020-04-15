@@ -1,6 +1,6 @@
-\documentclass{beamer}
+\documentclass[10pt,aspectratio=169]{beamer}
 \usepackage{../lecture}
-
+\booltrue{wholelecture}
 
 \begin{document}
 
@@ -8,10 +8,23 @@
 	\titlepage
 \end{frame}
 
-\input{../c1/c1}
-\input{../c2/c2}
-\input{../c3/c3}
-\input{../c4/c4}
-\input{../c5/c5}
+\newcommand{\parttocitem}[2]{\item \hyperlink{lecture-#1}{\large\structure{Lecture \lectureroman{#1}: #2}}}
+
+\begin{frame}{Table of Contents}
+\begin{itemize}
+\parttocitem{1}{Hello, \LaTeX}
+%\tableofcontents[part=1,hideallsubsections]
+\parttocitem{2}{Text}
+\parttocitem{3}{Maths}
+\parttocitem{4}{Graphs, Tables and Code}
+\end{itemize}
+%    \tableofcontents[onlyparts]
+\end{frame}
+
+\input{../c1/main}
+\input{../c2/main}
+\input{../c3/main}
+\input{../c4/main}
+%\input{../c5/c5}
 
 \end{document}
