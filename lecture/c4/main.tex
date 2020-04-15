@@ -600,7 +600,264 @@ Though the environment is not provided by the \packagename{array} package (it's 
 
 \subsection{Pseudo Code}
 
-\subsection{Code Highlighting}
+\begin{frame}[fragile]{The \packagename{algorithm} Environment}
+\LaTeX\ has several packages for typesetting algorithms in form of ``pseudocode''. They provide stylistic enhancements over a uniform style (i.e., all in typewriter font) so that constructs such as loops or conditionals are visually separated from other text. The pseudocode is usually put in an \packagename{algorithm} environment. 
+
+Include it by adding the command to your document's preamble. 
+\begin{command}
+\LC|\usepackage{algorithm}|
+\end{command}
+
+Then you can use the \packagename{algorithm} environment, which acts similar as the \packagename{figure} and \packagename{table} environments.
+
+\begin{command}
+\begin{LCL}
+\begin{algorithm}[position]
+  \caption{caption}
+  \label{algorithm:label}
+  <the actual pseudocode environment>
+\end{algorithm}
+\end{LCL}
+\end{command}
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{algorithmic} Package}
+
+One of the packages, the \packagename{algorithmic}, defines the \packagename{algorithmic} environment. Include it by adding the command to your document's preamble. 
+\begin{command}
+\LC|\usepackage{algorithmic}|
+\end{command}
+The basic commands are:
+\begin{command}
+\begin{LCL}
+\STATE <text>
+\IF{<condition>} \STATE {<text>} \ELSE \STATE{<text>} \ENDIF
+\IF{<condition>} \STATE {<text>} \ELSIF{<condition>} \STATE{<text>} \ENDIF
+\FOR{<condition>} \STATE {<text>} \ENDFOR
+\FOR{<condition> \TO <condition> } \STATE {<text>} \ENDFOR
+\FORALL{<condition>} \STATE{<text>} \ENDFOR
+\WHILE{<condition>} \STATE{<text>} \ENDWHILE
+\REPEAT \STATE{<text>} \UNTIL{<condition>}
+\LOOP \STATE{<text>} \ENDLOOP
+\REQUIRE <text>, \ENSURE <text>, \RETURN <text>, \PRINT <text>
+\AND, \OR, \XOR, \NOT, \TO, \TRUE, \FALSE, \COMMENT{<text>}
+\end{LCL}
+\end{command}
+
+\end{frame}
+%
+\begin{frame}[fragile]
+
+\begin{example}
+\begin{minted}[fontsize=\scriptsize]{latex}
+\begin{algorithm}[H]
+  \caption{Calculate $y = x^n$}
+  \label{algorithm:n-square}
+  \begin{algorithmic}
+    \REQUIRE $n \geq 0 \vee x \neq 0$
+    \ENSURE $y = x^n$
+    \STATE $y \leftarrow 1$
+    \IF{$n < 0$}
+      \STATE $X \leftarrow 1 / x$
+      \STATE $N \leftarrow -n$
+    \ELSE
+      \STATE $X \leftarrow x$
+      \STATE $N \leftarrow n$
+    \ENDIF
+    \WHILE{$N \neq 0$}
+      \IF{$N$ is even}
+        \STATE $X \leftarrow X \times X$
+        \STATE $N \leftarrow N / 2$
+      \ELSE[$N$ is odd]
+        \STATE $y \leftarrow y \times X$
+        \STATE $N \leftarrow N - 1$
+     \ENDIF
+    \ENDWHILE
+  \end{algorithmic}
+\end{algorithm}
+\end{minted}
+\end{example}
+
+\end{frame}
+
+\begin{frame}
+\begin{algorithm}[H]
+  \caption{Calculate $y = x^n$}
+  \label{algorithm:n-square}
+  \footnotesize
+  \begin{algorithmic}
+    \Require $n \geq 0 \vee x \neq 0$
+    \Ensure $y = x^n$
+    \State $y \leftarrow 1$
+    \If{$n < 0$}
+      \State $X \leftarrow 1 / x$
+      \State $N \leftarrow -n$
+    \Else
+      \State $X \leftarrow x$
+      \State $N \leftarrow n$
+    \EndIf
+    \While{$N \neq 0$}
+      \If{$N$ is even}
+        \State $X \leftarrow X \times X$
+        \State $N \leftarrow N / 2$
+      \Else[$N$ is odd]
+        \State $y \leftarrow y \times X$
+        \State $N \leftarrow N - 1$
+     \EndIf
+    \EndWhile
+  \end{algorithmic}
+\end{algorithm}
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{algorithmicx} Package}
+
+Another package \packagename{algorithmicx} provides more functionalities, but it is not compatible with the \packagename{algorithmic} package. Include it by adding the command to your document's preamble. 
+\begin{command}
+\LC|\usepackage{algpseudocode}|
+\end{command}
+Note that \LC|\usepackage{algorithmicx}| only defines some common macros and it is not enough. Don't insert \LC|\usepackage{algorithmic}| in this situation. \medskip
+
+The main difference of these two packages is that all of the command name are changed, so that only the first letter in a word is capital. For example, \LC|\STATE| is changed to \LC|\State| and \LC|\ENDFOR| is changed to \LC|\EndFor|. \medskip
+
+The command \LC|\begin{algorithmic}| can be given the optional argument of a positive integer, which if given will cause line numbering to occur at multiples of that integer. E.g. \LC|\begin{algorithmic}[5]| will enter the \packagename{algorithmic} environment and number every fifth line.
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\begin{example}
+\begin{LCL}
+\begin{algorithm}[H]
+  \caption{Euclid’s algorithm}
+  \label{algorithm:euclid}
+  \begin{algorithmic}[1]
+    \Procedure{Euclid}{$a,b$}\Comment{The g.c.d. of a and b}
+    \State $r\gets a\bmod b$
+      \While{$r\not=0$}\Comment{We have the answer if r is 0}
+        \State $a\gets b$
+        \State $b\gets r$
+        \State $r\gets a\bmod b$
+      \EndWhile\label{euclidendwhile}
+      \State \textbf{return} $b$\Comment{The gcd is b}
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+\end{LCL}
+\end{example}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{algorithm}[H]
+  \caption{Euclid’s algorithm}
+  \label{algorithm:euclid}
+  \begin{algorithmic}[1]
+    \Procedure{Euclid}{$a,b$}\Comment{The g.c.d. of a and b}
+    \State $r\gets a\bmod b$
+      \While{$r\not=0$}\Comment{We have the answer if r is 0}
+        \State $a\gets b$
+        \State $b\gets r$
+        \State $r\gets a\bmod b$
+      \EndWhile\label{euclidendwhile}
+      \State \textbf{return} $b$\Comment{The gcd is b}
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+Algorithms can also be listed like figures and tables, by the command:
+
+\begin{command}
+\LC|\listofalgorithms|
+\end{command}
+
+
+\end{frame}
+
+
+\subsection{Code Listing}
+
+\begin{frame}[fragile]{The \packagename{verbatim} Environment}
+The default tool to display code in \LaTeX\ is verbatim, which generates an output in monospaced font.
+
+\begin{latexexample}
+\begin{verbatim}
+Text enclosed inside \texttt{verbatim} environment 
+is printed directly 
+and all \LaTeX{} commands are ignored.
+\end{verbatim}
+\end{latexexample}
+
+There's a starred version (\packagename{verbatim*}) whose output is slightly different.
+
+\begin{verbatim*}
+Text enclosed inside \texttt{verbatim} environment 
+is printed directly 
+and all \LaTeX{} commands are ignored.
+\end{verbatim*}
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{verb} Command}
+Verbatim-like text can also be used inline with the command \LC|\verb|
+
+\begin{latexexample}
+In the directory \verb|C:\Windows\system32| you can find a lot of Windows 
+system applications. 
+ 
+The \verb+\ldots+ command produces \ldots
+\end{latexexample}
+
+The command \LC+\verb|C:\Windows\system32|+ prints the text inside the delimiters \packagename{|} in verbatim format. Any character, except letters and \packagename{*}, can be used as delimiter. For instance \LC|\verb+\ldots+| uses \packagename{+} as delimiter.
+
+\end{frame}
+
+\begin{frame}[fragile]{The \packagename{listings} Package}
+
+A better form of code listing can be done by the \packagename{listings} package. To use it, simply insert the command in the preamble of your document.
+
+\begin{command}
+\LC|\usepackage{listings}|
+\end{command}
+
+It provides a \packagename{lstlisting} environment.
+
+\begin{command}
+\begin{LCL}
+\begin{lstlisting}[language=name]
+  ...
+\end{lstlisting}
+\end{LCL}
+\end{command}
+
+You can also input source code from file.
+
+\begin{command}
+\LC|\lstinputlisting[language=name]{filename}|
+\end{command}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{latexexample}
+\begin{lstlisting}[language=Python]
+import numpy as np
+    
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+\end{lstlisting}
+\end{latexexample}
+
+You can add code coloring and styling by some complicated configurations, see the Overleaf tutorial \urllink{https://www.overleaf.com/learn/latex/code_listing}. \medskip
+
+The documentation of the \packagename{listings} package can be found in \urllink{http://mirrors.ctan.org/macros/latex/contrib/listings/listings.pdf}.
+
+
+\end{frame}
 
 \begin{frame}[fragile]{The \packagename{minted} Package}
 
@@ -621,3 +878,82 @@ You can install the package through \packagename{pip} (assuming you have \packag
 And then you can examine in your terminal whether \packagename{pygmentize} is your \packagename{PATH} by directly running it. You also need to add an option \packagename{-shell-escape} to your \LaTeX\ compiler because \LaTeX\ need this permission to run other programs on shell.
 
 \end{frame}
+
+\begin{frame}[fragile]{The \packagename{minted} Environment}
+
+You can use the \packagename{minted} environment to insert a block of code in the specific language.
+
+\begin{command}
+\begin{LCL}
+\begin{minted}[options]{language}
+  ...
+\end{minted}
+\end{LCL}
+\end{command}
+
+You can use the command in the terminal to find the supported languages. 
+\begin{command}
+\mintinline{shell}|pygmentize -L lexers|
+\end{command}
+
+There is also a list of languages on the online document \urllink{https://pygments.org/languages/}. Note that if you want to insert plain text, use the \packagename{text} language which doesn't have any highlight. \medskip
+
+\end{frame}
+
+\begin{frame}[fragile]{The Inline \packagename{minted}}
+
+For a single line of source code, you can alternatively use a shorthand notation:
+\begin{command}
+\LC+\mint[options]{language}|...|+
+\end{command}
+
+Here we use a pair of \packagename{|}, same as the usage of the \LC|\verb| command, which is also an inline verbatim command. \medskip
+
+Or you can also use
+\begin{command}
+\LC+\mintinline[options]{language}|...|+
+\end{command}
+
+Here \packagename{|} can also be replaced with \packagename{\{\}}, a pair of \packagename{+}, etc., the key is there should not exist the same delimiter inside the code.
+
+\end{frame}
+
+\begin{frame}[fragile]{Input File with \packagename{minted}}
+
+When you have a source code file alone, you can use the command to input the file.
+\begin{command}
+\LC|\inputminted[options]{language}{filename}|
+\end{command}
+
+There are some commonly used options (not only for this command):
+\begin{itemize}
+\item \packagename{linenos} - Turn on line numbers
+\item \packagename{breaklines} - Automatically break long lines in \packagename{minted} environment and \LC|\mint|, and wrap longer lines in \LC|\mintinline|.
+\item \packagename{fontsize} - The size of the font to use, as a size command, e.g. \LC|fontsize=\footnotesize|.
+\item \packagename{tabsize} - The number of spaces a tab is equivalent to. (default is 8, but often set to 4)
+\item \packagename{firstline} - The first line to show. (default is 1, useful when showing part of a file)
+\item \packagename{lastline} - The last line to show. (default is the last line of the input)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Using Different Styles}
+You can use various styles of highlighting scheme provided by \packagename{pygmentize}.
+\begin{command}
+\LC|\usemintedstyle{name}|
+\end{command}
+
+You can use the command in the terminal to find the supported styles. 
+\begin{command}
+\mintinline{shell}|pygmentize -L styles|
+\end{command}
+
+There is also a demo of languages and styles on the online demo \urllink{https://pygments.org/demo/}. The \packagename{autumn} style is used in this lecture. \medskip
+
+In the end, \packagename{XeLaTeX} might be the best \LaTeX\ compiler working with the \packagename{minted} package. It also supports typesetting with Chinese, if you meet problems when using the default \packagename{pdflatex} compiler, switch into \packagename{XeLaTeX} may solve your issues. \medskip
+
+The documentation of the \packagename{minted} package can be found in \urllink{http://mirrors.ctan.org/macros/latex/contrib/minted/minted.pdf}.
+
+\end{frame}
+
+
