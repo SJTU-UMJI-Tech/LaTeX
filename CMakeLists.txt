@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(LaTeX)
+project(LaTeX NONE)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/UseLatexMk)
 #set(LATEXMK_DIR ${PROJECT_SOURCE_DIR}/third_party)
