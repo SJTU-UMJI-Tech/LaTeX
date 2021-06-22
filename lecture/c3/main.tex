@@ -215,17 +215,41 @@ Use \packagename{align*} so that there will be no number(s).
 
 \begin{frame}[fragile]
 
-The ampersand character \LC{&} determines where the equations align. Let's check a more complex example:
+The ampersand character \LC{&} determines where the equations align. The odd columns are right-aligned, and the even ones are left-aligned, so you can use \LC{&&} if you want to make two neighbor column aligned to the same direction.
 
+\setlength{\belowdisplayskip}{-10pt}
 \begin{latexexample}
 \begin{align*}
-  x&=y           &  w &=z              &  a&=b+c \\
-  2x&=-y         &  3w&=\frac{1}{2}z   &  a&=b \\
-  -4 + 5x&=2+y   &  w+2&=-1+w          &  ab&=cb
+  \text{(right)} & \text{(left)} && \text{(left)} & \text{(right)} 
+  &&  \text{(right)} & \text{(left)} \\
+  x     &=y     &&  w   &=z        &&  a&=b+c \\
+  2x    &=-y    &&  3w  &=z/2      &&  a&=b \\
+  -4+5x &=2+y   &&  w+2 &=-1+w     &&  ab&=cb
 \end{align*}
 \end{latexexample}
 
-Here we arrange the equations in three columns. \LaTeX assumes that each equation consists of two parts separated by an \LC{&}; also that each equation is separated from the one before by an \LC{&}.
+\end{frame}
+
+
+\begin{frame}[fragile]{The \packagename{cases} Environment (inline)}
+
+The linear system of equations can also be typeset simply with the \packagename{cases} environment. It is less flexible than an \packagename{aligned} environment, eg., there can only be one \LC{&} on each row. Another minor difference is that the horizontal space before  \LC{&} is larger than other similar environments.
+
+\begin{latexexamplesplit}
+\begin{equation}
+  \left\lbrace\begin{aligned}
+    x+y &= 1 \\ 
+    x-y &= 1
+  \end{aligned}\right.
+\end{equation}
+
+\begin{equation}
+  \begin{cases} 
+    x+y &= 1 \\ 
+    x-y &= 1
+  \end{cases}
+\end{equation}
+\end{latexexamplesplit}
 
 \end{frame}
 
@@ -286,7 +310,7 @@ For equations equal or longer then three lines,
 \end{multline*}
 \end{latexexample}
 
-Here, the first column aligns left, the last aligns right and others align center. 
+Here, the first column is left-aligned, the last column is right-aligned and the others ones are center-aligned. 
 
 \end{frame}
 
@@ -300,7 +324,7 @@ For equations aligned left, use the \packagename{flalign} environment. It is sim
 \end{flalign}
 \end{latexexample}
 
-You may notice that the columns are aligned left except that the right most column is aligned right, different from the \packagename{align} environment.
+You may notice that the columns are flushed left (start from the left most position) and the right most column is flushed right, different from the \packagename{align} environment.
 
 \end{frame}
 

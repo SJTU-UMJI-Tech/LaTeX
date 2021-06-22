@@ -1,28 +1,29 @@
 \newlecture{2}{Text}
 
 \section{Polishing the plain text}
+%
+%\subsection{UTF-8 encoding}
+%
+%\begin{frame}[fragile]
+%	\frametitle{Use UTF-8 encoding in \LaTeX}
+%	UTF-8 encoding is widely used in modern computer applications, so it's useful to include the \structure{inputenc} package and use UTF-8 encoding.
+%	\begin{command}
+%		\LC{\usepackage[utf-8]{inputenc}}
+%	\end{command}
+%	\begin{example}
+%		café
+%	\end{example}
+%	However, different operating systems and compiling engines have different support on UTF-8 encoding, some UTF-8 codes that work on your computer may not work on others (though rarely), so it is recommended to use commands (will be introduced later) instead of directly copy and paste the UTF-8 codes from the Internet.
+%\end{frame}
 
-\subsection{UTF-8 encoding}
-
-\begin{frame}[fragile]
-	\frametitle{Use UTF-8 encoding in \LaTeX}
-	UTF-8 encoding is widely used in modern computer applications, so it's useful to include the \structure{inputenc} package and use UTF-8 encoding.
-	\begin{command}
-		\LC{\usepackage[utf-8]{inputenc}}
-	\end{command}
-	\begin{example}
-		café
-	\end{example}
-	However, different operating systems and compiling engines have different support on UTF-8 encoding, some UTF-8 codes that work on your computer may not work on others (though rarely), so it is recommended to use commands (will be introduced later) instead of directly copy and paste the UTF-8 codes from the Internet.
-\end{frame}
-
-\subsection{Special symbols and accents}
+\subsection{Special Characters and Accents}
 
 \begin{frame}
-	\frametitle{Special symbols}
-	Some special symbols can't be directly used since they are reserved by \LaTeX
+	\frametitle{Special Characters}
+	Some special symbols can't be directly used since they are reserved by \LaTeX:
 	\begin{center}
 	\begin{tabular}{llllll}
+		\LC|\#| & \# \\
 		\samplesymbol{\#}{\#} & \samplesymbol{\$}{\$} & \samplesymbol{\%}{\%} & \samplesymbol{\&}{\&} & \samplesymbol{\~{}}{\~{}} & \samplesymbol{\`{}}{\`{}} \\
 		\samplesymbol{\{}{\{} & \samplesymbol{\}}{\}} & \samplesymbol{\_}{\_} &
 		\multicolumn{2}{l}{\samplesymbol{textbackslash}{\textbackslash}}

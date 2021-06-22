@@ -368,8 +368,8 @@ With the help of the \packagename{array} package, more formats are available:
 		\item \packagename{p\{width\}} - Equivalent to \LC|\parbox[t]{width}|, vertically aligned \alert{bottom}
 		\item \packagename{b\{width\}} - Equivalent to \LC|\parbox[b]{width}|, vertically aligned \alert{top}
 		\item \packagename{m\{width\}} - Equivalent to \LC|\parbox{width}|, vertically aligned middle
-		\item \packagename{>\{decl.\}} - Can be used after a letter option, inserts \packagename{decl} before the entry.
-		\item \packagename{<\{decl.\}} - Can be used before a letter option, inserts \packagename{decl} after the entry.
+		\item \packagename{>\{decl.\}} - Can be used before a letter option, inserts \packagename{decl} before the column.
+		\item \packagename{<\{decl.\}} - Can be used after a letter option, inserts \packagename{decl} after the column.
 \end{itemize}
 
 \packagename{t} and \packagename{b} may be very confusing, but that's how they work in \LC|\parbox|. With these new formats, the columns can be defined more flexibly.
@@ -459,7 +459,7 @@ Here we draw a table with a multirow, but it only works with multirows of odd ro
 
 \end{frame}
 
-\begin{frame}[fragile]{Combine Rows and Columns}
+\begin{frame}[fragile]{Combining Rows and Columns}
 
 There are two commands being used to combine rows and columns
 \begin{command}
@@ -507,6 +507,98 @@ To use the \LC|\multirow| command, you need to insert the package \packagename{m
 \end{latexexample}
 
 Just leave blank in the rest rows of \LC|\multirow|.
+
+\end{frame}
+
+\begin{frame}[fragile]{Coloring Rows and Columns}
+
+The rows and columns can also be colored, with the \packagename{colortbl} package. You may also need the \packagename{xcolor} package to define new colors.
+\begin{command}
+\begin{LCL}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\end{LCL}
+\end{command}
+
+Some commands are provided by these packages
+\begin{command}
+\begin{LCL}
+\definecolor{name}{system}{definition}
+\rowcolor{color}
+\columncolor{color}
+\end{LCL}
+\end{command}
+
+Here \packagename{system} can be \packagename{rgb/hsb/cmyk/gray}. Please refer the lecture about defining colors.
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\begin{latexexample}
+\definecolor{mygray}{gray}{.9}
+\definecolor{barblue}{RGB}{153,204,254}
+\centering
+\begin{tabular}{|*2{>{\columncolor{mygray}}c|c|}{}}
+  \hline\rowcolor{barblue}
+  Title 1 & Title 2 & Title 3 & Title 4 \\
+  \hline
+  Text 1 & Text 2 & Text 3 & Text 4 \\
+  \hline
+  Text 5 & Text 6 & Text 7 & Text 8 \\
+  \hline
+\end{tabular}
+\end{latexexample}
+
+Note that the \LC|\rowcolor| overwrites the \LC|\columncolor|.
+
+\end{frame}
+
+\begin{frame}[fragile]{Styling Rows and Columns}
+
+Styling columns can be easily achieved by prepending styles in the \packagename{>\{decl.\}} introduced before. \medskip
+
+However, styling rows is much more complicated. You should only consider using this method when your table is really too large to style them one by one. \medskip
+
+First, you may define these in the preamble of your document:
+
+\begin{command}
+\begin{LCL}
+\newcolumntype{+}{>{\global\let\currentrowstyle\relax}}
+\newcolumntype{^}{>{\currentrowstyle}}
+\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
+  #1\ignorespaces
+}
+\end{LCL}
+\end{command}
+
+Then you should add a \packagename{+} before the first column definition and a \packagename{\^{}} before any other column definitions. (You can change the symbols \packagename{+} and \packagename{\^{}} in the definition above.)
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\begin{latexexample}
+\newcolumntype{+}{>{\global\let\currentrowstyle\relax}}
+\newcolumntype{^}{>{\currentrowstyle}}
+\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}%
+  #1\ignorespaces
+}
+\centering
+\begin{tabular}{|+>{\ttfamily}c|^c|^>{\ttfamily}c|^c|}
+  \hline\rowstyle{\bfseries\sffamily}
+  Title 1 & Title 2 & Title 3 & Title 4 \\
+  \hline
+  Text 1 & Text 2 & Text 3 & Text 4 \\
+  \hline
+  Text 5 & Text 6 & Text 7 & Text 8 \\
+  \hline
+\end{tabular}
+\end{latexexample}
+
+Note that the \LC|\rowstyle| also overwrites the column style set in the formats.
 
 \end{frame}
 
@@ -594,7 +686,27 @@ Though the environment is not provided by the \packagename{array} package (it's 
 	
 \end{frame}
 
-\subsection{Custom Floats}
+\begin{frame}[fragile]{List of Floats}
+The figures and tables are all called floats. Captions can be listed at the beginning of a paper or report in a ``List of Figures'' or a ``List of Tables'' section with the commands:
+
+\begin{command}
+\begin{LCL}
+\listoffigures
+\listoftables
+\end{LCL}
+\end{command}
+
+The caption used for each figure will appear in these lists, along with the figure numbers, and page numbers that they appear on. \medskip
+
+The \LC|\caption| command also has an optional parameter, which is used for the List of Tables or List of Figures.  
+
+\begin{command}
+\LC|\caption[short]{long}|
+\end{command}
+
+Typically the \packagename{short} description is for the caption listing, and the \packagename{long} description will be placed beside the figure or table.
+
+\end{frame}
 
 \section{Code}
 
@@ -780,7 +892,7 @@ Algorithms can also be listed like figures and tables, by the command:
 \subsection{Code Listing}
 
 \begin{frame}[fragile]{The \packagename{verbatim} Environment}
-The default tool to display code in \LaTeX\ is verbatim, which generates an output in monospaced font.
+The default tool to display code in \LaTeX\ is \packagename{verbatim}, which generates an output in monospaced font.
 
 \begin{latexexample}
 \begin{verbatim}
@@ -799,6 +911,7 @@ and all \LaTeX{} commands are ignored.
 \end{verbatim*}
 
 \end{frame}
+
 
 \begin{frame}[fragile]{The \packagename{verb} Command}
 Verbatim-like text can also be used inline with the command \LC|\verb|
@@ -956,4 +1069,95 @@ The documentation of the \packagename{minted} package can be found in \urllink{h
 
 \end{frame}
 
+\begin{frame}[fragile]{Custom Floats}
+
+If tables and figures are not adequate for your needs, then you always have the option to create your own! Examples of such instances could be source code examples, or maps. For a program float example, one might therefore wish to create a \packagename{float} named program. The package \packagename{float} is your friend for this task. All commands to set up the new float must be placed in the preamble, and not within the document.
+
+\begin{command}
+\begin{LCL}
+\usepackage{float}
+\floatstyle{style}
+\newfloat{type}{placement}{ext}[outer counter]
+\floatname{type}{floatname}
+\end{LCL}
+\end{command}
+
+The default name that appears at the start of the caption is the type. If you wish to alter this, use \LC|\floatname{type}{floatname}|.
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+For the \LC|\floatstyle| command, \packagename{style} can be:
+\begin{itemize}
+\item \packagename{plain} - the normal style for \LaTeX\ floats, but the caption is always below the content.
+\item \packagename{plaintop} - the normal style for \LaTeX\ floats, but the caption is always above the content.
+\item \packagename{boxed} -  a box is drawn that surrounds the float, and the caption is printed below.
+\item \packagename{ruled} - the caption appears above the float, with rules immediately above and below. Then the float contents, followed by a final horizontal rule.
+\end{itemize}
+
+For the \LC|\newfloat| command, 
+\begin{itemize}
+\item \packagename{type} - the new name you wish to call your float, in the example, ``program''.
+\item \packagename{placement} - t, b, p, or h (as previously described in Placement), where letters enumerate permitted placements.
+\item \packagename{ext} -  the file name extension of an auxiliary file for the list of figures (or whatever). \LaTeX\ writes the captions to this file.
+\item \packagename{outer counter} - the presence of this parameter indicates that the counter associated with this new float should depend on outer counter, for example ``chapter''.
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{example}
+\begin{LCL}
+\documentclass{article}
+\usepackage{float}
+\floatstyle{ruled}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+\begin{document}
+
+\begin{program}[H]
+  \begin{minted}{java}
+class HelloWorldApp {
+  public static void main(String[] args) {
+    //Display the string
+    System.out.println("Hello World!");
+  }
+}
+  \end{minted}
+  \caption{The Hello World! program in Java.}
+  \label{program:hello-world}
+\end{program}
+
+\end{document}
+\end{LCL}
+\end{example}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{program}[H]
+  \begin{minted}{java}
+class HelloWorldApp {
+  public static void main(String[] args) {
+    //Display the string
+    System.out.println("Hello World!");
+  }
+}
+  \end{minted}
+  \caption{The Hello World! program in Java.}
+  \label{program:hello-world}
+\end{program}
+
+You can also reference the custom floats.
+
+\begin{latexexample}
+Program \ref{program:hello-world} is the Hello World! program in Java.
+\end{latexexample}
+
+\end{frame}
 

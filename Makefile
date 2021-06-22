@@ -11,7 +11,7 @@ OPTIONS       = -xelatex -cd -shell-escape -synctex=1 -halt-on-error -deps -time
 CLEAN_OPTIONS = -C -cd
 
 define make_lecture
-  cp ${LECTURE_DIR}/template.tex ${LECTURE_DIR}/$(1)/$(2).tex
+	cp ${LECTURE_DIR}/template.tex ${LECTURE_DIR}/$(1)/$(2).tex
 	${LATEX} ${OPTIONS} ${LECTURE_DIR}/$(1)/$(2).tex > ${LECTURE_DIR}/$(1)/make.log
 	cp ${LECTURE_DIR}/$(1)/$(2).pdf ${OUTPUT_DIR}/$(2).pdf
 	# rm ${LECTURE_DIR}/$(1)/$(2).tex

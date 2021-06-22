@@ -1,7 +1,20 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{lecture}[2020/02/02 LaTeX Lecture]
+\ProvidesPackage{../lecture}[2020/02/02 LaTeX Lecture]
+
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=lecture,prefix=lecture@}
+\DeclareStringOption[1]{outputdir}[.]
+\ProcessKeyvalOptions*
+
+
+%\RequirePackage{silence}
+%Disable all warnings issued by latex starting with "You have..."
+%\WarningFilter{latex}{You have requested package}
 
 \RequirePackage{etoolbox}
+%\RequirePackage{suffix}
+%\RequirePackage{tgpagella}
+\RequirePackage{metalogo}
 
 \makeatletter
 
@@ -24,9 +37,8 @@
 }
 
 
+\RequirePackage{anyfontsize}
 
-%\usetheme{CambridgeUS}
-%\usecolortheme{dolphin}
 
 %
 % Choose how your presentation looks.
@@ -78,6 +90,31 @@
   {\insertshorttitle[width=\beamer@tempdim,center,respectlinebreaks]\par}% <search>
   {\insertshorttitle[width=\beamer@tempdim,center,respectlinebreaks]\par\vskip0.5em\usebeamerfont{subtitle in sidebar}\usebeamercolor[fg]{subtitle in sidebar}\parbox{\beamer@sidebarwidth}{\centering\insertlecturename}\par}% <replace>
   {}{}% <success><failure>
+  
+ 
+  
+% fix framezoom for xelatex
+\expandafter\patchcmd\csname beamer@framezoom\endcsname% <cmd>
+  {\vbox to #7{\hbox to#6{\hfil}\vfil}}% <search>
+  {\begin{pgfpicture}{0pt}{0pt}{#6}{#7}%
+    \pgfsetfillopacity{0}%
+    \pgftext[x=0pt,y=0pt]{.}%
+    \pgftext[x=#6,y=#7]{.}%
+  \end{pgfpicture}%
+  }% <replace>
+  {\message{patch success}}{\message{patch failure}}% <success><failure>
+
+\expandafter\patchcmd\csname beamer@framezoom\endcsname% <cmd>
+  {\vbox to \beamer@frametextheight{\hbox to\@tempdimb{\hfil}\vfil}}% <search>
+  {\begin{pgfpicture}{0pt}{0pt}{\beamer@frametextheight}{\@tempdimb}%
+    \pgfsetfillopacity{0}%
+    \pgftext[x=0pt,y=0pt]{.}%
+    \pgftext[x=\beamer@frametextheight,y=\@tempdimb]{.}%
+  \end{pgfpicture}%
+  }% <replace>
+  {\message{patch success}}{\message{patch failure}}% <success><failure>  
+
+  
 %\setbeamertemplate{sidebar left}{}
 %\makeatother
 
@@ -124,13 +161,13 @@
 %}
 %\makeatother
 
-\RequirePackage{etoolbox}
 \newbool{wholelecture}
+
 
 
 \RequirePackage[greek,english]{babel}
 \RequirePackage[OT2,OT1]{fontenc}
-\RequirePackage[utf8]{inputenc}
+%\RequirePackage[utf8]{inputenc}
 
 \RequirePackage{hyperref}
 \hypersetup{colorlinks=true,breaklinks=true,linkcolor=,urlcolor=blue}
@@ -150,7 +187,7 @@
 \RequirePackage{mathrsfs}
 \RequirePackage{latexsym}
 \RequirePackage{array}
-%\RequirePackage[scheme=plain]{ctex}
+\RequirePackage[scheme=plain]{ctex}
 \RequirePackage{tikz}
 \RequirePackage{verbatim}
 \RequirePackage{physics}
@@ -164,6 +201,16 @@
 \RequirePackage{algorithm}
 \RequirePackage{algpseudocode}
 %\RequirePackage{algcompatible}
+
+\RequirePackage{xcolor}
+\RequirePackage{colortbl}
+
+
+\RequirePackage{float}
+
+\floatstyle{ruled}
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
 
 \newenvironment{command}{\begin{block}{Command}}{\end{block}}
 \newcommand{\samplebegin}[1]{\structure{\textbackslash begin}\{#1\}}
@@ -226,7 +273,7 @@
 % Indexentry for a word (Word inserted into the text)
 \newcommand{\wi}[1]{\index{#1}#1}
 
-\RequirePackage{minted}
+\RequirePackage[outputdir=\lecture@outputdir]{minted}
 \usemintedstyle{autumn}
 \setminted{
     linenos,
@@ -269,15 +316,35 @@
   \lecture{#2}{Lecture #1}
   \part{#2}
   \setcounter{part}{#1}
-  \begin{frame}
-    \ifbool{wholelecture}{
+  \ifbool{wholelecture}{
+    \begin{frame}
       \partpage\label{lecture-#1}
-    }{
+    \end{frame}
+  }{
+    \begin{frame}[label=title-page]
       \subtitle{Lecture \lectureroman{#1}: #2}
       \titlepage
-    }
-  \end{frame}
+    \end{frame}
+  }
 }
+
+\newcommand{\newlectureappendix}[2]{
+%  \renewcommand{\partname}{#2}
+%  \lecture{#2}{Lecture #1}
+  \part{#2}
+  \setcounter{part}{0}
+  \ifbool{wholelecture}{
+    \begin{frame}
+      \partpage\label{lecture-#1}
+    \end{frame}
+  }{
+    \begin{frame}[label=title-page]
+      \subtitle{#2}
+      \titlepage
+    \end{frame}
+  }
+}
+
 \AtBeginSubsection[] % Do nothing for \section*
 {
   \begin{frame}<beamer>
@@ -302,11 +369,11 @@
 \begin{example}
 \begin{minipage}{\latexexamplesplit@left\textwidth}
 ~
-\inputminted{latex}{\jobname.tmp}
+\inputminted{latex}{\lecture@outputdir/\jobname.tmp}
 \end{minipage}
 \hfill
 \begin{minipage}{\latexexamplesplit@right\textwidth}
-\input{\jobname.tmp}
+\input{\lecture@outputdir/\jobname.tmp}
 \end{minipage}
 \end{example}
 }
@@ -327,9 +394,9 @@
 {\endVerbatimOut
 \begin{example}
 ~
-\inputminted{latex}{\jobname.tmp}
+\inputminted{latex}{\lecture@outputdir/\jobname.tmp}
 
-\input{\jobname.tmp}
+\input{\lecture@outputdir/\jobname.tmp}
 \end{example}
 }
 
@@ -339,12 +406,12 @@
 
 \begin{frame}
 \begin{example}
-\inputminted{latex}{\jobname.tmp}
+\inputminted{latex}{\lecture@outputdir/\jobname.tmp}
 \end{example}
 \end{frame}
 
 \begin{frame}
-\input{\jobname.tmp}
+\input{\lecture@outputdir/\jobname.tmp}
 \end{frame}
 }
 

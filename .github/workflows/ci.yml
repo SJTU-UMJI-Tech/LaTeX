@@ -1,0 +1,25 @@
+on: [ push ]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: |
+            apk add make cmake
+            mkdir -p cmake-build
+            cd cmake-build
+            cmake ..
+            make
+      - name: publish
+        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: build
+          build_dir: build
+          keep_history: true
+          commit_message: build pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

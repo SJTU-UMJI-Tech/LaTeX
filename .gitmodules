@@ -1,0 +1,3 @@
+[submodule "UseLatexMk"]
+	path = UseLatexMk
+	url = https://github.com/dokempf/UseLatexMk.git
